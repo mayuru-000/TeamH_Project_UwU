@@ -1,15 +1,14 @@
 #pragma once
 #include "../Library/SceneBase.h"
 
-class Granade : public SceneBase
+class Gun : public SceneBase
 {
 public:
-	Granade();
-	~Granade();
+	Gun();
+	~Gun();
 	void Update() override;
 	void Draw() override;
 
 private:
-	int gImage;
+	int gunImage;
 };
-
