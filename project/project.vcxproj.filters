@@ -56,10 +56,10 @@
     <ClCompile Include="Source\Gun.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
+    <ClCompile Include="Source\Field.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Field.cpp">
+    <ClCompile Include="Source\Player.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,10 +132,10 @@
     <ClInclude Include="Source\Gun.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player.h">
+    <ClInclude Include="Source\Field.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Field.h">
+    <ClInclude Include="Source\Player.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

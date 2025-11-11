@@ -1,8 +1,8 @@
 #pragma once
-#include "../Library/SceneBase.h"
+#include "../Library/GameObject.h"
 
 
-class Field : public SceneBase
+class Field : public GameObject
 {
 public:
 	Field();

@@ -1,8 +1,8 @@
 #include "Granade.h"
-#include <DxLib.h>
 #include <vector>
 
 using namespace std;
+
 
 Granade::Granade()
 {

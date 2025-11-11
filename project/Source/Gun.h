@@ -1,7 +1,7 @@
 #pragma once
-#include "../Library/SceneBase.h"
+#include "../Library/GameObject.h"
 
-class Gun : public SceneBase
+class Gun : public GameObject
 {
 public:
 	Gun();
