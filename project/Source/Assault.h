@@ -18,13 +18,14 @@ public:
 
 private:
 	int weponImage;
-	int weponSE;
+	int weponImage2;
 
+	int weponSE;
 	int reroaro, aroari;
 
 	int x = 0;
 	int y = 0;
-	int count;
+	int count = 0;
 	int ammo;
 	int Maxammo = 30;
 
@@ -32,8 +33,8 @@ private:
 
 	float deg = 0.0;
 	float rad = 0.0;
-	float Expansion = 0.1;
-	float ExpansionRate = 0.0005;
+	float Expansion = 0.05;
+	float ExpansionRate = 0.00025;
 
 	bool reroading = FALSE;
 	bool shotcool = TRUE;

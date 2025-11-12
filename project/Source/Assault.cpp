@@ -9,11 +9,16 @@ Assault::Assault()
 	aroari = LoadSoundMem("data/Sound/SE/aroari.mp3");
 
 	weponImage = LoadGraph("data/Image/player.png");
+	weponImage2 = LoadGraph("data/Image/player_click.png");
+
 	ammo = Maxammo;
 }
 
 Assault::~Assault()
 {
+	DeleteSoundMem(weponSE);
+	DeleteSoundMem(reroaro);
+	DeleteSoundMem(aroari);
 }
 
 void Assault::Update()
@@ -22,12 +27,11 @@ void Assault::Update()
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// 左クリックされたときの処理
 		{
 			if (ammo > 0) {
-				weponImage = LoadGraph("data/Image/player_click.png");
 				Expansion += ExpansionRate;
 				shotcool = FALSE;
-				deg += 15;
-				if (Expansion > 0.2) {
-					Expansion = 0.2;
+				deg += 2;
+				if (Expansion > 0.15) {
+					Expansion = 0.15;
 				}
 
 				if (count == 0)
@@ -36,7 +40,7 @@ void Assault::Update()
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 					count++;
 				}
-				else if (count >= 6)
+				else if (count >= 30)
 				{
 					count = 0;
 				}
@@ -47,8 +51,6 @@ void Assault::Update()
 			}
 			else
 			{
-				//弾切れ時の表示
-				weponImage = LoadGraph("data/Image/player.png");
 				deg = 0.0;
 				if (shotcool) {
 					Reroad();
@@ -57,7 +59,6 @@ void Assault::Update()
 		}
 		else
 		{
-			weponImage = LoadGraph("data/Image/player.png");
 			Expansion -= ExpansionRate * 5.0;
 			shotcool = TRUE;
 			deg = 0.0;
@@ -90,7 +91,13 @@ void Assault::Draw()
 	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
 
 	GetMousePoint(&x, &y);
-	DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
+	if (shotcool) {
+		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
+	}
+	else
+	{
+		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
+	}
 }
 
 void Assault::Reroad()

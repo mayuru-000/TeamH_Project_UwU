@@ -3,17 +3,22 @@
 
 Gun::Gun()
 {
-	gunSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
+	weponSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
 
 	reroaro= LoadSoundMem("data/Sound/SE/reroaro.mp3");
 	aroari= LoadSoundMem("data/Sound/SE/aroari.mp3");
 
-	gunImage = LoadGraph("data/Image/player.png");
+	weponImage = LoadGraph("data/Image/player.png");
+	weponImage2 = LoadGraph("data/Image/player_click.png");
+
 	ammo = Maxammo;
 }
 
 Gun::~Gun()
 {
+	DeleteSoundMem(weponSE);
+	DeleteSoundMem(reroaro);
+	DeleteSoundMem(aroari);
 }
 
 void Gun::Update()
@@ -23,22 +28,18 @@ void Gun::Update()
 		{
 			if (ammo > 0) {
 				if ((GetNowCount() - shotedSpan >= 400 || ammo == Maxammo) && shotcool == TRUE) {
-					gunImage = LoadGraph("data/Image/player_click.png");
 					Expansion += ExpansionRate;
-					deg += 90;
 					if (Expansion > 0.3) {
 						Expansion = 0.3;
 					}
 					ammo -= 1;
 					shotcool = FALSE;
 					shotedSpan = GetNowCount();
-					PlaySoundMem(gunSE, DX_PLAYTYPE_BACK);
+					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 				}
 			}
 			else
 			{
-				//íeêÿÇÍéûÇÃï\é¶
-				gunImage = LoadGraph("data/Image/player.png");
 				deg = 0.0;
 				if (shotcool) {
 					Reroad();
@@ -47,8 +48,7 @@ void Gun::Update()
 		}
 		else
 		{
-			gunImage = LoadGraph("data/Image/player.png");
-			Expansion -= ExpansionRate * 2.0;
+			Expansion -= ExpansionRate * 0.01;
 			deg = 0.0;
 			shotcool = TRUE;
 			if (Expansion < 0.1) {
@@ -79,7 +79,14 @@ void Gun::Draw()
 	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
 
 	GetMousePoint(&x, &y);
-	DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), gunImage, TRUE, FALSE);
+	if (shotcool) {
+		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
+	}
+	else
+	{
+		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
+	}
+	
 }
 
 void Gun::Reroad() 
