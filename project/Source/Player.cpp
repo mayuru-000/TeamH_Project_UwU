@@ -1,10 +1,11 @@
 #include "Player.h"
+#include "Gun.h"
 
 using namespace std;
 
 Player::Player()
 {
-	pImage = LoadGraph("data/Image/player.png");
+	gun = new Gun();
 }
 
 Player::~Player()
@@ -13,29 +14,54 @@ Player::~Player()
 
 void Player::Update()
 {
-	
-	if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
-	{
-		//new Gun();
-		pImage = LoadGraph("data/Image/player_click.png");
-		Expansion += ExpansionRate;
-		if (Expansion > 0.2) {
-			Expansion = 0.2;
-		}
+	if (CheckHitKey(KEY_INPUT_1)) {
+		gunmode = 1;
+	}
+	if (CheckHitKey(KEY_INPUT_2)) {
+		gunmode = 2;
+	}
+	if (CheckHitKey(KEY_INPUT_3)) {
+		gunmode = 3;
+	}
 
+	if (gunmode != gunflag) {
+		ChangeGun(gunmode);
 	}
-	else
-	{
-		pImage = LoadGraph("data/Image/player.png");
-		Expansion -= ExpansionRate*2;
-		if (Expansion < 0.1) {
-			Expansion = 0.1;
-		}
-	}
+	
 }
 
 void Player::Draw()
 {
-	GetMousePoint(&x, &y);
-	DrawRotaGraph(x, y, Expansion, 0.0, pImage, TRUE, FALSE);
+	
+}
+
+
+
+void Player::ChangeGun(int gunnum)
+{
+	switch (gunnum)
+	{
+	case 1:
+		gunflag = 1;
+
+		gun = new Gun();
+		break;
+
+	case 2:
+		gunflag = 2;
+
+		delete gun;
+		gun = NULL;
+		break;
+
+	case 3:
+		gunflag = 3;
+
+		delete gun;
+		gun = NULL;
+		break;
+
+	default:
+		break;
+	}
 }
