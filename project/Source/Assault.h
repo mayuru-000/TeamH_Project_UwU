@@ -4,11 +4,11 @@
 #include <math.h>
 #include "../Library/GameObject.h"
 
-class Gun : public GameObject
+class Assault : public GameObject
 {
 public:
-	Gun();
-	~Gun();
+	Assault();
+	~Assault();
 	void Update() override;
 	void Draw() override;
 
@@ -17,23 +17,23 @@ public:
 	float Deg2Rad(int dg) { return dg * (M_PI / 180.0); }
 
 private:
-	int gunImage;
-	int gunSE;
+	int weponImage;
+	int weponSE;
 
 	int reroaro, aroari;
 
 	int x = 0;
 	int y = 0;
+	int count;
 	int ammo;
-	int Maxammo = 8;
+	int Maxammo = 30;
 
 	int startTime;
-	int shotedSpan;
 
 	float deg = 0.0;
 	float rad = 0.0;
-	float Expansion = 0.05;
-	float ExpansionRate = 0.05;
+	float Expansion = 0.1;
+	float ExpansionRate = 0.0005;
 
 	bool reroading = FALSE;
 	bool shotcool = TRUE;

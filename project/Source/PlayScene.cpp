@@ -21,5 +21,4 @@ void PlayScene::Update()
 void PlayScene::Draw()
 {
 	DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
-	DrawString(0, 15, "Push [T]Key To Title", GetColor(255, 255, 255));
 }

@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "Gun.h"
+#include "Assault.h"
 #include "../Library/GameObject.h"
 
 class Player : public GameObject
@@ -17,6 +18,7 @@ public:
 
 private:
 	Gun* gun = NULL;
+	Assault* assault = NULL;
 
 	int gunmode = 1;
 	int gunflag = 1;
