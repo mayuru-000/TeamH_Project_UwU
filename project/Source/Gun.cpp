@@ -36,6 +36,9 @@ void Gun::Update()
 					shotcool = FALSE;
 					shotedSpan = GetNowCount();
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
+
+					Field* field = FindGameObject<Field>();
+
 				}
 			}
 			else
@@ -48,7 +51,7 @@ void Gun::Update()
 		}
 		else
 		{
-			Expansion -= ExpansionRate * 0.01;
+			Expansion -= ExpansionRate * 0.05;
 			deg = 0.0;
 			shotcool = TRUE;
 			if (Expansion < 0.1) {

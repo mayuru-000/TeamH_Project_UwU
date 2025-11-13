@@ -29,7 +29,7 @@ void Assault::Update()
 			if (ammo > 0) {
 				Expansion += ExpansionRate;
 				shotcool = FALSE;
-				deg += 2;
+				deg += 10;
 				if (Expansion > 0.15) {
 					Expansion = 0.15;
 				}
@@ -40,7 +40,7 @@ void Assault::Update()
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 					count++;
 				}
-				else if (count >= 30)
+				else if (count >= 7)
 				{
 					count = 0;
 				}
