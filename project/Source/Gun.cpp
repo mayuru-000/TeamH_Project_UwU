@@ -23,6 +23,8 @@ Gun::~Gun()
 
 void Gun::Update()
 {
+	GetMousePoint(&x, &y);
+
 	if (!reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ç∂ÉNÉäÉbÉNÇ≥ÇÍÇΩÇ∆Ç´ÇÃèàóù
 		{
@@ -38,7 +40,7 @@ void Gun::Update()
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
 					Field* field = FindGameObject<Field>();
-
+					field->isHit(x, y);
 				}
 			}
 			else
@@ -81,7 +83,6 @@ void Gun::Draw()
 	DrawString(0, 60, "AMMO=", GetColor(255, 255, 255));
 	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
 
-	GetMousePoint(&x, &y);
 	if (shotcool) {
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
 	}

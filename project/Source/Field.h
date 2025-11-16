@@ -10,7 +10,8 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	bool HitCheck(int px, int py);
+	bool isHit(int px, int py);
 private:
 	int fImage;
+	int x, y;
 };

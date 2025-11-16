@@ -23,6 +23,7 @@ Assault::~Assault()
 
 void Assault::Update()
 {
+	GetMousePoint(&x, &y);
 	if (!reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ç∂ÉNÉäÉbÉNÇ≥ÇÍÇΩÇ∆Ç´ÇÃèàóù
 		{
@@ -38,6 +39,9 @@ void Assault::Update()
 				{
 					ammo -= 1;
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
+
+					Field* field = FindGameObject<Field>();
+					field->isHit(x, y);
 					count++;
 				}
 				else if (count >= 7)
@@ -90,7 +94,6 @@ void Assault::Draw()
 	DrawString(0, 60, "AMMO=", GetColor(255, 255, 255));
 	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
 
-	GetMousePoint(&x, &y);
 	if (shotcool) {
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
 	}
