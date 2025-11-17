@@ -12,6 +12,7 @@ Assault::Assault()
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
 	ammo = Maxammo;
+	ammoDamage = 50;
 }
 
 Assault::~Assault()
@@ -41,7 +42,7 @@ void Assault::Update()
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
 					Field* field = FindGameObject<Field>();
-					field->isHit(x, y);
+					field->isHit(x, y, ammoDamage);
 					count++;
 				}
 				else if (count >= 7)

@@ -27,6 +27,7 @@ private:
 	int y = 0;
 	int ammo;
 	int Maxammo = 8;
+	int ammoDamage;
 
 	int startTime;
 	int shotedSpan;

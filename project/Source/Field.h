@@ -10,8 +10,13 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	bool isHit(int px, int py);
+	bool isHit(int px, int py, int dmg);
 private:
 	int fImage;
+
+	int fImageX, fImageY;
+
+	int hp;
 	int x, y;
+	int dx, dy;
 };

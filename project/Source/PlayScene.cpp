@@ -5,8 +5,8 @@
 
 PlayScene::PlayScene()
 {
-	new Player();
 	new Field();
+	new Player();
 }
 
 PlayScene::~PlayScene()

@@ -12,6 +12,7 @@ Gun::Gun()
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
 	ammo = Maxammo;
+	ammoDamage = 100;
 }
 
 Gun::~Gun()
@@ -40,7 +41,7 @@ void Gun::Update()
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
 					Field* field = FindGameObject<Field>();
-					field->isHit(x, y);
+					field->isHit(x, y,ammoDamage);
 				}
 			}
 			else

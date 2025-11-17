@@ -4,9 +4,13 @@
 
 Field::Field()
 {
-	fImage = LoadGraph("data/");
-	x = 0;
-	y = 0;
+	fImage = LoadGraph("data/Image/building_00.png");
+	GetGraphSize(fImage, &fImageX, &fImageY);
+
+	dx = -100;
+	dy = -100;
+
+	hp = 1000;
 }
 
 Field::~Field()
@@ -15,17 +19,28 @@ Field::~Field()
 
 void Field::Update()
 {
+	x = 500;
+	y = 200;
 }
 
 void Field::Draw()
 {
-	DrawCircle(x, y, 10, GetColor(255, 255, 255), 1);
+	DrawExtendGraph(x, y, x + fImageX, y + fImageY, fImage, 1);
+	DrawCircle(dx, dy, 10, GetColor(0, 255, 0), 1);
+
+	DrawString(x, y - 20, "HP=", GetColor(255, 255, 255));
+	DrawFormatString(x + 30, y - 20, GetColor(255, 255, 255), "%d", hp);
+	
 }
 
-bool Field::isHit(int px, int py)
+bool Field::isHit(int px, int py, int dmg)
 {
-	//“–‚½‚è”»’è‚Ì•\Ž¦
-	x = px;
-	y = py;
+	dx = px;
+	dy = py;
+
+	if ((x <= dx && dx <= x + fImageX) && (y <= dy && dy <= y + fImageY)) {
+		hp -= dmg;
+		return true;
+	}
 	return false;
 }

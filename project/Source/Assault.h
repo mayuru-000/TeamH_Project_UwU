@@ -28,6 +28,7 @@ private:
 	int count = 0;
 	int ammo;
 	int Maxammo = 30;
+	int ammoDamage;
 
 	int startTime;
 
