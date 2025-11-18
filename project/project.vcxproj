@@ -154,6 +154,7 @@
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\Assault.h" />
     <ClInclude Include="Source\BootScene.h" />
+    <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\Granade.h" />
     <ClInclude Include="Source\Gun.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\Assault.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
+    <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\Granade.cpp" />
     <ClCompile Include="Source\Gun.cpp" />

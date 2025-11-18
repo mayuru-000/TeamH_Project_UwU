@@ -1,5 +1,6 @@
 #include "Gun.h"
 #include "Field.h"
+#include "Screen.h"
 
 Gun::Gun()
 {
@@ -85,6 +86,7 @@ void Gun::Draw()
 	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
 
 	if (shotcool) {
+		
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
 	}
 	else

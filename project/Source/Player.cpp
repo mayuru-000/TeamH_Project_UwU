@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Gun.h"
 #include "Assault.h"
+#include "Granade.h"
 
 using namespace std;
 
@@ -23,11 +24,11 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_2)) {
 		gunmode = 2;
 	}
-
 	if (gunmode != gunflag) {
 		ChangeGun(gunmode);
 	}
 	
+
 }
 
 void Player::Draw()

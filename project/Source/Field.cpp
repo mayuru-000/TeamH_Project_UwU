@@ -1,10 +1,19 @@
 #include "Field.h"
 #include "Gun.h"
 #include "Assault.h"
+#include <vector>
+
+using namespace std;
+
+vector<vector<int>> maps;
+
+char field_X[255];
+char field_Y[255];
+char field_Img[255];
 
 Field::Field()
 {
-	fImage = LoadGraph("data/Image/building_00.png");
+	fImage = LoadGraph("data/image/building_00.png");
 	GetGraphSize(fImage, &fImageX, &fImageY);
 
 	dx = -100;
@@ -26,6 +35,7 @@ void Field::Update()
 void Field::Draw()
 {
 	DrawExtendGraph(x, y, x + fImageX, y + fImageY, fImage, 1);
+
 	DrawCircle(dx, dy, 10, GetColor(0, 255, 0), 1);
 
 	DrawString(x, y - 20, "HP=", GetColor(255, 255, 255));
