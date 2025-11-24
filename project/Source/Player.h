@@ -19,8 +19,4 @@ public:
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;
-
-	int gunmode = 1;
-	int gunflag = 1;
-
 };

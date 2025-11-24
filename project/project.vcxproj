@@ -154,7 +154,8 @@
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\Assault.h" />
     <ClInclude Include="Source\BootScene.h" />
-    <ClInclude Include="Source\Collision.h" />
+    <ClInclude Include="Source\Common.h" />
+    <ClInclude Include="Source\Debug.h" />
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\Granade.h" />
     <ClInclude Include="Source\Gun.h" />
@@ -162,6 +163,8 @@
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
+    <ClInclude Include="Source\Select.h" />
+    <ClInclude Include="Source\title.h" />
     <ClInclude Include="Source\TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -180,13 +183,16 @@
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\Assault.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
-    <ClCompile Include="Source\Collision.cpp" />
+    <ClCompile Include="Source\Common.cpp" />
+    <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\Granade.cpp" />
     <ClCompile Include="Source\Gun.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
+    <ClCompile Include="Source\Select.cpp" />
+    <ClCompile Include="Source\title.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

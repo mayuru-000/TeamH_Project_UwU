@@ -65,8 +65,15 @@
     <ClCompile Include="Source\Assault.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Collision.cpp">
-      <Filter>PlayScene</Filter>
+    <ClCompile Include="Source\Common.cpp" />
+    <ClCompile Include="Source\Select.cpp">
+      <Filter>TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\title.cpp">
+      <Filter>TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Debug.cpp">
+      <Filter>Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,8 +154,15 @@
     <ClInclude Include="Source\Assault.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Collision.h">
-      <Filter>PlayScene</Filter>
+    <ClInclude Include="Source\Common.h" />
+    <ClInclude Include="Source\Select.h">
+      <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\title.h">
+      <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Debug.h">
+      <Filter>Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +180,9 @@
     </Filter>
     <Filter Include="ImGui">
       <UniqueIdentifier>{a717257b-67b3-4bfa-834c-1e34032b33b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{bc7ee05d-0fe2-4000-9d91-a72923cc4541}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
