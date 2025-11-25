@@ -8,9 +8,9 @@ public:
 	~Common();
 
 	int weponNum;
-
 	int nowStage;
 
 	int Score;
 	int hiScore;
+	char module[10];
 };
