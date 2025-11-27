@@ -13,10 +13,12 @@ public:
 	bool isHit(int px, int py, int dmg);
 private:
 	int fImage;
+	int bgImage;
 
 	int fImageX, fImageY;
 
 	int hp;
+	int scrollX;
 	int x, y;
 	int dx, dy;
 };

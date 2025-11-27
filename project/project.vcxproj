@@ -164,6 +164,7 @@
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
     <ClInclude Include="Source\Select.h" />
+    <ClInclude Include="Source\Target.h" />
     <ClInclude Include="Source\title.h" />
     <ClInclude Include="Source\TitleScene.h" />
   </ItemGroup>
@@ -192,6 +193,7 @@
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\Select.cpp" />
+    <ClCompile Include="Source\Target.cpp" />
     <ClCompile Include="Source\title.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
   </ItemGroup>

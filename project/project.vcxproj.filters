@@ -75,6 +75,9 @@
     <ClCompile Include="Source\Debug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Target.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="Source\Debug.h">
       <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Target.h">
+      <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
