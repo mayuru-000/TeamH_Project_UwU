@@ -42,7 +42,7 @@ void Gun::Update()
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
 					Field* field = FindGameObject<Field>();
-					field->isHit(x, y,ammoDamage);
+					//field->isHit(x, y,ammoDamage);
 				}
 			}
 			else

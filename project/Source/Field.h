@@ -10,15 +10,16 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	bool isHit(int px, int py, int dmg);
 private:
 	int fImage;
 	int bgImage;
 
 	int fImageX, fImageY;
+	int ImageX, ImageY;
 
 	int hp;
 	int scrollX;
+	int speedX;
 	int x, y;
 	int dx, dy;
 };
