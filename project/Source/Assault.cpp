@@ -1,5 +1,5 @@
 #include "Assault.h"
-#include "Field.h"
+#include "Target.h"
 
 Assault::Assault()
 {
@@ -41,8 +41,11 @@ void Assault::Update()
 					ammo -= 1;
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
-					Field* field = FindGameObject<Field>();
-					//field->isHit(x, y, ammoDamage);
+					/*auto target = FindGameObjects<Target>();
+					for (auto t : target) {
+						t->isHit(x, y, ammoDamage);
+					}*/
+
 					count++;
 				}
 				else if (count >= 7)

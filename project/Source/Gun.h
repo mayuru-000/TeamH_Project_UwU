@@ -23,8 +23,8 @@ private:
 
 	int reroaro, aroari;
 
-	int x = 0;
-	int y = 0;
+	int x, y;
+	int dx, dy;
 	int ammo;
 	int Maxammo = 8;
 	int ammoDamage;

@@ -1,5 +1,5 @@
 #include "Gun.h"
-#include "Field.h"
+#include "Target.h"
 #include "Screen.h"
 
 Gun::Gun()
@@ -13,6 +13,11 @@ Gun::Gun()
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
 	ammo = Maxammo;
+
+	x = 0;
+	y = 0;
+	dx = -100;
+	dy = -100;
 	ammoDamage = 100;
 }
 
@@ -27,6 +32,7 @@ void Gun::Update()
 {
 	GetMousePoint(&x, &y);
 
+	dx -= 5;
 	if (!reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ç∂ÉNÉäÉbÉNÇ≥ÇÍÇΩÇ∆Ç´ÇÃèàóù
 		{
@@ -41,8 +47,16 @@ void Gun::Update()
 					shotedSpan = GetNowCount();
 					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
-					Field* field = FindGameObject<Field>();
-					//field->isHit(x, y,ammoDamage);
+					/*Target* target = FindGameObject<Target>();
+					target->isHit(x, y,ammoDamage);*/
+
+					auto target = FindGameObjects<Target>();
+					for (auto t : target) {
+						t->isHit(x, y, ammoDamage);
+					}
+
+					dx = x;
+					dy = y;
 				}
 			}
 			else
@@ -93,6 +107,7 @@ void Gun::Draw()
 	{
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
 	}
+
 	
 }
 

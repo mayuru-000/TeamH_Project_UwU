@@ -10,12 +10,13 @@ using namespace std;
 vector<vector<int>> maps = {
 	{300,500,700,900,1100,1300,1500,1700,1900},
 	{100,100,100,100,100,100,100,100,100,},
-	{1,1,1,1,1,1,1,1,1},
+	{00,00,00,00,00,00,00,00,00},
 };
 
 Field::Field()
 {
-	speedX = 10;
+	speedX = 5;
+	scrollX = 0;
 
 	char bgfile[60];
 	sprintf_s<60>(bgfile, "data/image/field_bg_%d.jpg", 1);
@@ -31,8 +32,6 @@ Field::Field()
 		}
 	}
 
-	scrollX = 0;
-	speedX = 10;
 }
 
 Field::~Field()

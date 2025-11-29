@@ -13,7 +13,13 @@ public:
 	bool isHit(int px, int py, int damage);
 private:
 	int tImage;
-	int x, y;
+	int tWIDTH, tHEIGHT;
+
 	int hp;
+	int x, y;
+	int dx, dy;
 	int scrollX;
+	int hitDmg;
+
+	bool kill = FALSE;
 };

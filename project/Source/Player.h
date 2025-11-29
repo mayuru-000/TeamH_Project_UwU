@@ -14,8 +14,6 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	void ChangeGun(int gunnum);
-
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;
