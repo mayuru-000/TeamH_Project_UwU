@@ -31,7 +31,7 @@ Field::Field()
 			new Target(maps[0][x], maps[1][x], maps[2][x],speedX);
 		}
 	}
-
+	goalline = 2600;
 }
 
 Field::~Field()
@@ -41,6 +41,11 @@ Field::~Field()
 void Field::Update()
 {
 	scrollX += speedX;
+	goalline -= speedX;
+	if (goalline < Screen::WIDTH / 2) 
+	{
+
+	}
 }
 
 void Field::Draw()
@@ -56,6 +61,10 @@ void Field::Draw()
 	if (scrollX >= ImageX) {
 		scrollX = 0;
 	}
+
+	/*debug*/
+
+	DrawLine(goalline, 0, goalline, Screen::HEIGHT, GetColor(255, 255, 255), 1);
 }
 
 //bool Field::isHit(int px, int py, int dmg)

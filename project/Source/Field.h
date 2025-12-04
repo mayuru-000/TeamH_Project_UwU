@@ -17,6 +17,8 @@ private:
 	int fImageX, fImageY;
 	int ImageX, ImageY;
 
+	int goalline;
+
 	int hp;
 	int scrollX;
 	int speedX;
