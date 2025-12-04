@@ -4,6 +4,9 @@
 #include <math.h>
 #include "../Library/GameObject.h"
 
+const int Maxammo = 8;
+const float ExpansionRate = 0.03;
+
 class Gun : public GameObject
 {
 public:
@@ -26,16 +29,13 @@ private:
 	int x, y;
 	int dx, dy;
 	int ammo;
-	int Maxammo = 8;
-	int ammoDamage;
 
 	int startTime;
 	int shotedSpan;
 
-	float deg = 0.0;
-	float rad = 0.0;
-	float Expansion = 0.05;
-	float ExpansionRate = 0.03;
+	float deg;
+	float rad;
+	float Expansion;
 
 	bool reroading = FALSE;
 	bool shotcool = TRUE;

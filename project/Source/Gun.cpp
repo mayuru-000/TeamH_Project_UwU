@@ -2,6 +2,10 @@
 #include "Target.h"
 #include "Screen.h"
 
+const int num = 3;
+int range[num] = { 20,40,80 };
+int ammoDamage[num] = { 100,50,10 };
+
 Gun::Gun()
 {
 	weponSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
@@ -18,7 +22,9 @@ Gun::Gun()
 	y = 0;
 	dx = -100;
 	dy = -100;
-	ammoDamage = 100;
+	deg = 0.0;
+	rad = 0.0;
+	Expansion = 0.05;
 }
 
 Gun::~Gun()
@@ -52,7 +58,7 @@ void Gun::Update()
 
 					auto target = FindGameObjects<Target>();
 					for (auto t : target) {
-						t->isHit(x, y, ammoDamage);
+						t->isHit(x, y, range, ammoDamage, num);
 					}
 
 					dx = x;
@@ -107,8 +113,10 @@ void Gun::Draw()
 	{
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
 	}
-
-	
+	/*debug*/
+	DrawCircle(x, y, range[0], GetColor(255, 255, 255), 0);
+	DrawCircle(x, y, range[1], GetColor(255, 255, 255), 0);
+	DrawCircle(x, y, range[2], GetColor(255, 255, 255), 0);
 }
 
 void Gun::Reroad() 

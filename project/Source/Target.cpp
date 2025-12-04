@@ -44,15 +44,18 @@ void Target::Draw()
 	DrawGraph(x, y, tImage,TRUE);
 
 	/*デバッグ用*/
-	DrawCircle(dx, dy, 100, GetColor(255, 0, 0), 1);
+	DrawFormatString(x, y - 20, GetColor(255, 255, 255), "HP::%d", hp);
 	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), FALSE);
 }
 
-bool Target::isHit(int px, int py, int damage)
+bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 { 
-	if ((x <= px && px <= x + tWIDTH) && (y <= py && py <= y + tHEIGHT)) {
-		DestroyMe();
-		return true;
+	for (int i = 0; i < num; i++) {
+		if ((x - r[i] <= px && px <= x + tWIDTH + r[i]) && (y - r[i] <= py && py <= y + tHEIGHT + r[i]))
+		{
+			hp -= dmg[i];
+			return true;
+		}
 	}
 	return false;
 }

@@ -10,7 +10,7 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	bool isHit(int px, int py, int damage);
+	bool isHit(int px, int py, int r[], int dmg[], int num);
 private:
 	int tImage;
 	int tWIDTH, tHEIGHT;
