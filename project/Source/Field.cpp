@@ -2,6 +2,8 @@
 #include "Gun.h"
 #include "Assault.h"
 #include <vector>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -54,3 +56,25 @@ bool Field::isHit(int px, int py, int dmg)
 	}
 	return false;
 }
+
+bool Field::ExplosionHit(int cx, int cy, int radius, int dmg)
+{
+
+	int nearestX = (std::max)(x, (std::min)(cx, x + fImageX));
+	int nearestY = (std::max)(y, (std::min)(cy, y + fImageY));
+
+	int dx_ = cx - nearestX;
+	int dy_ = cy - nearestY;
+
+	long long distSq = 1LL * dx_ * dx_ + 1LL * dy_ * dy_;
+	long long radiusSq = 1LL * radius * radius;
+
+	if (distSq <= radiusSq) {
+
+		hp -= dmg;
+		return true;
+	}
+	return false;
+}
+
+

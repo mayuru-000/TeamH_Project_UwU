@@ -11,6 +11,7 @@ public:
 	void Draw() override;
 
 	bool isHit(int px, int py, int dmg);
+	bool ExplosionHit(int cx, int cy, int radius, int damage);
 private:
 	int fImage;
 
