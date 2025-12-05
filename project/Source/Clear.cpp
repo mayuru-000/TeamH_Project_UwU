@@ -20,6 +20,7 @@ Clear::Clear(int score)
 	player->DestroyMe();
 
 	bgImage = LoadGraph("data/image/bg/clear_bg.png");
+	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 
 	c->hiScore += score;
 	prevPush = FALSE;
@@ -54,6 +55,9 @@ void Clear::Update()
 		prevPush = TRUE;
 	}
 
+	count = 0;
+	for (int i = 0;i < size(c->mod);i++) { if (c->mod[i] >= 0) { count++; } }
+
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		selected();
 	}
@@ -64,6 +68,13 @@ void Clear::Draw()
 	//DrawBox(0, 0, Screen::WIDTH, Screen::HEIGHT, GetColor(255, 255, 255), TRUE);
 	DrawGraph(0, 0, bgImage, TRUE);
 
+	Common* c = FindGameObject<Common>();
+	int s = count;
+	for (int i = 0;i < count;i++) {
+
+		DrawRectGraph(Screen::WIDTH - 64 * s, 0, 0, 64 * c->mod[i], 64, 64, bufImage, TRUE);
+		s--;
+	}
 }
 
 void Clear::selected()

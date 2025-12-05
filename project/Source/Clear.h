@@ -14,7 +14,9 @@ public:
 	void selected();
 private:
 	int bgImage;
+	int bufImage;
 
+	int count;
 	int nowSelect;
 	bool prevPush;
 };

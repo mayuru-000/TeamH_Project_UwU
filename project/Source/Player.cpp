@@ -45,5 +45,12 @@ void Player::Update()
 
 void Player::Draw()
 {
-	DrawRectGraph(Screen::WIDTH - 64 * count, 0, 0, 0, 64, 64, bufImage, TRUE);
+	Common* c = FindGameObject<Common>();
+	int s = count;
+	for (int i = 0;i < count;i++) {
+
+		DrawRectGraph(Screen::WIDTH - 64 * s, 0, 0, 64 * c->mod[i], 64, 64, bufImage, TRUE);
+		s--;
+	}
+	
 }
