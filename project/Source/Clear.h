@@ -13,9 +13,8 @@ public:
 
 	void selected();
 private:
+	int bgImage;
 
 	int nowSelect;
-	char modList[10];
-
-	bool selected;
+	bool prevPush;
 };

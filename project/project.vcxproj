@@ -156,6 +156,7 @@
     <ClInclude Include="Source\BootScene.h" />
     <ClInclude Include="Source\Clear.h" />
     <ClInclude Include="Source\Common.h" />
+    <ClInclude Include="Source\CsvReader.h" />
     <ClInclude Include="Source\Debug.h" />
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\Granade.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Source\BootScene.cpp" />
     <ClCompile Include="Source\Clear.cpp" />
     <ClCompile Include="Source\Common.cpp" />
+    <ClCompile Include="Source\csvReader.cpp" />
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\Granade.cpp" />

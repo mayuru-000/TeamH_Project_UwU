@@ -4,9 +4,9 @@
 Select::Select()
 {
 	bgImage = LoadGraph("data/image/Select_bg.png");
-	wImage1 = LoadGraph("data/image/Gun.png");
-	wImage2 = LoadGraph("data/image/Assault.png");
-	wImage3 = LoadGraph("data/image/Rocket.png");
+	wImage1 = LoadGraph("data/image/wepon/Gun.png");
+	wImage2 = LoadGraph("data/image/wepon/Assault.png");
+	wImage3 = LoadGraph("data/image/wepon/Rocket.png");
 
 	wTitleFont = CreateFontToHandle("Agency FB", 100, -1, -1);
 	wExplanaFont = CreateFontToHandle("Agency FB", 60, -1, -1);

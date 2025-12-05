@@ -20,7 +20,7 @@ Target::Target(int fx, int fy,int handle,int speed)
 	hp = 100;
 
 	char bgfile[60];
-	sprintf_s<60>(bgfile, "data/image/building_%02d.png", handle);
+	sprintf_s<60>(bgfile, "data/image/target/Target_%d.png", handle);
 	tImage = LoadGraph(bgfile);
 	GetGraphSize(tImage, &tWIDTH, &tHEIGHT);
 }

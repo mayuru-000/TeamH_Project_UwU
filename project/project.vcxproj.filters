@@ -81,6 +81,9 @@
     <ClCompile Include="Source\Clear.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\csvReader.cpp">
+      <Filter>CsvRead</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -176,6 +179,9 @@
     <ClInclude Include="Source\Clear.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CsvReader.h">
+      <Filter>CsvRead</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -195,6 +201,9 @@
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{bc7ee05d-0fe2-4000-9d91-a72923cc4541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CsvRead">
+      <UniqueIdentifier>{8e6e0081-7ac0-4b1e-a980-ac6bc7e02055}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

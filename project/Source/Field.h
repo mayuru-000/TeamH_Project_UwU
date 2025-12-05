@@ -1,6 +1,8 @@
 #pragma once
 #include "../Library/GameObject.h"
 
+#include "Gun.h"
+#include "Assault.h"
 
 class Field : public GameObject
 {
@@ -11,6 +13,9 @@ public:
 	void Draw() override;
 
 private:
+	/*Gun* gun = NULL;
+	Assault* assault = NULL;*/
+
 	int fImage;
 	int bgImage;
 

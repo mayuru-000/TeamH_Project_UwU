@@ -17,4 +17,7 @@ public:
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;
+
+	int bufImage;
+	int count;
 };
