@@ -3,6 +3,7 @@
 Common::Common()
 {
 	DontDestroyOnSceneChange();
+	nowStage = 0;
 }
 
 Common::~Common()

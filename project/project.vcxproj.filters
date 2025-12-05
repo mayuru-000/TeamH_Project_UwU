@@ -78,6 +78,9 @@
     <ClCompile Include="Source\Target.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Clear.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -168,6 +171,9 @@
       <Filter>Debug</Filter>
     </ClInclude>
     <ClInclude Include="Source\Target.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Clear.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

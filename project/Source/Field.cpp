@@ -1,8 +1,10 @@
 #include "Field.h"
+#include "Common.h"
 #include "Gun.h"
 #include "Assault.h"
 #include "Screen.h"
 #include "Target.h"
+#include "Clear.h"
 #include <vector>
 
 using namespace std;
@@ -15,23 +17,23 @@ vector<vector<int>> maps = {
 
 Field::Field()
 {
-	speedX = 5;
+	score = 0;
+	speedX = 10;
 	scrollX = 0;
 
+	cleared = FALSE;
+
+	Common* c = FindGameObject<Common>();
+
 	char bgfile[60];
-	sprintf_s<60>(bgfile, "data/image/field_bg_%d.jpg", 1);
+	sprintf_s<60>(bgfile, "data/image/bg/field_bg_%d.jpg", c->nowStage);
 	bgImage = LoadGraph(bgfile);
 	GetGraphSize(bgImage, &ImageX, &ImageY);
 
-	//fImage = LoadGraph("data/image/building_00.png");
-	//GetGraphSize(fImage, &fImageX, &fImageY);
-
-	for (int y = 0; y < maps.size(); y++) {
-		for (int x = 0;x < maps[y].size();x++) {
-			new Target(maps[0][x], maps[1][x], maps[2][x],speedX);
-		}
+	for (int x = 0;x < maps[1].size();x++) {
+		new Target(maps[0][x], maps[1][x], maps[2][x], speedX);
+		if (x == maps[1].size() - 1) { goalline = maps[0][x] + 700; }
 	}
-	goalline = 2600;
 }
 
 Field::~Field()
@@ -40,11 +42,15 @@ Field::~Field()
 
 void Field::Update()
 {
+	Common* c = FindGameObject<Common>();
+
 	scrollX += speedX;
 	goalline -= speedX;
-	if (goalline < Screen::WIDTH / 2) 
-	{
 
+	if (goalline < 0 && !cleared)
+	{
+		new Clear(score);
+		cleared = TRUE;
 	}
 }
 

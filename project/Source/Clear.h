@@ -11,10 +11,11 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	void getUpdateKey();
-
+	void selected();
 private:
+
 	int nowSelect;
-	char Key[256];
 	char modList[10];
+
+	bool selected;
 };
