@@ -29,6 +29,9 @@ Gun::Gun()
 
 Gun::~Gun()
 {
+	DeleteGraph(weponImage);
+	DeleteGraph(weponImage2);
+
 	DeleteSoundMem(weponSE);
 	DeleteSoundMem(reroaro);
 	DeleteSoundMem(aroari);

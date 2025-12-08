@@ -8,8 +8,10 @@ public:
 
 	int weponNum;
 	int nowStage;
+	int speedX;
 
 	int Score;
 	int hiScore;
-	int mod[10] = { 0,1,2,0,0,0,-1,-1,-1,-1 };
+	//int mod[10] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	int mod[10] = { 0,1,2,3,4,5,6,-1,-1,-1 };
 };

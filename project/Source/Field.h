@@ -27,9 +27,9 @@ private:
 	int hp;
 	int score;
 	int scrollX;
-	int speedX;
 	int x, y;
 	int dx, dy;
 
+	bool lastObj;
 	bool cleared;
 };

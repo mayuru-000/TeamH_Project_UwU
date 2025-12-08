@@ -84,6 +84,7 @@
     <ClCompile Include="Source\csvReader.cpp">
       <Filter>CsvRead</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Gunsetting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Source\CsvReader.h">
       <Filter>CsvRead</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Gunsetting.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

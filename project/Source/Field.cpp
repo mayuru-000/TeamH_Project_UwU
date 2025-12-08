@@ -11,23 +11,18 @@
 
 using namespace std;
 
-//vector<vector<int>> maps = {
-//	{300,500,700,900,1100,1300,1500,1700,1900},
-//	{100,100,100,100,100,100,100,100,100,},
-//	{00,00,00,00,00,00,00,00,00},
-//};
-
 vector<vector<int>> maps;
 
 Field::Field()
 {
+	Common* c = FindGameObject<Common>();
+
 	score = 0;
 	goalline = 0;
-	speedX = 5;
 	scrollX = 0;
+	lastObj = FALSE;
 	cleared = FALSE;
 
-	Common* c = FindGameObject<Common>();
 
 	char filename[60];
 	sprintf_s<60>(filename, "data/stage/Stage_%d.csv", c->nowStage);
@@ -54,22 +49,24 @@ Field::Field()
 
 	for (int x = 0;x < maps[0].size();x++) 
 	{
-		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], speedX); }
 		if (Max < maps[0][x]) { Max = maps[0][x]; }
-		if (x == maps[1].size() - 1) { goalline = Max + 700; }
+		if (x == maps[1].size() - 1) { goalline = Max + 700; lastObj = TRUE; }
+		else{ lastObj = FALSE; }
+		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX, lastObj); }
 	}
 }
 
 Field::~Field()
 {
+
 }
 
 void Field::Update()
 {
 	Common* c = FindGameObject<Common>();
 
-	scrollX += speedX;
-	goalline -= speedX;
+	scrollX += c->speedX;
+	goalline -= c->speedX;
 
 	if (goalline < 0 && !cleared)
 	{

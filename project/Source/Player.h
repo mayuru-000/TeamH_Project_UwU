@@ -19,5 +19,14 @@ private:
 	Assault* assault = NULL;
 
 	int bufImage;
+	int carImage;
+	int roadImage;
+
+	int carWIDTH, carHEIGHT;
+	int roadWIDTH, roadHEIGHT;
+
+	int scrollX;
+	int bufSize;
 	int count;
+	int flameCounter;
 };

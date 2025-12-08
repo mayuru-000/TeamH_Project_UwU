@@ -1,5 +1,6 @@
 #include "PlayScene.h"
 #include "TitleScene.h"
+#include "Gunsetting.h"
 #include "Player.h"
 #include "Field.h"
 #include <DxLib.h>
@@ -7,6 +8,7 @@
 PlayScene::PlayScene()
 {
 	new Field();
+	new Gunsetting();
 	new Player();
 }
 
