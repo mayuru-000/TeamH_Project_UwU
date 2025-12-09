@@ -36,6 +36,9 @@ void Player::Update()
 	if (flameCounter == 60) { flameCounter = 0; }
 
 	count = flameCounter / 30;
+
+	/**/
+
 }
 
 void Player::Draw()

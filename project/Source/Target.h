@@ -19,7 +19,6 @@ private:
 	int hp;
 	int x, y;
 	int scrollX;
-	int hitDmg;
 
 	bool rastobj;
 	bool breaked;

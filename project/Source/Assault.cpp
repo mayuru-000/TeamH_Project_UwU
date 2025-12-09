@@ -1,5 +1,6 @@
 #include "Assault.h"
 #include "Target.h"
+#include "Screen.h"
 
 Assault::Assault()
 {
@@ -12,7 +13,13 @@ Assault::Assault()
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
 	ammo = Maxammo;
-	ammoDamage = 50;
+
+	x = 0;
+	y = 0;
+	count = 0;
+	deg = 0.0;
+	rad = 0.0;
+	Expansion = 0.05;
 }
 
 Assault::~Assault()

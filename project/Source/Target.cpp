@@ -4,7 +4,6 @@ Target::Target()
 {
 	x = 0;
 	y = 0;
-	hitDmg = 0;
 	hp = 100;
 	scrollX = 0;
 }

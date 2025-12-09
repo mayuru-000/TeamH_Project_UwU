@@ -23,20 +23,23 @@ private:
 	int weponSE;
 	int reroaro, aroari;
 
-	int x = 0;
-	int y = 0;
-	int count = 0;
+	int x, y;
 	int ammo;
-	int Maxammo = 30;
-	int ammoDamage;
 
+	int count;
 	int startTime;
 
-	float deg = 0.0;
-	float rad = 0.0;
-	float Expansion = 0.05;
-	float ExpansionRate = 0.00025;
+	float deg;
+	float rad;
+	float Expansion;
 
 	bool reroading = FALSE;
 	bool shotcool = TRUE;
+
+	const int Maxammo = 30;
+	const float ExpansionRate = 0.00025;
+
+	static const int num = 3;
+	int range[num] = { 10,30,50 };
+	int ammoDamage[num] = { 50,20,5 };
 };

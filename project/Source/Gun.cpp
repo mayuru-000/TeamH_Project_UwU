@@ -2,10 +2,6 @@
 #include "Target.h"
 #include "Screen.h"
 
-const int num = 3;
-int range[num] = { 20,40,80 };
-int ammoDamage[num] = { 100,50,10 };
-
 Gun::Gun()
 {
 	weponSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
@@ -20,8 +16,6 @@ Gun::Gun()
 
 	x = 0;
 	y = 0;
-	dx = -100;
-	dy = -100;
 	deg = 0.0;
 	rad = 0.0;
 	Expansion = 0.05;
@@ -41,7 +35,6 @@ void Gun::Update()
 {
 	GetMousePoint(&x, &y);
 
-	dx -= 5;
 	if (!reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
 		{
@@ -63,9 +56,6 @@ void Gun::Update()
 					for (auto t : target) {
 						t->isHit(x, y, range, ammoDamage, num);
 					}
-
-					dx = x;
-					dy = y;
 				}
 			}
 			else

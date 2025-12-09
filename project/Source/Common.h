@@ -10,6 +10,10 @@ public:
 	int nowStage;
 	int speedX;
 
+	int atkBuf;
+	int gunrateBuf;
+	int maxammoBuf;
+
 	int Score;
 	int hiScore;
 	//int mod[10] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
