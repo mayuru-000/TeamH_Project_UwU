@@ -53,15 +53,18 @@ void Target::Draw()
 
 bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 { 
-	Objects* obj = FindGameObject<Objects>();
+	auto objects = FindGameObjects<Objects>();
+	for (auto obj : objects) {
+		if (obj->isHitToObj(px, py)) {
+			return false;
+		}
+	}
 
-	if (!(obj->isHitToObj(px, py))) {
-		for (int i = 0; i < num; i++) {
-			if ((x - r[i] <= px && px <= x + tWIDTH + r[i]) && (y - r[i] <= py && py <= y + tHEIGHT + r[i]))
-			{
-				hp -= dmg[i];
-				return true;
-			}
+	for (int i = 0; i < num; i++) {
+		if ((x - r[i] <= px && px <= x + tWIDTH + r[i]) && (y - r[i] <= py && py <= y + tHEIGHT + r[i]))
+		{
+			hp -= dmg[i];
+			return true;
 		}
 	}
 
