@@ -1,10 +1,9 @@
 #include "Field.h"
 #include "Common.h"
-#include "Gun.h"
-#include "Assault.h"
 #include "Screen.h"
 #include "Target.h"
 #include "Clear.h"
+#include "Objects.h"
 #include "CsvReader.h"
 
 #include <vector>
@@ -16,6 +15,7 @@ vector<vector<int>> maps;
 Field::Field()
 {
 	Common* c = FindGameObject<Common>();
+	Objects* obj = FindGameObject<Objects>();
 
 	score = 0;
 	goalline = 0;
@@ -54,6 +54,7 @@ Field::Field()
 		else{ lastObj = FALSE; }
 		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX, lastObj); }
 	}
+	new Objects();
 }
 
 Field::~Field()

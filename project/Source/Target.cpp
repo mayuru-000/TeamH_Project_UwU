@@ -1,4 +1,5 @@
 #include "Target.h"
+#include "Objects.h"
 
 Target::Target()
 {
@@ -52,12 +53,17 @@ void Target::Draw()
 
 bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 { 
-	for (int i = 0; i < num; i++) {
-		if ((x - r[i] <= px && px <= x + tWIDTH + r[i]) && (y - r[i] <= py && py <= y + tHEIGHT + r[i]))
-		{
-			hp -= dmg[i];
-			return true;
+	Objects* obj = FindGameObject<Objects>();
+
+	if (!(obj->isHitToObj(px, py))) {
+		for (int i = 0; i < num; i++) {
+			if ((x - r[i] <= px && px <= x + tWIDTH + r[i]) && (y - r[i] <= py && py <= y + tHEIGHT + r[i]))
+			{
+				hp -= dmg[i];
+				return true;
+			}
 		}
 	}
+
 	return false;
 }

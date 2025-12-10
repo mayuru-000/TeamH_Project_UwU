@@ -162,6 +162,7 @@
     <ClInclude Include="Source\Granade.h" />
     <ClInclude Include="Source\Gun.h" />
     <ClInclude Include="Source\Gunsetting.h" />
+    <ClInclude Include="Source\Objects.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="Source\Granade.cpp" />
     <ClCompile Include="Source\Gun.cpp" />
     <ClCompile Include="Source\Gunsetting.cpp" />
+    <ClCompile Include="Source\Objects.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
