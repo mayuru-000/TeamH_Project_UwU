@@ -1,17 +1,18 @@
 #include "Objects.h"
+#include "Screen.h"
 
 Objects::Objects()
 {
-	x = 2000;
-	y = 400;
+	/*x = 2000;
+	y = 310;
 	scrollX = 6;
 
 	char bgfile[60];
-	sprintf_s<60>(bgfile, "data/image/target/Target_%d.png", 00);
+	sprintf_s<60>(bgfile, "data/image/objects/Obj_%d.png", 0);
 
 	tImage = LoadGraph(bgfile);
 
-	GetGraphSize(tImage, &tWIDTH, &tHEIGHT);
+	GetGraphSize(tImage, &tWIDTH, &tHEIGHT);*/
 }
 
 Objects::Objects(int fx, int fy, int handle, int speed)
@@ -21,7 +22,7 @@ Objects::Objects(int fx, int fy, int handle, int speed)
 	scrollX = speed;
 
 	char bgfile[60];
-	sprintf_s<60>(bgfile, "data/image/target/Target_%d.png", handle);
+	sprintf_s<60>(bgfile, "data/image/objects/Obj_%d.png", handle);
 
 	tImage = LoadGraph(bgfile);
 

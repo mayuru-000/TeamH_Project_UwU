@@ -10,8 +10,9 @@ public:
 	void Draw() override;
 
 private:
-	int i;
-
+	int i, count, flameCounter;
+	int x, y;
+	int carImage;
 	int sbgImage;
 	int bgImage;
 	int tImage;

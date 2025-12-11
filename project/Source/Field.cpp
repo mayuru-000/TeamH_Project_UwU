@@ -54,7 +54,8 @@ Field::Field()
 		else{ lastObj = FALSE; }
 		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX, lastObj); }
 	}
-	new Objects();
+	new Objects(2000, 310, 0, 8);
+	new Objects(4500, 310, 0, 8);
 }
 
 Field::~Field()
