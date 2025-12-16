@@ -47,7 +47,7 @@ void title::Draw()
 		DrawGraph(193, 50, tImage, TRUE);
 		y = -200;
 	}
-	else { y = -500; }
+	else { y = -360; }
 
 	
 	
