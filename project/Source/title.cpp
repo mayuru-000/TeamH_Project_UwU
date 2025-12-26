@@ -5,7 +5,7 @@
 title::title()
 {
 	spaceInputed = FALSE;
-	bgImage = LoadGraph("data/image/bg_pre.png");
+	bgImage = LoadGraph("data/image/bg/bg_pre.png");
 	tImage = LoadGraph("data/image/title_pre.png");
 	carImage = LoadGraph("data/image/car.png");
 

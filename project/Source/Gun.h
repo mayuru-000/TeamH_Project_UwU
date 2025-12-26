@@ -43,4 +43,6 @@ private:
 	static const int num = 3;
 	int range[num] = { 20,40,80 };
 	int ammoDamage[num] = { 150,50,10 };
+
+	DINPUT_JOYSTATE input;
 };

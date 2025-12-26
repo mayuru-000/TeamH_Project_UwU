@@ -7,8 +7,6 @@
 
 using namespace std;
 
-string modlist[3] = { "attack","speed","bulletMaxnum" };
-
 Clear::Clear()
 {
 }
@@ -23,9 +21,18 @@ Clear::Clear(int score)
 	bgImage = LoadGraph("data/image/bg/clear_bg.png");
 	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 
+	/*スコア登録*/
 	c->hiScore += score;
 	prevPush = FALSE;
 
+	/*バフ選出*/
+	buffs[0] = GetRand(5);
+	do { buffs[1] = GetRand(5); } while (buffs[0] == buffs[1]);
+	do { buffs[2] = GetRand(5); } while (buffs[0] == buffs[2] || buffs[1] == buffs[2]);
+	
+	sort(buffs, buffs + 3);
+
+	/*バフ長さ取得*/
 	count = 0;
 	nowSelect =	1;
 	for (int i = 0;i < size(c->mod);i++) { if (c->mod[i] >= 0) { count++; } }
@@ -40,10 +47,9 @@ void Clear::Update()
 	Common* c = FindGameObject<Common>();
 	Field* field = FindGameObject<Field>();
 
-
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		if (prevPush) {
-			if (nowSelect > 1) {
+			if (nowSelect > 0) {
 				nowSelect--;
 				prevPush = FALSE;
 			}
@@ -51,7 +57,7 @@ void Clear::Update()
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		if (prevPush) {
-			if (nowSelect < 3) {
+			if (nowSelect < 2) {
 				nowSelect++;
 				prevPush = FALSE;
 			}
@@ -62,6 +68,7 @@ void Clear::Update()
 	}
 
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
+		c->mod[c->nowStage - 1] = buffs[nowSelect];
 		selected();
 	}
 }
@@ -87,7 +94,7 @@ void Clear::selected()
 	Field* field = FindGameObject<Field>();
 	Player* player = FindGameObject<Player>();
 
-	if(c->nowStage!=-1){ c->nowStage++; }		//デバッグ用
+	if(c->nowStage!=0){ c->nowStage++; }		//デバッグ用
 
 	field->DestroyMe();
 	player->DestroyMe();

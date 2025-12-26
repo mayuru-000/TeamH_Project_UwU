@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <algorithm>
 #include "../Library/GameObject.h"
 
 class Clear:public GameObject
@@ -19,4 +21,6 @@ private:
 	int count;
 	int nowSelect;
 	bool prevPush;
+
+	int  buffs[3];
 };

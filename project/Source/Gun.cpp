@@ -14,8 +14,8 @@ Gun::Gun()
 
 	ammo = Maxammo;
 
-	x = 0;
-	y = 0;
+	x = 640;
+	y = 360;
 	deg = 0.0;
 	rad = 0.0;
 	Expansion = 0.05;
@@ -33,10 +33,13 @@ Gun::~Gun()
 
 void Gun::Update()
 {
-	GetMousePoint(&x, &y);
+	GetJoypadDirectInputState(DX_INPUT_PAD1, &input);
+	x += input.X / 100;
+	y += input.Y / 100;
+	if (GetJoypadNum() == 0) { GetMousePoint(&x, &y); }
 
 	if (!reroading) {
-		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// 左クリックされたときの処理
+		if (GetMouseInput() & MOUSE_INPUT_LEFT || input.Buttons[7] == 128)// 左クリックされたときの処理
 		{
 			if (ammo > 0) {
 				if ((GetNowCount() - shotedSpan >= 400 || ammo == Maxammo) && shotcool == TRUE) {
@@ -107,9 +110,9 @@ void Gun::Draw()
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
 	}
 	/*debug*/
-	DrawCircle(x, y, range[0], GetColor(255, 255, 255), 0);
+	/*DrawCircle(x, y, range[0], GetColor(255, 255, 255), 0);
 	DrawCircle(x, y, range[1], GetColor(255, 255, 255), 0);
-	DrawCircle(x, y, range[2], GetColor(255, 255, 255), 0);
+	DrawCircle(x, y, range[2], GetColor(255, 255, 255), 0);*/
 }
 
 void Gun::Reroad() 

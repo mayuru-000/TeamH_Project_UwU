@@ -17,8 +17,10 @@ private:
 	int tWIDTH, tHEIGHT;
 
 	int hp;
+	int hit;
 	int x, y;
 	int scrollX;
+	int deadCounter;
 
 	bool rastobj;
 	bool breaked;

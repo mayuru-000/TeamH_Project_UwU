@@ -17,6 +17,7 @@ Objects::Objects()
 
 Objects::Objects(int fx, int fy, int handle, int speed)
 {
+	SetDrawOrder(0);
 	x = fx;
 	y = fy;
 	scrollX = speed;

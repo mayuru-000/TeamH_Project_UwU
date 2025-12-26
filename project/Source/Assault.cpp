@@ -53,6 +53,10 @@ void Assault::Update()
 						t->isHit(x, y, ammoDamage);
 					}*/
 
+					auto target = FindGameObjects<Target>();
+					for (auto t : target) {
+						t->isHit(x, y, range, ammoDamage, num);
+					}
 					count++;
 				}
 				else if (count >= 7)

@@ -18,7 +18,12 @@ PlayScene::~PlayScene()
 
 void PlayScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_T)) {
+	if (CheckHitKey(KEY_INPUT_ESCAPE)) {
+		Field* field = FindGameObject<Field>();
+		Player* player = FindGameObject<Player>();
+
+		field->DestroyMe();
+		player->DestroyMe();
 		SceneManager::ChangeScene("TITLE");
 	}
 }

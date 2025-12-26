@@ -2,7 +2,6 @@
 
 Debug::Debug()
 {
-	DontDestroyOnSceneChange();
 	Debugmode = FALSE;
 	prevPush = FALSE;
 }

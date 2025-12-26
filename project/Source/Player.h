@@ -25,8 +25,11 @@ private:
 	int carWIDTH, carHEIGHT;
 	int roadWIDTH, roadHEIGHT;
 
+	int nowSelect;
 	int scrollX;
 	int bufSize;
 	int count;
 	int flameCounter;
+
+	bool prevPush;
 };
