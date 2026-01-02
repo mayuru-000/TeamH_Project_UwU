@@ -17,7 +17,6 @@ Field::Field()
 	Common* c = FindGameObject<Common>();
 	Objects* obj = FindGameObject<Objects>();
 
-	score = 0;
 	goalline = 0;
 	scrollX = 0;
 	lastObj = FALSE;
@@ -55,8 +54,8 @@ Field::Field()
 		else{ lastObj = FALSE; }
 		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX, lastObj); }
 	}
-	new Objects(2000, 310, 0, Maxfast + c->speedX + 1);
-	new Objects(4500, 310, 0, Maxfast + c->speedX + 1);
+	/*new Objects(2000, 310, 0, Maxfast + c->speedX + 1);
+	new Objects(4500, 310, 0, Maxfast + c->speedX + 1);*/
 }
 
 Field::~Field()
@@ -73,7 +72,7 @@ void Field::Update()
 
 	if (goalline < 0 && !cleared)
 	{
-		new Clear(score);
+		new Clear();
 		cleared = TRUE;
 	}
 }

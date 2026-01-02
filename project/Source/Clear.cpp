@@ -9,10 +9,6 @@ using namespace std;
 
 Clear::Clear()
 {
-}
-
-Clear::Clear(int score)
-{
 	Common* c = FindGameObject<Common>();
 	Gunsetting* Gset = FindGameObject<Gunsetting>();
 
@@ -22,7 +18,7 @@ Clear::Clear(int score)
 	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 
 	/*スコア登録*/
-	c->hiScore += score;
+	c->hiScore == c->score;
 	prevPush = FALSE;
 
 	/*バフ選出*/
@@ -69,7 +65,10 @@ void Clear::Update()
 
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		c->mod[c->nowStage - 1] = buffs[nowSelect];
-		selected();
+		if (c->nowStage < 5) {
+			selected();
+		}
+		
 	}
 }
 

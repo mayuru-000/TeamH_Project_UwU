@@ -11,12 +11,14 @@ public:
 	void Draw() override;
 
 	bool isHit(int px, int py, int r[], int dmg[], int num);
+	void sddScore();
 private:
+	int nam;
 	int tImage;
 	int bmImage;
 	int tWIDTH, tHEIGHT;
 
-	int hp;
+	int hp, maxhp;
 	int hit;
 	int x, y;
 	int scrollX;

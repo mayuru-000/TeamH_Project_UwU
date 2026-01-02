@@ -10,5 +10,8 @@ Common::Common()
 	gunrateBuf = 0;
 	maxammoBuf = 0;
 
+	score = 0;
+	hiScore = 0;
+
 	std::string modlist[6] = { "attack","speed","maxbullet","bomAttack","bomRange","bomSup" };
 }

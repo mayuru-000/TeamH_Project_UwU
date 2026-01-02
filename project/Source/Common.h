@@ -17,7 +17,7 @@ public:
 	int gunrateBuf;
 	int maxammoBuf;
 
-	int Score;
+	int score;
 	int hiScore;
 	int mod[10] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
 	//int mod[10] = { 0,1,2,3,4,5,-1,-1,-1,-1 };

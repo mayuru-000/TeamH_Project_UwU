@@ -7,6 +7,7 @@ Target::Target()
 	x = 0;
 	y = 0;
 	hp = 100;
+	nam = 0;
 	scrollX = 0;
 }
 
@@ -20,6 +21,8 @@ Target::Target(int fx, int fy, int handle, int fhp, int speed, bool rast)
 	x = fx;
 	y = fy;
 	hp = fhp;
+	maxhp = fhp;
+	nam = handle;
 	scrollX = speed;
 
 	rastobj = rast;
@@ -46,6 +49,7 @@ void Target::Update()
 	if (deadCounter > 0) {
 		deadCounter -= 1;
 		if (deadCounter == 0) {
+			breaked = TRUE;
 			DestroyMe();
 		}
 		return;
@@ -87,6 +91,7 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 				if ((x < px && px < x + tWIDTH) && (y < py && py < y + tHEIGHT)) {
 					if (hit == 0) { hit = 2; }
 				}
+				sddScore();
 				hp -= dmg[i];
 				return true;
 			}
@@ -94,4 +99,17 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 	}
 
 	return false;
+}
+
+void Target::sddScore()
+{
+	Common* c = FindGameObject<Common>();
+
+	if (breaked) {
+		c->score += ((float)maxhp * ((float)c->nowStage));
+	}
+	else {
+		c->score += ((float)maxhp * ((float)c->nowStage / 2.0));
+	}
+	
 }

@@ -7,7 +7,6 @@ class Clear:public GameObject
 {
 public:
 	Clear();
-	Clear(int score);
 	~Clear();
 
 	void Update()override;

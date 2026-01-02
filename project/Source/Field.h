@@ -25,7 +25,6 @@ private:
 	int goalline;
 
 	int hp;
-	int score;
 	int scrollX;
 	int x, y;
 	int dx, dy;

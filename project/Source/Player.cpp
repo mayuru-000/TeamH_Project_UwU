@@ -34,29 +34,12 @@ void Player::Update()
 {	
 	Common* c = FindGameObject<Common>();
 
-	flameCounter++;
+	flameCounter += 1.5;
 	scrollX += c->speedX;
 
 	if (flameCounter == 60) { flameCounter = 0; }
 
 	count = flameCounter / 30;
-
-	/**/
-	/*if (CheckHitKey(KEY_INPUT_LEFT)) {
-		if (prevPush) {
-			nowSelect--;
-			prevPush = FALSE;
-		}
-	}
-	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		if (prevPush) {
-			nowSelect++;
-			prevPush = FALSE;
-		}
-	}
-	else {
-		prevPush = TRUE;
-	}*/
 }
 
 void Player::Draw()
@@ -70,7 +53,6 @@ void Player::Draw()
 		scrollX = 0;
 	}
 
-
 	DrawRectGraph(30, Screen::HEIGHT - 300, 350 * count, 0, 350, 200, carImage, TRUE);
 
 	int s = bufSize;
@@ -81,5 +63,6 @@ void Player::Draw()
 		s--;
 	}
 
-	
+	DrawFormatString(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), "SCORE   : %d", c->score);
+	DrawFormatString(0, Screen::HEIGHT - 20, GetColor(255, 255, 255), "HISCORE : %d", c->hiScore);
 }
