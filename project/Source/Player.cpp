@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "Common.h"
-#include "Granade.h"
 #include "Screen.h"
 
 using namespace std;
@@ -28,6 +27,7 @@ Player::Player()
 
 Player::~Player()
 {
+	
 }
 
 void Player::Update()
@@ -62,7 +62,7 @@ void Player::Draw()
 		else if (c->mod[i] < 9) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 2, 64 * (c->mod[i] - 6), 64, 64, bufImage, TRUE); }
 		s--;
 	}
-
+	DrawFormatString(0, 20, GetColor(255, 255, 255), "STAGE=%d", c->nowStage);
 	DrawFormatString(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), "SCORE   : %d", c->score);
 	DrawFormatString(0, Screen::HEIGHT - 20, GetColor(255, 255, 255), "HISCORE : %d", c->hiScore);
 }

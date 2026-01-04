@@ -2,6 +2,7 @@
 
 #include "Gun.h"
 #include "Assault.h"
+#include "Granade.h"
 #include "../Library/GameObject.h"
 
 class Gunsetting:public GameObject
@@ -13,4 +14,5 @@ public:
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;
+	Granade* granade = NULL;
 };

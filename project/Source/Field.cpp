@@ -13,11 +13,11 @@
 using namespace std;
 
 vector<vector<int>> maps;
+vector<vector<int>> objMaps;
 
 Field::Field()
 {
 	Common* c = FindGameObject<Common>();
-	Objects* obj = FindGameObject<Objects>();
 
 	goalline = 0;
 	scrollX = 0;
@@ -26,8 +26,7 @@ Field::Field()
 
 
 	char filename[60];
-	sprintf_s<60>(filename, "data/stage/Stage_%d.csv", c->nowStage);
-	// CSVから読んで、mapsを作る
+	sprintf_s<60>(filename, "data/stage/Target/Stage_%d.csv", c->nowStage);
 	CsvReader* csv = new CsvReader(filename);
 	int lines = csv->GetLines(); // 縦の行数
 	maps.resize(lines); // mapsの行数をcsvに合わせる
@@ -39,7 +38,21 @@ Field::Field()
 			maps[y][x] = num;
 		}
 	}
+
+	sprintf_s<60>(filename, "data/stage/Object/Stage_%d.csv", c->nowStage);
+	csv = new CsvReader(filename);
+	lines = csv->GetLines(); // 縦の行数
+	objMaps.resize(lines); // mapsの行数をcsvに合わせる
+	for (int y = 0; y < lines; y++) {
+		int cols = csv->GetColumns(y); // その行の横の数
+		objMaps[y].resize(cols); // maps[y]の列数をcsvに合わせる
+		for (int x = 0; x < cols; x++) {
+			int num = csv->GetInt(y, x);
+			objMaps[y][x] = num;
+		}
+	}
 	delete csv;
+
 
 	char bgfile[60];
 	sprintf_s<60>(bgfile, "data/image/bg/field_bg_%d.jpg", c->nowStage);
@@ -89,25 +102,6 @@ void Field::Draw()
 
 	/*debug*/
 	DrawLine(goalline, 0, goalline, Screen::HEIGHT, GetColor(255, 255, 255), 1);
-}
-
-bool Field::ExplosionHit(int cx, int cy, int radius, int dmg)
-{
-	int nearestX = (max)(x, (min)(cx, x + fImageX));
-	int nearestY = (max)(y, (min)(cy, y + fImageY));
-
-	int dx_ = cx - nearestX;
-	int dy_ = cy - nearestY;
-
-	long long distSq = 1LL * dx_ * dx_ + 1LL * dy_ * dy_;
-	long long radiusSq = 1LL * radius * radius;
-
-	if (distSq <= radiusSq) {
-
-		hp -= dmg;
-		return true;
-	}
-	return false;
 }
 
 

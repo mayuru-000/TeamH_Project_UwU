@@ -46,17 +46,17 @@ void Target::Update()
 {
 	x -= scrollX;
 
-	if (deadCounter > 0) {
-		deadCounter -= 1;
-		if (deadCounter == 0) {
-			breaked = TRUE;
+	if (breaked) {
+		deadCounter++;
+		if (deadCounter == 40) {
+			sddScore();
 			DestroyMe();
 		}
 		return;
 	}
 
 	if (x + tWIDTH <= 0) { DestroyMe(); }
-	if (hp <= 0) { deadCounter = 30; }
+	if (hp <= 0) { breaked = TRUE; }
 }
 
 void Target::Draw()
@@ -68,6 +68,7 @@ void Target::Draw()
 	}
 	else {
 		DrawGraph(x, y, tImage, TRUE);
+		DrawRectExtendGraph(x, y, x + tWIDTH, y + tHEIGHT, 64 * (deadCounter / 3), 0, 64, 64, bmImage, TRUE);
 	}
 
 	/*デバッグ用*/
@@ -77,7 +78,7 @@ void Target::Draw()
 
 bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 { 
-	if (hp > 0) {
+	if (!breaked) {
 		auto objects = FindGameObjects<Objects>();
 		for (auto obj : objects) {
 			if (obj->isHitToObj(px, py)) {

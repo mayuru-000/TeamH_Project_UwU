@@ -12,10 +12,12 @@ Gunsetting::Gunsetting()
 	{
 	case 1:
 		gun = new Gun();
+		granade = new Granade();
 		break;
 
 	case 2:
 		assault = new Assault();
+		granade = new Granade();
 		break;
 
 	default:

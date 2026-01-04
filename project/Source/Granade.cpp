@@ -1,9 +1,8 @@
 #include "Granade.h"
-#include "Field.h"
+#include "Target.h"
 #include <vector>
 
 using namespace std;
-
 
 Granade::Granade()
 {
@@ -18,15 +17,13 @@ Granade::~Granade()
 }
 
 void Granade::Update() {
-	
+	auto target = FindGameObjects<Target>();
 	GetMousePoint(&x, &y);
-
 
 	if (CheckHitKey(KEY_INPUT_Q)) {
 		if (Gammo > 0 && !exploding) {
-			Field* field = FindGameObject<Field>();
-			if (field) {
-				field->ExplosionHit(x, y, radius, 100);
+			for (auto t : target) {
+				t->isHit(x, y, range, ammoDamage, num);
 			}
 			ChangeNextPlayVolumeSoundMem(200, ExplosionSE);
 			PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK);

@@ -22,6 +22,10 @@ private:
 	bool exploding = false;
 	int explTimer = 0;
 	int explDuration = 80;
-	int radius = 300;  
+	int radius = 500;  
+
+	static const int num = 3;
+	int range[num] = { 50,200,500 };
+	int ammoDamage[num] = { 600,300,100 };
 };
 

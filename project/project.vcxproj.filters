@@ -86,6 +86,9 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\Effects.cpp" />
+    <ClCompile Include="Source\Granade.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -186,6 +189,9 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Effects.h" />
+    <ClInclude Include="Source\Granade.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

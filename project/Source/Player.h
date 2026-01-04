@@ -4,6 +4,7 @@
 #include <math.h>
 #include "Gun.h"
 #include "Assault.h"
+#include "Granade.h"
 #include "../Library/GameObject.h"
 
 class Player : public GameObject
