@@ -21,7 +21,7 @@ private:
 	
 	bool exploding = false;
 	int explTimer = 0;
-	int explDuration = 100;
+	int explDuration = 80;
 	int radius = 300;  
 };
 

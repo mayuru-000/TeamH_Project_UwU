@@ -59,9 +59,8 @@ bool Field::isHit(int px, int py, int dmg)
 
 bool Field::ExplosionHit(int cx, int cy, int radius, int dmg)
 {
-
-	int nearestX = (std::max)(x, (std::min)(cx, x + fImageX));
-	int nearestY = (std::max)(y, (std::min)(cy, y + fImageY));
+	int nearestX = (max)(x, (min)(cx, x + fImageX));
+	int nearestY = (max)(y, (min)(cy, y + fImageY));
 
 	int dx_ = cx - nearestX;
 	int dy_ = cy - nearestY;
