@@ -7,6 +7,8 @@
 #include "CsvReader.h"
 
 #include <vector>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -88,3 +90,24 @@ void Field::Draw()
 	/*debug*/
 	DrawLine(goalline, 0, goalline, Screen::HEIGHT, GetColor(255, 255, 255), 1);
 }
+
+bool Field::ExplosionHit(int cx, int cy, int radius, int dmg)
+{
+	int nearestX = (max)(x, (min)(cx, x + fImageX));
+	int nearestY = (max)(y, (min)(cy, y + fImageY));
+
+	int dx_ = cx - nearestX;
+	int dy_ = cy - nearestY;
+
+	long long distSq = 1LL * dx_ * dx_ + 1LL * dy_ * dy_;
+	long long radiusSq = 1LL * radius * radius;
+
+	if (distSq <= radiusSq) {
+
+		hp -= dmg;
+		return true;
+	}
+	return false;
+}
+
+
