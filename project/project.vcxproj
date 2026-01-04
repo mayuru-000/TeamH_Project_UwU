@@ -160,7 +160,6 @@
     <ClInclude Include="Source\Debug.h" />
     <ClInclude Include="Source\Effects.h" />
     <ClInclude Include="Source\Field.h" />
-    <ClInclude Include="Source\Granade.h" />
     <ClInclude Include="Source\Gun.h" />
     <ClInclude Include="Source\Gunsetting.h" />
     <ClInclude Include="Source\Objects.h" />
@@ -195,7 +194,6 @@
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\Effects.cpp" />
     <ClCompile Include="Source\Field.cpp" />
-    <ClCompile Include="Source\Granade.cpp" />
     <ClCompile Include="Source\Gun.cpp" />
     <ClCompile Include="Source\Gunsetting.cpp" />
     <ClCompile Include="Source\Objects.cpp" />

@@ -50,9 +50,6 @@
     <ClCompile Include="Library\Time.cpp">
       <Filter>Library</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Granade.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Gun.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -152,9 +149,6 @@
     </ClInclude>
     <ClInclude Include="Library\myDxLib.h">
       <Filter>Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Granade.h">
-      <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Gun.h">
       <Filter>PlayScene</Filter>
