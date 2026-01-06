@@ -4,7 +4,7 @@ Common::Common()
 {
 	DontDestroyOnSceneChange();
 	nowStage = 1;
-	speedX = 5;
+	speedX = 6;
 
 	atkBuf = 0;
 	gunrateBuf = 0;

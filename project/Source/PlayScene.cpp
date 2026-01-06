@@ -3,10 +3,12 @@
 #include "Gunsetting.h"
 #include "Player.h"
 #include "Field.h"
+#include "Effects.h"
 #include <DxLib.h>
 
 PlayScene::PlayScene()
 {
+	Effects* e = FindGameObject<Effects>();
 	new Field();
 	new Gunsetting();
 	new Player();

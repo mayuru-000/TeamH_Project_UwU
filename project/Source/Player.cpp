@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Common.h"
 #include "Screen.h"
+#include <Windows.h>
 
 using namespace std;
 
@@ -16,6 +17,9 @@ Player::Player()
 
 	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 	carImage = LoadGraph("data/image/car.png");
+
+	AddFontResourceExA("data/Font/POCKC___.TTF", FR_PRIVATE, NULL);
+	textFont_1 = CreateFontToHandle("Pocket Calculator", 40, -1, -1);
 
 	char bgfile[60];
 	sprintf_s<60>(bgfile, "data/image/road/road_%d.png", c->nowStage);
@@ -63,6 +67,6 @@ void Player::Draw()
 		s--;
 	}
 	DrawFormatString(0, 20, GetColor(255, 255, 255), "STAGE=%d", c->nowStage);
-	DrawFormatString(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), "SCORE   : %d", c->score);
-	DrawFormatString(0, Screen::HEIGHT - 20, GetColor(255, 255, 255), "HISCORE : %d", c->hiScore);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 80, GetColor(255, 255, 255), textFont_1, "SCORE   : %d", c->score);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), textFont_1, "HISCORE : %d", c->hiScore);
 }

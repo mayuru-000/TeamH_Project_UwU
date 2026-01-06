@@ -1,10 +1,12 @@
 #include "BootScene.h"
 #include "Common.h"
 #include "Debug.h"
+#include "Effects.h"
 
 BootScene::BootScene()
 {
 	new Common();
+	new Effects();
 	//new Debug();
 }
 

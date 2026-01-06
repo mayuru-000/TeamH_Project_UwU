@@ -1,5 +1,6 @@
 #include "Select.h"
 #include "Common.h"
+#include "Effects.h"
 
 Select::Select()
 {
@@ -26,21 +27,26 @@ Select::~Select()
 void Select::Update()
 {
 	Common* c = FindGameObject<Common>();
+	Effects* e = FindGameObject<Effects>();
 
 	getUpdateKey();
 
 	if (Key[KEY_INPUT_LEFT] == 1) {
 		if (nowSelect > 1) {
+			e->playSE("select");
 			nowSelect--;
 		}
 	}
 	if (Key[KEY_INPUT_RIGHT] == 1) {
 		if (nowSelect < 3) {
+			e->playSE("select");
 			nowSelect++;
 		}
 	}
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		c->weponNum = nowSelect;
+		e->playSE("define");
+		e->FadeIn(0.5);
 		SceneManager::ChangeScene("PLAY");
 	}
 	if (CheckHitKey(KEY_INPUT_BACK)) {

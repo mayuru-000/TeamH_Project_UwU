@@ -4,6 +4,7 @@
 #include "Field.h"
 #include "Player.h"
 #include "Screen.h"
+#include "Effects.h"
 
 using namespace std;
 
@@ -41,11 +42,13 @@ Clear::~Clear()
 void Clear::Update()
 {
 	Common* c = FindGameObject<Common>();
+	Effects* e = FindGameObject<Effects>();
 	Field* field = FindGameObject<Field>();
 
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		if (prevPush) {
 			if (nowSelect > 0) {
+				e->playSE("select");
 				nowSelect--;
 				prevPush = FALSE;
 			}
@@ -54,6 +57,7 @@ void Clear::Update()
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		if (prevPush) {
 			if (nowSelect < 2) {
+				e->playSE("select");
 				nowSelect++;
 				prevPush = FALSE;
 			}
@@ -66,6 +70,7 @@ void Clear::Update()
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		c->mod[c->nowStage - 1] = buffs[nowSelect];
 		if (c->nowStage < 5) {
+			e->playSE("define");
 			selected();
 		}
 		
@@ -80,9 +85,9 @@ void Clear::Draw()
 	Common* c = FindGameObject<Common>();
 	int s = count;
 	for (int i = 0;i < count;i++) {
-		if (i < 4) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 0, 64 * c->mod[i], 64, 64, bufImage, TRUE); }
-		else if (i < 8) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 1, 64 * (c->mod[i] - 4), 64, 64, bufImage, TRUE); }
-		else if (i < 12) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 2, 64 * (c->mod[i] - 8), 64, 64, bufImage, TRUE); }
+		if (c->mod[i] < 3) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 0, 64 * c->mod[i], 64, 64, bufImage, TRUE); }
+		else if (c->mod[i] < 6) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 1, 64 * (c->mod[i] - 3), 64, 64, bufImage, TRUE); }
+		else if (c->mod[i] < 9) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 2, 64 * (c->mod[i] - 6), 64, 64, bufImage, TRUE); }
 		s--;
 	}
 }

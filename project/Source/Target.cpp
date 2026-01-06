@@ -48,7 +48,7 @@ void Target::Update()
 
 	if (breaked) {
 		deadCounter++;
-		if (deadCounter == 40) {
+		if (deadCounter == 51) {
 			sddScore();
 			DestroyMe();
 		}
@@ -67,8 +67,8 @@ void Target::Draw()
 		if (hit == 2) { DrawGraph(x - 15, y, tImage, TRUE); hit--; }
 	}
 	else {
-		DrawGraph(x, y, tImage, TRUE);
-		DrawRectExtendGraph(x, y, x + tWIDTH, y + tHEIGHT, 64 * (deadCounter / 3), 0, 64, 64, bmImage, TRUE);
+		//DrawGraph(x, y, tImage, TRUE);
+		DrawRectExtendGraph(x-200, y- 200, x + tWIDTH+ 200, y + tHEIGHT+ 200, 64 * (deadCounter / 3), 0, 64, 64, bmImage, TRUE);
 	}
 
 	/*デバッグ用*/

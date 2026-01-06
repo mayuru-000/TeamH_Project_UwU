@@ -22,6 +22,7 @@ private:
 	int bufImage;
 	int carImage;
 	int roadImage;
+	int textFont_1;
 
 	int carWIDTH, carHEIGHT;
 	int roadWIDTH, roadHEIGHT;
