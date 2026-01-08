@@ -15,12 +15,24 @@ Effects::Effects()
 
 	selectSE = LoadSoundMem("data/sound/se/select.mp3");
 	defineSE = LoadSoundMem("data/sound/se/define.mp3");
+
+	gunSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
+	assaultSE = LoadSoundMem("data/Sound/SE/Assault.mp3");
+	reroadingSE = LoadSoundMem("data/Sound/SE/reroaro.mp3");
+	explosionSE = LoadSoundMem("data/Sound/SE/Explosion.mp3");
+
+	hitSE[0] = LoadSoundMem("data/Sound/SE/hit_1.mp3");
+	hitSE[1] = LoadSoundMem("data/Sound/SE/hit_2.mp3");
+	hitSE[2] = LoadSoundMem("data/Sound/SE/hit_3.mp3");
+	breakSE[0] = LoadSoundMem("data/Sound/SE/break_1.mp3");
+	breakSE[1] = LoadSoundMem("data/Sound/SE/break_2.mp3");
+	breakSE[2] = LoadSoundMem("data/Sound/SE/break_3.mp3");
+	parrySE = LoadSoundMem("data/Sound/SE/parry.mp3");
 }
 
 Effects::~Effects()
 {
-	DeleteSoundMem(selectSE);
-	DeleteSoundMem(defineSE);
+	InitSoundMem();
 }
 
 void Effects::Update()
@@ -43,11 +55,32 @@ void Effects::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-void Effects::playSE(const char* name)
+void Effects::playSE(const char* name, int vol)
 {
+	int i = GetRand(2);
+	ChangeNextPlayVolumeSoundMem(vol, selectSE);
+	ChangeNextPlayVolumeSoundMem(vol, defineSE);
+	ChangeNextPlayVolumeSoundMem(vol, reroadingSE);
+	ChangeNextPlayVolumeSoundMem(vol, assaultSE);
+	ChangeNextPlayVolumeSoundMem(vol, explosionSE);
+	ChangeNextPlayVolumeSoundMem(vol, gunSE);
+	ChangeNextPlayVolumeSoundMem(vol, hitSE[i]);
+	ChangeNextPlayVolumeSoundMem(vol, breakSE[i]);
+	ChangeNextPlayVolumeSoundMem(vol, parrySE);
+
 	if (name == nullptr) return;
 	if (name == "select") { PlaySoundMem(selectSE, DX_PLAYTYPE_BACK); }
 	if (name == "define") { PlaySoundMem(defineSE, DX_PLAYTYPE_BACK); }
+
+	if (name == "reroading") { PlaySoundMem(reroadingSE, DX_PLAYTYPE_BACK); }
+	if (name == "reroaded")  {}
+	if (name == "assault")   { PlaySoundMem(assaultSE, DX_PLAYTYPE_BACK); }
+	if (name == "bomb")	     { PlaySoundMem(explosionSE, DX_PLAYTYPE_BACK); }
+	if (name == "gun")       { PlaySoundMem(gunSE, DX_PLAYTYPE_BACK); }
+
+	if (name == "hit")   { PlaySoundMem(hitSE[i], DX_PLAYTYPE_BACK); }
+	if (name == "break") { PlaySoundMem(breakSE[i], DX_PLAYTYPE_BACK); }
+	if (name == "parry") { PlaySoundMem(parrySE, DX_PLAYTYPE_BACK); }
 }
 
 void Effects::FadeIn(float sec)

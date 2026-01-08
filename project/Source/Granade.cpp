@@ -1,5 +1,6 @@
 #include "Granade.h"
 #include "Target.h"
+#include "Effects.h"
 #include <vector>
 
 using namespace std;
@@ -8,15 +9,14 @@ Granade::Granade()
 {
 	exploImage = LoadGraph("data/Image/explode.png");
 	GranadeImage = LoadGraph("data/Image/Granade.png");
-	ExplosionSE = LoadSoundMem("data/Sound/SE/Explosion.mp3");
 }
 
 Granade::~Granade()
 {
-	DeleteSoundMem(ExplosionSE);
 }
 
 void Granade::Update() {
+	Effects* e = FindGameObject<Effects>();
 	auto target = FindGameObjects<Target>();
 	GetMousePoint(&x, &y);
 
@@ -25,8 +25,7 @@ void Granade::Update() {
 			for (auto t : target) {
 				t->isHit(x, y, range, ammoDamage, num);
 			}
-			ChangeNextPlayVolumeSoundMem(200, ExplosionSE);
-			PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK);
+			e->playSE("bomb", 200);
 			Gammo -= 1;
 			exploding = true;
 			explTimer = 0;

@@ -12,7 +12,7 @@ public:
 private:
 	int exploImage;
 	int GranadeImage;
-	int ExplosionSE;
+
 	int Gammo = 5;
 	int x = 0;
 	int y = 0;

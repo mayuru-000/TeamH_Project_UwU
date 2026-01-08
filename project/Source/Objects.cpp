@@ -43,7 +43,13 @@ void Objects::Update()
 void Objects::Draw()
 {
 	DrawGraph(x, y, tImage, TRUE);
-	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), FALSE);
+
+	/*debug*/
+	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(0, 0, 255), FALSE);
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 60);
+	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(0, 0, 255), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 bool Objects::isHitToObj(int px, int py)

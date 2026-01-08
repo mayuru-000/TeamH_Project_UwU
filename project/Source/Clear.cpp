@@ -51,7 +51,7 @@ void Clear::Update()
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		if (prevPush) {
 			if (nowSelect > 0) {
-				e->playSE("select");
+				e->playSE("select",255);
 				nowSelect--;
 				prevPush = FALSE;
 			}
@@ -60,7 +60,7 @@ void Clear::Update()
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		if (prevPush) {
 			if (nowSelect < 2) {
-				e->playSE("select");
+				e->playSE("select", 255);
 				nowSelect++;
 				prevPush = FALSE;
 			}
@@ -85,7 +85,7 @@ void Clear::Update()
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		c->mod[c->nowStage - 1] = buffs[nowSelect];
 		if (c->nowStage < 5) {
-			e->playSE("define");
+			e->playSE("define", 255);
 			selected();
 		}
 		

@@ -10,7 +10,6 @@ class Gunsetting:public GameObject
 public:
 	Gunsetting();
 	~Gunsetting();
-
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;

@@ -1,6 +1,7 @@
 #include "Target.h"
 #include "Objects.h"
 #include "Common.h"
+#include "Effects.h"
 
 Target::Target()
 {
@@ -33,6 +34,7 @@ Target::Target(int fx, int fy, int handle, int fhp, int speed, bool rast)
 
 	tImage = LoadGraph(bgfile);
 	bmImage = LoadGraph("data/image/explosion.png");
+
 
 	GetGraphSize(tImage, &tWIDTH, &tHEIGHT);
 }
@@ -74,14 +76,21 @@ void Target::Draw()
 	/*デバッグ用*/
 	DrawFormatString(x, y - 20, GetColor(255, 255, 255), "HP::%d", hp);
 	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), FALSE);
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 60);
+	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 { 
+	Effects* e = FindGameObject<Effects>();
+
 	if (!breaked) {
 		auto objects = FindGameObjects<Objects>();
 		for (auto obj : objects) {
 			if (obj->isHitToObj(px, py)) {
+				e->playSE("parry", 100);
 				return false;
 			}
 		}
@@ -89,8 +98,11 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 		for (int i = 0; i < num; i++) {
 			if ((x - r[i] <= px && px <= x + tWIDTH + r[i]) && (y - r[i] <= py && py <= y + tHEIGHT + r[i]))
 			{
-				if ((x < px && px < x + tWIDTH) && (y < py && py < y + tHEIGHT)) {
+				if ((x < px && px < x + tWIDTH) && (y < py && py < y + tHEIGHT)) { //中央ヒット
 					if (hit == 0) { hit = 2; }
+
+					if (hp - dmg[i] <= 0) { e->playSE("break", 200); }
+					else { e->playSE("hit", 200); }
 				}
 				sddScore();
 				hp -= dmg[i];
@@ -105,6 +117,7 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 void Target::sddScore()
 {
 	Common* c = FindGameObject<Common>();
+	Effects* e = FindGameObject<Effects>();
 
 	if (breaked) {
 		c->score += ((float)maxhp * ((float)c->nowStage));

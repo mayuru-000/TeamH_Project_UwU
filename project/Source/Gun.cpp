@@ -1,14 +1,10 @@
 #include "Gun.h"
 #include "Target.h"
 #include "Screen.h"
+#include "Effects.h"
 
 Gun::Gun()
 {
-	weponSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
-
-	reroaro= LoadSoundMem("data/Sound/SE/reroaro.mp3");
-	aroari= LoadSoundMem("data/Sound/SE/aroari.mp3");
-
 	weponImage = LoadGraph("data/Image/player.png");
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
@@ -25,14 +21,12 @@ Gun::~Gun()
 {
 	DeleteGraph(weponImage);
 	DeleteGraph(weponImage2);
-
-	DeleteSoundMem(weponSE);
-	DeleteSoundMem(reroaro);
-	DeleteSoundMem(aroari);
 }
 
 void Gun::Update()
 {
+	Effects* e = FindGameObject<Effects>();
+
 	GetJoypadDirectInputState(DX_INPUT_PAD1, &input);
 	x += input.X / 100;
 	y += input.Y / 100;
@@ -50,10 +44,8 @@ void Gun::Update()
 					ammo -= 1;
 					shotcool = FALSE;
 					shotedSpan = GetNowCount();
-					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
 
-					/*Target* target = FindGameObject<Target>();
-					target->isHit(x, y,ammoDamage);*/
+					e->playSE("gun", 255);
 
 					auto target = FindGameObjects<Target>();
 					for (auto t : target) {
@@ -87,10 +79,9 @@ void Gun::Update()
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
 		if (GetNowCount() - startTime >= 800) {
+			e->playSE("reroaded", 150);
 			ammo = Maxammo;
 			reroading = FALSE;
-			ChangeNextPlayVolumeSoundMem(150, aroari);
-			PlaySoundMem(aroari, DX_PLAYTYPE_BACK);
 		}
 	}
 }
@@ -106,8 +97,8 @@ void Gun::Draw()
 	}
 	else
 	{
-		DrawLine(250, 500, x, y, GetColor(255, 255, 255), 10);
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
+		DrawLine(250, 500, x, y, GetColor(255, 255, 255), 5);
 	}
 	/*debug*/
 	/*DrawCircle(x, y, range[0], GetColor(255, 255, 255), 0);
@@ -117,8 +108,9 @@ void Gun::Draw()
 
 void Gun::Reroad() 
 {
+	Effects* e = FindGameObject<Effects>();
+
 	reroading = TRUE;
-	ChangeNextPlayVolumeSoundMem(150, reroaro);
-	PlaySoundMem(reroaro, DX_PLAYTYPE_BACK);
+	e->playSE("reroading", 150);
 	startTime = GetNowCount();
 }

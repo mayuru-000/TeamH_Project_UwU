@@ -33,19 +33,19 @@ void Select::Update()
 
 	if (Key[KEY_INPUT_LEFT] == 1) {
 		if (nowSelect > 1) {
-			e->playSE("select");
+			e->playSE("select", 300);
 			nowSelect--;
 		}
 	}
 	if (Key[KEY_INPUT_RIGHT] == 1) {
 		if (nowSelect < 3) {
-			e->playSE("select");
+			e->playSE("select", 300);
 			nowSelect++;
 		}
 	}
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		c->weponNum = nowSelect;
-		e->playSE("define");
+		e->playSE("define", 300);
 		e->FadeIn(0.5);
 		SceneManager::ChangeScene("PLAY");
 	}

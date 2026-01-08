@@ -13,9 +13,6 @@ public:
 	void Draw() override;
 
 private:
-	/*Gun* gun = NULL;
-	Assault* assault = NULL;*/
-
 	int fImage;
 	int bgImage;
 

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Common.h"
 #include "Screen.h"
+#include "Gunsetting.h"
 #include <Windows.h>
 
 using namespace std;
@@ -8,6 +9,7 @@ using namespace std;
 Player::Player()
 {
 	Common* c = FindGameObject<Common>();
+	SetDrawOrder(0);
 
 	count = 0;
 	bufSize = 0;
@@ -39,7 +41,7 @@ void Player::Update()
 	Common* c = FindGameObject<Common>();
 
 	flameCounter += 1.5;
-	scrollX += c->speedX;
+	scrollX += c->Speed("front");
 
 	if (flameCounter == 60) { flameCounter = 0; }
 
@@ -48,8 +50,10 @@ void Player::Update()
 
 void Player::Draw()
 {
-	SetDrawOrder(0);
+	int x, y;
 	Common* c = FindGameObject<Common>();
+	Gunsetting* g = FindGameObject<Gunsetting>();
+	GetMousePoint(&x, &y);
 
 	DrawGraph(0 - scrollX, Screen::HEIGHT - roadHEIGHT, roadImage, TRUE);
 	DrawGraph(0 + roadWIDTH - scrollX, Screen::HEIGHT - roadHEIGHT, roadImage, TRUE);

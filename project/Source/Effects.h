@@ -10,7 +10,7 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	void playSE(const char* name);
+	void playSE(const char* name, int vol);
 
 	void FadeIn(float sec);
 	void FadeOut(float sec);
@@ -19,8 +19,11 @@ public:
 	bool Finished() { return now >= time; }
 
 private:
-	int selectSE;
-	int defineSE;
+	int selectSE, defineSE;
+	int gunSE, assaultSE, explosionSE;
+	int reroadingSE, reroadedSE;
+	int hitSE[3], breakSE[3], parrySE;
+	int clearSE, defeatSE, goalSE;
 
 	int alpha;
 	int startAlpha;

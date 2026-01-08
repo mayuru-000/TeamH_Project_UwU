@@ -1,6 +1,7 @@
 #include "title.h"
 #include "Select.h"
 #include "Screen.h"
+#include "Effects.h"
 
 title::title()
 {
@@ -21,6 +22,8 @@ title::~title()
 
 void title::Update()
 {
+	Effects* e = FindGameObject<Effects>();
+
 	x += 5;;
 	flameCounter++;
 	if (x > Screen::WIDTH) { x =- 300; }
@@ -30,6 +33,7 @@ void title::Update()
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (!spaceInputed) {
 			spaceInputed = TRUE;
+			e->playSE("define", 300);
 			new Select();
 		}
 	}

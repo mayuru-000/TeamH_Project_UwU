@@ -15,3 +15,11 @@ Common::Common()
 
 	std::string modlist[6] = { "attack","speed","maxbullet","bomAttack","bomRange","bomSup" };
 }
+
+int Common::Speed(string mode)
+{
+	if (mode == "front") { return speedX + speedrange[nowStage]; }
+	if (mode == "back") { return speedX - speedrange[nowStage]; }
+
+	return 0;
+}

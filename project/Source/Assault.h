@@ -13,15 +13,11 @@ public:
 	void Draw() override;
 
 	void Reroad();
-
 	float Deg2Rad(int dg) { return dg * (M_PI / 180.0); }
 
 private:
 	int weponImage;
 	int weponImage2;
-
-	int weponSE;
-	int reroaro, aroari;
 
 	int x, y;
 	int ammo;

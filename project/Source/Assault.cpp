@@ -1,14 +1,10 @@
 #include "Assault.h"
 #include "Target.h"
 #include "Screen.h"
+#include "Effects.h"
 
 Assault::Assault()
 {
-	weponSE = LoadSoundMem("data/Sound/SE/Assault.mp3");
-
-	reroaro = LoadSoundMem("data/Sound/SE/reroaro.mp3");
-	aroari = LoadSoundMem("data/Sound/SE/aroari.mp3");
-
 	weponImage = LoadGraph("data/Image/player.png");
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
@@ -24,13 +20,13 @@ Assault::Assault()
 
 Assault::~Assault()
 {
-	DeleteSoundMem(weponSE);
-	DeleteSoundMem(reroaro);
-	DeleteSoundMem(aroari);
+
 }
 
 void Assault::Update()
 {
+	Effects* e = FindGameObject<Effects>();
+
 	GetMousePoint(&x, &y);
 	if (!reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ç∂ÉNÉäÉbÉNÇ≥ÇÍÇΩÇ∆Ç´ÇÃèàóù
@@ -46,27 +42,16 @@ void Assault::Update()
 				if (count == 0)
 				{
 					ammo -= 1;
-					PlaySoundMem(weponSE, DX_PLAYTYPE_BACK);
-
-					/*auto target = FindGameObjects<Target>();
-					for (auto t : target) {
-						t->isHit(x, y, ammoDamage);
-					}*/
-
+					e->playSE("assault", 255);
+					
 					auto target = FindGameObjects<Target>();
 					for (auto t : target) {
 						t->isHit(x, y, range, ammoDamage, num);
 					}
 					count++;
 				}
-				else if (count >= 7)
-				{
-					count = 0;
-				}
-				else
-				{
-					count++;
-				}
+				else if (count >= 7) { count = 0; }
+				else { count++; }
 			}
 			else
 			{
@@ -95,10 +80,9 @@ void Assault::Update()
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
 		if (GetNowCount() - startTime >= 1800) {
+			e->playSE("reroaded",150);
 			ammo = Maxammo;
 			reroading = FALSE;
-			ChangeNextPlayVolumeSoundMem(150, aroari);
-			PlaySoundMem(aroari, DX_PLAYTYPE_BACK);
 		}
 	}
 }
@@ -115,13 +99,14 @@ void Assault::Draw()
 	else
 	{
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
+		DrawLine(250, 500, x, y, GetColor(255, 255, 255), 5);
 	}
 }
 
 void Assault::Reroad()
 {
+	Effects* e = FindGameObject<Effects>();
+	e->playSE("reroading",150);
 	reroading = TRUE;
-	ChangeNextPlayVolumeSoundMem(150, reroaro);
-	PlaySoundMem(reroaro, DX_PLAYTYPE_BACK);
 	startTime = GetNowCount();
 }
