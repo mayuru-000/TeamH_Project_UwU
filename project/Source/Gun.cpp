@@ -106,6 +106,7 @@ void Gun::Draw()
 	}
 	else
 	{
+		DrawLine(250, 500, x, y, GetColor(255, 255, 255), 10);
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
 	}
 	/*debug*/

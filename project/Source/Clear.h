@@ -16,6 +16,9 @@ public:
 private:
 	int bgImage;
 	int bufImage;
+	int cardImage;
+	int bufBgImage;
+	int bufIcon;
 
 	int count;
 	int nowSelect;

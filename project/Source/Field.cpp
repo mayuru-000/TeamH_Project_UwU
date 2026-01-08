@@ -80,12 +80,13 @@ Field::~Field()
 
 void Field::Update()
 {
+
 	Common* c = FindGameObject<Common>();
 
 	scrollX += c->speedX;
 	goalline -= c->speedX;
 
-	if (goalline < 0 && !cleared)
+	if (!cleared)
 	{
 		new Clear();
 		cleared = TRUE;
