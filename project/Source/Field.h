@@ -12,6 +12,8 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void addSpanA(int x) { objSpan_A = x; sponed_A = FALSE; }
+	void addSpanB(int x) { objSpan_B = x; sponed_B = FALSE; }
 private:
 	int fImage;
 	int bgImage;
@@ -22,10 +24,13 @@ private:
 	int goalline;
 
 	int hp;
+	int mapX;
 	int scrollX;
-	int x, y;
 	int dx, dy;
+	int objSpan_A, objSpan_B;
+	int objSponePoint_A, objSponePoint_B;
 
 	bool lastObj;
 	bool cleared;
+	bool sponed_A, sponed_B;
 };

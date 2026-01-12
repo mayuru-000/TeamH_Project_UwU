@@ -63,6 +63,8 @@ void Target::Update()
 
 void Target::Draw()
 {
+	Common* c = FindGameObject<Common>();
+
 	if (deadCounter == 0) {
 		if (hit == 0) { DrawGraph(x, y, tImage, TRUE); }
 		if (hit == 1) { DrawGraph(x + 15, y, tImage, TRUE); hit--; }
@@ -74,12 +76,14 @@ void Target::Draw()
 	}
 
 	/*デバッグ用*/
-	DrawFormatString(x, y - 20, GetColor(255, 255, 255), "HP::%d", hp);
-	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), FALSE);
+	if (c->debugmode) {
+		DrawFormatString(x, y - 20, GetColor(255, 255, 255), "HP::%d", hp);
+		DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), FALSE);
 
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 60);
-	DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 60);
+		DrawBox(x, y, x + tWIDTH, y + tHEIGHT, GetColor(255, 0, 0), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 }
 
 bool Target::isHit(int px, int py, int r[], int dmg[], int num)

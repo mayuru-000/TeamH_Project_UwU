@@ -3,7 +3,7 @@
 Common::Common()
 {
 	DontDestroyOnSceneChange();
-	nowStage = 1;
+	nowStage = 3;
 	speedX = 6;
 
 	atkBuf = 0;
@@ -18,8 +18,8 @@ Common::Common()
 
 int Common::Speed(string mode)
 {
-	if (mode == "front") { return speedX + speedrange[nowStage]; }
-	if (mode == "back") { return speedX - speedrange[nowStage]; }
+	if (mode == "front") { return speedX + speedrange[nowStage - 1]; }
+	if (mode == "back") { return speedX - speedrange[nowStage - 1]; }
 
 	return 0;
 }

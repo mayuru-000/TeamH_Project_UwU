@@ -12,6 +12,7 @@ Clear::Clear()
 {
 	Common* c = FindGameObject<Common>();
 	Gunsetting* Gset = FindGameObject<Gunsetting>();
+	SetDrawOrder(-10000);
 
 	Gset->DestroyMe();
 
@@ -84,7 +85,7 @@ void Clear::Update()
 
 	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		c->mod[c->nowStage - 1] = buffs[nowSelect];
-		if (c->nowStage < 5) {
+		if (c->nowStage < 10) {
 			e->playSE("define", 255);
 			selected();
 		}

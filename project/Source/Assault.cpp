@@ -5,6 +5,7 @@
 
 Assault::Assault()
 {
+	SetDrawOrder(-500);
 	weponImage = LoadGraph("data/Image/player.png");
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
@@ -32,12 +33,12 @@ void Assault::Update()
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
 		{
 			if (ammo > 0) {
-				Expansion += ExpansionRate;
+				//Expansion += ExpansionRate;
 				shotcool = FALSE;
 				deg += 10;
-				if (Expansion > 0.15) {
+				/*if (Expansion > 0.15) {
 					Expansion = 0.15;
-				}
+				}*/
 
 				if (count == 0)
 				{
@@ -63,7 +64,7 @@ void Assault::Update()
 		}
 		else
 		{
-			Expansion -= ExpansionRate * 5.0;
+			/*Expansion -= ExpansionRate * 5.0;*/
 			shotcool = TRUE;
 			deg = 0.0;
 			count = 0;

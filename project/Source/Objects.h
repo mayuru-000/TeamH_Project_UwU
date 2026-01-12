@@ -5,7 +5,7 @@ class Objects:public GameObject
 {
 public:
 	Objects();
-	Objects(int fx, int fy, int handle, int speed );
+	Objects(const char* mode);
 	~Objects();
 	void Update() override;
 	void Draw() override;

@@ -21,9 +21,14 @@ Field::Field()
 
 	goalline = 0;
 	scrollX = 0;
+	objSpan_A = 250;
+	objSpan_B = 250;
+	objSponePoint_A = 0;
+	objSponePoint_B = 0;
+	sponed_A = FALSE;
+	sponed_B = FALSE;
 	lastObj = FALSE;
 	cleared = FALSE;
-
 
 	char filename[60];
 	sprintf_s<60>(filename, "data/stage/Target/Stage_%d.csv", c->nowStage);
@@ -38,21 +43,6 @@ Field::Field()
 			maps[y][x] = num;
 		}
 	}
-
-	sprintf_s<60>(filename, "data/stage/Object/Stage_%d.csv", c->nowStage);
-	csv = new CsvReader(filename);
-	lines = csv->GetLines(); // c‚Ìs”
-	objMaps.resize(lines); // maps‚Ìs”‚ğcsv‚É‡‚í‚¹‚é
-	for (int y = 0; y < lines; y++) {
-		int cols = csv->GetColumns(y); // ‚»‚Ìs‚Ì‰¡‚Ì”
-		objMaps[y].resize(cols); // maps[y]‚Ì—ñ”‚ğcsv‚É‡‚í‚¹‚é
-		for (int x = 0; x < cols; x++) {
-			int num = csv->GetInt(y, x);
-			objMaps[y][x] = num;
-		}
-	}
-	delete csv;
-
 
 	char bgfile[60];
 	sprintf_s<60>(bgfile, "data/image/bg/field_bg_%d.jpg", c->nowStage);
@@ -69,8 +59,8 @@ Field::Field()
 		else{ lastObj = FALSE; }
 		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX, lastObj); }
 	}
-	new Objects(2000, 310, 0, Maxfast + c->speedX + 1);
-	new Objects(4500, 310, 0, Maxfast + c->speedX + 1);
+	/*new Objects(2000, 310, 0, Maxfast + c->speedX + 1);
+	new Objects(4500, 310, 0, Maxfast + c->speedX + 1);*/
 }
 
 Field::~Field()
@@ -85,16 +75,45 @@ void Field::Update()
 
 	scrollX += c->Speed("back");
 	goalline -= c->speedX;
+	objSponePoint_A -= c->Speed("front");
+	objSponePoint_B -= c->Speed("front");
 
 	if (goalline <= 0 && !cleared)
 	{
 		new Clear();
 		cleared = TRUE;
 	}
+	else if (goalline < Screen::WIDTH + 700)
+	{
+		return;
+	}
+
+	if (!sponed_A)
+	{
+		if ((Screen::WIDTH >= objSpan_A + objSponePoint_A) && (c->objPattern_A[c->nowStage - 1] != 0)) {
+			if (GetRand(99) < 5) {
+				sponed_A = TRUE;
+				objSponePoint_A = Screen::WIDTH;
+				new Objects("A");
+			}
+		}
+	}
+	if (!sponed_B) 
+	{
+		if ((Screen::WIDTH >= objSpan_B + objSponePoint_B) && (c->objPattern_B[c->nowStage - 1] != 0)) {
+			if (GetRand(99) < 5) {
+				sponed_B = TRUE;
+				objSponePoint_B = Screen::WIDTH;
+				new Objects("B");
+			}
+		}
+	}
 }
 
 void Field::Draw()
 {
+	Common* c = FindGameObject<Common>();
+
 	DrawGraph(0 - scrollX, 0, bgImage, TRUE);
 	DrawGraph(0 + ImageX - scrollX, 0, bgImage, TRUE);
 	if (scrollX >= ImageX) {
@@ -102,7 +121,9 @@ void Field::Draw()
 	}
 
 	/*debug*/
-	DrawLine(goalline, 0, goalline, Screen::HEIGHT, GetColor(255, 255, 255), 1);
+	if (c->debugmode) {
+		DrawLine(goalline, 0, goalline, Screen::HEIGHT, GetColor(255, 255, 255), 1);
+	}
 }
 
 

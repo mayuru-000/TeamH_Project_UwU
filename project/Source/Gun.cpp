@@ -5,6 +5,7 @@
 
 Gun::Gun()
 {
+	SetDrawOrder(-500);
 	weponImage = LoadGraph("data/Image/player.png");
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
@@ -31,16 +32,16 @@ void Gun::Update()
 	x += input.X / 100;
 	y += input.Y / 100;
 	if (GetJoypadNum() == 0) { GetMousePoint(&x, &y); }
-
+	GetMousePoint(&x, &y);
 	if (!reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT || input.Buttons[7] == 128)// ¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
 		{
 			if (ammo > 0) {
 				if ((GetNowCount() - shotedSpan >= 400 || ammo == Maxammo) && shotcool == TRUE) {
-					Expansion += ExpansionRate;
+					/*Expansion += ExpansionRate;
 					if (Expansion > 0.3) {
 						Expansion = 0.3;
-					}
+					}*/
 					ammo -= 1;
 					shotcool = FALSE;
 					shotedSpan = GetNowCount();
@@ -63,7 +64,7 @@ void Gun::Update()
 		}
 		else
 		{
-			Expansion -= ExpansionRate * 0.05;
+			/*Expansion -= ExpansionRate * 0.05;*/
 			deg = 0.0;
 			shotcool = TRUE;
 			if (Expansion < 0.1) {

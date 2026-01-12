@@ -9,7 +9,7 @@ using namespace std;
 Player::Player()
 {
 	Common* c = FindGameObject<Common>();
-	SetDrawOrder(0);
+	SetDrawOrder(-1000);
 
 	count = 0;
 	bufSize = 0;
