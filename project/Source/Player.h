@@ -15,6 +15,7 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void AddGunData(int nowAm, int maxAm) { nowAmmo = nowAm; maxAmmo = maxAm; }
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;
@@ -22,8 +23,7 @@ private:
 	int bufImage;
 	int carImage;
 	int roadImage;
-	int textFont_1;
-
+	int uiImage;
 	int carWIDTH, carHEIGHT;
 	int roadWIDTH, roadHEIGHT;
 
@@ -32,6 +32,7 @@ private:
 	int bufSize;
 	int count;
 	int flameCounter;
+	int nowAmmo, maxAmmo;
 
 	bool prevPush;
 };

@@ -4,14 +4,17 @@
 #include "Player.h"
 #include "Field.h"
 #include "Effects.h"
+#include "Clear.h"
+#include "Common.h"
 #include <DxLib.h>
 
 PlayScene::PlayScene()
 {
-	Effects* e = FindGameObject<Effects>();
 	new Field();
 	new Gunsetting();
 	new Player();
+
+	prevPush = FALSE;
 }
 
 PlayScene::~PlayScene()
@@ -20,14 +23,25 @@ PlayScene::~PlayScene()
 
 void PlayScene::Update()
 {
+	Common* c = FindGameObject<Common>();
+	if (CheckHitKey(KEY_INPUT_TAB)) {
+		if (!prevPush) {
+			c->debugmode = !(c->debugmode);
+			prevPush = TRUE;
+		}
+	}
+	else {
+		prevPush = FALSE;
+	}
+
 	if (CheckHitKey(KEY_INPUT_O)) {
 		Field* field = FindGameObject<Field>();
 		Player* player = FindGameObject<Player>();
 		Gunsetting* gunset = FindGameObject<Gunsetting>();
 
-		field->DestroyMe();
+		field ->DestroyMe();
 		player->DestroyMe();
-		gunset->DestroyMe();
+		if (!(field->getCleared())) { gunset->DestroyMe(); }
 		SceneManager::ChangeScene("TITLE");
 	}
 }

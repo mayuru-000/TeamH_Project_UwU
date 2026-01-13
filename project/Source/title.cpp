@@ -5,6 +5,7 @@
 
 title::title()
 {
+	prevPush = FALSE;
 	spaceInputed = FALSE;
 	bgImage = LoadGraph("data/image/bg/bg_pre.png");
 	tImage = LoadGraph("data/image/title_pre.png");
@@ -32,11 +33,15 @@ void title::Update()
 
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		if (!spaceInputed) {
+			prevPush = TRUE;
 			spaceInputed = TRUE;
 			e->playSE("define", 300);
 			new Select();
 		}
+	}else{
+		prevPush = FALSE;
 	}
+
 	if (CheckHitKey(KEY_INPUT_BACK)) {
 		spaceInputed = FALSE;
 	}

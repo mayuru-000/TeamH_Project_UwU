@@ -1,4 +1,5 @@
 #include "Debug.h"
+#include "Common.h"
 
 Debug::Debug()
 {
@@ -12,6 +13,7 @@ Debug::~Debug()
 
 void Debug::Update()
 {
+	Common* c = FindGameObject<Common>();
 	if (CheckHitKey(KEY_INPUT_R)) {
 		if (!prevPush) {
 			Debugmode != Debugmode;

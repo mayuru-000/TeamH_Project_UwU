@@ -19,7 +19,9 @@ Effects::Effects()
 	gunSE = LoadSoundMem("data/Sound/SE/Gun.mp3");
 	assaultSE = LoadSoundMem("data/Sound/SE/Assault.mp3");
 	reroadingSE = LoadSoundMem("data/Sound/SE/reroaro.mp3");
+	//reroadedSE = LoadSoundMem("data/Sound/SE/");
 	explosionSE = LoadSoundMem("data/Sound/SE/Explosion.mp3");
+	//outAmmoSE= LoadSoundMem("data/Sound/SE/");
 
 	hitSE[0] = LoadSoundMem("data/Sound/SE/hit_1.mp3");
 	hitSE[1] = LoadSoundMem("data/Sound/SE/hit_2.mp3");
@@ -61,9 +63,11 @@ void Effects::playSE(const char* name, int vol)
 	ChangeNextPlayVolumeSoundMem(vol, selectSE);
 	ChangeNextPlayVolumeSoundMem(vol, defineSE);
 	ChangeNextPlayVolumeSoundMem(vol, reroadingSE);
+	//ChangeNextPlayVolumeSoundMem(vol, reroadedSE);
+	ChangeNextPlayVolumeSoundMem(vol, gunSE);
 	ChangeNextPlayVolumeSoundMem(vol, assaultSE);
 	ChangeNextPlayVolumeSoundMem(vol, explosionSE);
-	ChangeNextPlayVolumeSoundMem(vol, gunSE);
+	//ChangeNextPlayVolumeSoundMem(vol, outAmmoSE);
 	ChangeNextPlayVolumeSoundMem(vol, hitSE[i]);
 	ChangeNextPlayVolumeSoundMem(vol, breakSE[i]);
 	ChangeNextPlayVolumeSoundMem(vol, parrySE);
@@ -77,6 +81,7 @@ void Effects::playSE(const char* name, int vol)
 	if (name == "assault")   { PlaySoundMem(assaultSE, DX_PLAYTYPE_BACK); }
 	if (name == "bomb")	     { PlaySoundMem(explosionSE, DX_PLAYTYPE_BACK); }
 	if (name == "gun")       { PlaySoundMem(gunSE, DX_PLAYTYPE_BACK); }
+	if (name == "outAmmo")	 {}
 
 	if (name == "hit")   { PlaySoundMem(hitSE[i], DX_PLAYTYPE_BACK); }
 	if (name == "break") { PlaySoundMem(breakSE[i], DX_PLAYTYPE_BACK); }

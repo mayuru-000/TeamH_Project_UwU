@@ -10,6 +10,5 @@ public:
 	void Draw() override;
 
 private:
-	bool Debugmode;
 	bool prevPush;
 };

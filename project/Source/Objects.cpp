@@ -35,7 +35,12 @@ Objects::Objects(const char* mode)
 		x = Screen::WIDTH;
 		y = Screen::HEIGHT - 140 - tHEIGHT;
 		f->addSpanA(tWIDTH);
-		scrollX = c->Speed("front") + 10;
+		if (c->nowStage == 3 || c->nowStage == 6) 
+		{ 
+			SetDrawOrder(-10);
+			scrollX = c->Speed("front") + 10; 
+		};
+		
 	} 
 	else if(mode == "B")
 	{

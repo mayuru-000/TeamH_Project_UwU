@@ -69,9 +69,6 @@
     <ClCompile Include="Source\title.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Debug.cpp">
-      <Filter>Debug</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Target.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -87,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="Source\Effects.cpp" />
     <ClCompile Include="Source\Granade.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ammo.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -172,9 +172,6 @@
     <ClInclude Include="Source\title.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Debug.h">
-      <Filter>Debug</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Target.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
@@ -190,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="Source\Effects.h" />
     <ClInclude Include="Source\Granade.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Ammo.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>
@@ -208,9 +208,6 @@
     </Filter>
     <Filter Include="ImGui">
       <UniqueIdentifier>{a717257b-67b3-4bfa-834c-1e34032b33b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{bc7ee05d-0fe2-4000-9d91-a72923cc4541}</UniqueIdentifier>
     </Filter>
     <Filter Include="CsvRead">
       <UniqueIdentifier>{8e6e0081-7ac0-4b1e-a980-ac6bc7e02055}</UniqueIdentifier>

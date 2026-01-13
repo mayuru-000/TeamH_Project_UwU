@@ -9,6 +9,7 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	bool prevPush;
 private:
 	int i, count, flameCounter;
 	int x, y;

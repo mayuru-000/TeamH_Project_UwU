@@ -7,7 +7,6 @@ BootScene::BootScene()
 {
 	new Common();
 	new Effects();
-	//new Debug();
 }
 
 BootScene::~BootScene()

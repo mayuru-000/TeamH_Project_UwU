@@ -19,6 +19,10 @@ Clear::Clear()
 	bgImage = LoadGraph("data/image/bg/clear_bg.png");
 	bufIcon = LoadGraph("data/image/icon/bufIcon.png");
 	cardImage = LoadGraph("data/image/icon/card.png");
+	cardDImage_1 = LoadGraph("data/image/icon/card_1.png");
+	cardDImage_2 = LoadGraph("data/image/icon/card_2.png");
+	cardDImage_3 = LoadGraph("data/image/icon/card_3.png");
+
 	bufBgImage = LoadGraph("data/image/icon/buf_bg.png");
 	bufImage = LoadGraph("data/image/icon/buf_image.png");
 
@@ -35,7 +39,7 @@ Clear::Clear()
 
 	/*ƒoƒt’·‚³Žæ“¾*/
 	count = 0;
-	nowSelect =	1;
+	nowSelect =	0;
 	for (int i = 0;i < size(c->mod);i++) { if (c->mod[i] >= 0) { count++; } }
 }
 
@@ -99,7 +103,7 @@ void Clear::Draw()
 	int buf2 = buffs[1];
 	int buf3 = buffs[2];
 	
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 90);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 160);
 	DrawBox(0, 0, Screen::WIDTH, Screen::HEIGHT, GetColor(255, 255, 255), TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
@@ -126,21 +130,21 @@ void Clear::Draw()
 
 	int widthB = 300;
 	int heightB = 425;
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
-	if (nowSelect == 0) 
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 130);
+	if (nowSelect == 0)
 	{
-		DrawBox(150 + (widthB + 30) * 1, 220, 150 + widthB + (widthB + 45) * 1, 220 + heightB, GetColor(0, 0, 0), TRUE);
-		DrawBox(150 + (widthB + 40) * 2, 220, 150 + widthB + (widthB + 40) * 2, 220 + heightB, GetColor(0, 0, 0), TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 200, cardDImage_2, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 200, cardDImage_3, TRUE);
 	}
 	else if(nowSelect == 1)
 	{
-		DrawBox(150 + (widthB + 30) * 0, 220, 150 + widthB + (widthB + 30) * 0, 220 + heightB, GetColor(0, 0, 0), TRUE);
-		DrawBox(150 + (widthB + 40) * 2, 220, 150 + widthB + (widthB + 40) * 2, 220 + heightB, GetColor(0, 0, 0), TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  200, cardDImage_1, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 200, cardDImage_3, TRUE);
 	}
 	else if (nowSelect == 2)
 	{
-		DrawBox(150 + (widthB + 30) * 0, 220, 150 + widthB + (widthB + 30) * 0, 220 + heightB, GetColor(0, 0, 0), TRUE);
-		DrawBox(150 + (widthB + 30) * 1, 220, 150 + widthB + (widthB + 45) * 1, 220 + heightB, GetColor(0, 0, 0), TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  200, cardDImage_1, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 200, cardDImage_2, TRUE);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 

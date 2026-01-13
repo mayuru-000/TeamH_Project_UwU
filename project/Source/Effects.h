@@ -20,7 +20,7 @@ public:
 
 private:
 	int selectSE, defineSE;
-	int gunSE, assaultSE, explosionSE;
+	int gunSE, assaultSE, explosionSE, outAmmoSE;
 	int reroadingSE, reroadedSE;
 	int hitSE[3], breakSE[3], parrySE;
 	int clearSE, defeatSE, goalSE;

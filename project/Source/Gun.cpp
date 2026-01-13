@@ -1,21 +1,33 @@
 #include "Gun.h"
 #include "Target.h"
+#include "Player.h"
+#include "Ammo.h"
 #include "Screen.h"
 #include "Effects.h"
 
 Gun::Gun()
 {
+}
+
+Gun::Gun(float atk, float rate, float maxammo)
+{
 	SetDrawOrder(-500);
 	weponImage = LoadGraph("data/Image/player.png");
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
+	for (int i = 0; i < num; i++)
+	{
+		ammoDamage[num] *= ((atk + 100.0f) / 100.0f);
+	}
+	shotSpan = 400 * ((100.0f - rate) / 100.0f);
+	Maxammo = 8 * ((maxammo + 100.0f) / 100.0f);
 	ammo = Maxammo;
 
 	x = 640;
 	y = 360;
 	deg = 0.0;
-	rad = 0.0;
-	Expansion = 0.05;
+	Expansion = 0.1;
+	reroadTime = 800;
 }
 
 Gun::~Gun()
@@ -26,6 +38,7 @@ Gun::~Gun()
 
 void Gun::Update()
 {
+	Player* p = FindGameObject<Player>();
 	Effects* e = FindGameObject<Effects>();
 
 	GetJoypadDirectInputState(DX_INPUT_PAD1, &input);
@@ -37,16 +50,18 @@ void Gun::Update()
 		if (GetMouseInput() & MOUSE_INPUT_LEFT || input.Buttons[7] == 128)// 左クリックされたときの処理
 		{
 			if (ammo > 0) {
-				if ((GetNowCount() - shotedSpan >= 400 || ammo == Maxammo) && shotcool == TRUE) {
+				deg += 20;
+				if ((GetNowCount() - spanCount >= shotSpan || ammo == Maxammo) && shotcool == TRUE) {
 					/*Expansion += ExpansionRate;
 					if (Expansion > 0.3) {
 						Expansion = 0.3;
 					}*/
 					ammo -= 1;
 					shotcool = FALSE;
-					shotedSpan = GetNowCount();
+					spanCount = GetNowCount();
 
 					e->playSE("gun", 255);
+					new Ammo(x, y, 20);
 
 					auto target = FindGameObjects<Target>();
 					for (auto t : target) {
@@ -67,9 +82,9 @@ void Gun::Update()
 			/*Expansion -= ExpansionRate * 0.05;*/
 			deg = 0.0;
 			shotcool = TRUE;
-			if (Expansion < 0.1) {
+			/*if (Expansion < 0.1) {
 				Expansion = 0.1;
-			}
+			}*/
 		}
 
 		if (CheckHitKey(KEY_INPUT_R)) {			//リロード
@@ -79,12 +94,13 @@ void Gun::Update()
 	else
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
-		if (GetNowCount() - startTime >= 800) {
+		if (GetNowCount() - startTime >= reroadTime) {
 			e->playSE("reroaded", 150);
 			ammo = Maxammo;
 			reroading = FALSE;
 		}
 	}
+	p->AddGunData(ammo, Maxammo);
 }
 
 void Gun::Draw()
@@ -99,7 +115,6 @@ void Gun::Draw()
 	else
 	{
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
-		DrawLine(250, 500, x, y, GetColor(255, 255, 255), 5);
 	}
 	/*debug*/
 	/*DrawCircle(x, y, range[0], GetColor(255, 255, 255), 0);

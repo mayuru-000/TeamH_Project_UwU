@@ -1,4 +1,5 @@
 #include "Select.h"
+#include "title.h"
 #include "Common.h"
 #include "Effects.h"
 
@@ -26,6 +27,7 @@ Select::~Select()
 
 void Select::Update()
 {
+	title* t = FindGameObject<title>();
 	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
 
@@ -43,7 +45,7 @@ void Select::Update()
 			nowSelect++;
 		}
 	}
-	if (CheckHitKey(KEY_INPUT_RETURN)) {
+	if ((CheckHitKey(KEY_INPUT_RETURN) || CheckHitKey(KEY_INPUT_SPACE)) && !(t->prevPush)) {
 		c->weponNum = nowSelect;
 		e->playSE("define", 300);
 		e->FadeIn(0.5);

@@ -65,7 +65,7 @@ Field::Field()
 
 Field::~Field()
 {
-
+	
 }
 
 void Field::Update()
@@ -73,15 +73,15 @@ void Field::Update()
 	Effects* e = FindGameObject<Effects>();
 	Common* c = FindGameObject<Common>();
 
-	scrollX += c->Speed("back");
 	goalline -= c->speedX;
+	scrollX += c->Speed("back");
 	objSponePoint_A -= c->Speed("front");
 	objSponePoint_B -= c->Speed("front");
 
 	if (goalline <= 0 && !cleared)
 	{
-		new Clear();
-		cleared = TRUE;
+		//new Clear();
+		//cleared = TRUE;
 	}
 	else if (goalline < Screen::WIDTH + 700)
 	{

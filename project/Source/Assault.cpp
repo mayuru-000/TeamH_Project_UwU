@@ -1,22 +1,33 @@
 #include "Assault.h"
 #include "Target.h"
 #include "Screen.h"
+#include "Player.h"
 #include "Effects.h"
 
 Assault::Assault()
+{
+}
+
+Assault::Assault(float atk, float rate, float maxammo)
 {
 	SetDrawOrder(-500);
 	weponImage = LoadGraph("data/Image/player.png");
 	weponImage2 = LoadGraph("data/Image/player_click.png");
 
+	for (int i = 0; i < num; i++)
+	{
+		ammoDamage[num] *= ((atk + 100.0f) / 100.0f);
+	}
+	shotSpan = 130 * ((100.0f - rate) / 100.0f);
+	Maxammo = 30 * ((maxammo + 100.0f) / 100.0f);
 	ammo = Maxammo;
 
 	x = 0;
 	y = 0;
-	count = 0;
+	spanCount = 0;
 	deg = 0.0;
-	rad = 0.0;
-	Expansion = 0.05;
+	Expansion = 0.1;
+	reroadTime = 1500;
 }
 
 Assault::~Assault()
@@ -26,6 +37,7 @@ Assault::~Assault()
 
 void Assault::Update()
 {
+	Player* p = FindGameObject<Player>();
 	Effects* e = FindGameObject<Effects>();
 
 	GetMousePoint(&x, &y);
@@ -34,13 +46,13 @@ void Assault::Update()
 		{
 			if (ammo > 0) {
 				//Expansion += ExpansionRate;
-				shotcool = FALSE;
-				deg += 10;
 				/*if (Expansion > 0.15) {
 					Expansion = 0.15;
 				}*/
+				deg += 10;
+				shotcool = FALSE;
 
-				if (count == 0)
+				if (GetNowCount() - spanCount >= shotSpan || ammo == Maxammo)
 				{
 					ammo -= 1;
 					e->playSE("assault", 255);
@@ -49,14 +61,13 @@ void Assault::Update()
 					for (auto t : target) {
 						t->isHit(x, y, range, ammoDamage, num);
 					}
-					count++;
+					spanCount = GetNowCount();
 				}
-				else if (count >= 7) { count = 0; }
-				else { count++; }
 			}
 			else
 			{
 				deg = 0.0;
+				e->playSE("outAmmo",255);
 				if (shotcool) {
 					Reroad();
 				}
@@ -67,10 +78,10 @@ void Assault::Update()
 			/*Expansion -= ExpansionRate * 5.0;*/
 			shotcool = TRUE;
 			deg = 0.0;
-			count = 0;
-			if (Expansion < 0.1) {
+			spanCount = 0;
+			/*if (Expansion < 0.1) {
 				Expansion = 0.1;
-			}
+			}*/
 		}
 
 		if (CheckHitKey(KEY_INPUT_R)) {			//ƒŠƒ[ƒh
@@ -80,12 +91,13 @@ void Assault::Update()
 	else
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
-		if (GetNowCount() - startTime >= 1800) {
+		if (GetNowCount() - startTime >= reroadTime) {
 			e->playSE("reroaded",150);
 			ammo = Maxammo;
 			reroading = FALSE;
 		}
 	}
+	p->AddGunData(ammo, Maxammo);
 }
 
 void Assault::Draw()

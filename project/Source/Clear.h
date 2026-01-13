@@ -17,6 +17,7 @@ private:
 	int bgImage;
 	int bufImage;
 	int cardImage;
+	int cardDImage_1, cardDImage_2, cardDImage_3;
 	int bufBgImage;
 	int bufIcon;
 

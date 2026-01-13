@@ -16,12 +16,12 @@ Player::Player()
 	flameCounter = 0;
 	scrollX = 0;
 	nowSelect = 0;
+	maxAmmo = 0;
+	nowAmmo = 0;
 
 	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 	carImage = LoadGraph("data/image/car.png");
-
-	AddFontResourceExA("data/Font/POCKC___.TTF", FR_PRIVATE, NULL);
-	textFont_1 = CreateFontToHandle("Pocket Calculator", 40, -1, -1);
+	uiImage = LoadGraph("data/image/Game_UI.png");
 
 	char bgfile[60];
 	sprintf_s<60>(bgfile, "data/image/road/road_%d.png", c->nowStage);
@@ -71,6 +71,10 @@ void Player::Draw()
 		s--;
 	}
 	DrawFormatString(0, 20, GetColor(255, 255, 255), "STAGE=%d", c->nowStage);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 80, GetColor(255, 255, 255), textFont_1, "SCORE   : %d", c->score);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), textFont_1, "HISCORE : %d", c->hiScore);
+	DrawGraph(0, 0, uiImage, TRUE);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 80, GetColor(255, 255, 255), c->textFont_1, "SCORE   : %d", c->score);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), c->textFont_1, "HISCORE : %d", c->hiScore);
+
+	DrawFormatStringToHandle(1000, Screen::HEIGHT - 240, GetColor(255, 255, 255), c->textFont_2, "%0d", nowAmmo);
+	DrawFormatStringToHandle(1220, Screen::HEIGHT - 40, GetColor(255, 255, 255), c->textFont_1, "/ %d", maxAmmo);
 }
