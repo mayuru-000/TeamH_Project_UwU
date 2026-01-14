@@ -2,20 +2,18 @@
 #include "Objects.h"
 #include "Common.h"
 #include "Effects.h"
+#include "Score.h"
 
 Target::Target()
 {
-	x = 0;
-	y = 0;
-	hp = 100;
-	nam = 0;
-	scrollX = 0;
 }
 
-Target::Target(int fx, int fy, int handle, int fhp, int speed, bool rast)
+Target::Target(int fx, int fy, int handle, int fhp, int speed)
 {
 	Common* c = FindGameObject<Common>();
 
+	dx = 0;
+	dy = 0;
 	hit = 0;
 	deadCounter = 0;
 
@@ -26,7 +24,6 @@ Target::Target(int fx, int fy, int handle, int fhp, int speed, bool rast)
 	nam = handle;
 	scrollX = speed;
 
-	rastobj = rast;
 	breaked = FALSE;
 
 	char bgfile[60];
@@ -46,12 +43,13 @@ Target::~Target()
 
 void Target::Update()
 {
+	Common* c = FindGameObject<Common>();
 	x -= scrollX;
+	dx -= scrollX;
 
 	if (breaked) {
 		deadCounter++;
 		if (deadCounter == 51) {
-			sddScore();
 			DestroyMe();
 		}
 		return;
@@ -89,6 +87,8 @@ void Target::Draw()
 bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 { 
 	Effects* e = FindGameObject<Effects>();
+	Common* c = FindGameObject<Common>();
+	Score* s = FindGameObject<Score>();
 
 	if (!breaked) {
 		auto objects = FindGameObjects<Objects>();
@@ -108,7 +108,10 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 					if (hp - dmg[i] <= 0) { e->playSE("break", 200); }
 					else { e->playSE("hit", 200); }
 				}
-				sddScore();
+				if (hp - dmg[i] <= 0) { 
+					new Score(px, py + 40, (float)maxhp * ((float)c->nowStage));
+				}
+				new Score(px, py, (float)maxhp* ((float)c->nowStage / 2.0));
 				hp -= dmg[i];
 				return true;
 			}
@@ -116,18 +119,4 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 	}
 
 	return false;
-}
-
-void Target::sddScore()
-{
-	Common* c = FindGameObject<Common>();
-	Effects* e = FindGameObject<Effects>();
-
-	if (breaked) {
-		c->score += ((float)maxhp * ((float)c->nowStage));
-	}
-	else {
-		c->score += ((float)maxhp * ((float)c->nowStage / 2.0));
-	}
-	
 }

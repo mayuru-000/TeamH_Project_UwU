@@ -27,8 +27,6 @@ Field::Field()
 	objSponePoint_B = 0;
 	sponed_A = FALSE;
 	sponed_B = FALSE;
-	lastObj = FALSE;
-	cleared = FALSE;
 
 	char filename[60];
 	sprintf_s<60>(filename, "data/stage/Target/Stage_%d.csv", c->nowStage);
@@ -55,9 +53,8 @@ Field::Field()
 	{
 		if (Max < maps[0][x]) { Max = maps[0][x]; }
 		if (Maxfast < maps[4][x]) { Maxfast = maps[4][x]; }
-		if (x == maps[1].size() - 1) { goalline = Max + 700; lastObj = TRUE; }
-		else{ lastObj = FALSE; }
-		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX, lastObj); }
+		if (x == maps[1].size() - 1) { goalline = Max + 700; }
+		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX); }
 	}
 	/*new Objects(2000, 310, 0, Maxfast + c->speedX + 1);
 	new Objects(4500, 310, 0, Maxfast + c->speedX + 1);*/
@@ -78,10 +75,10 @@ void Field::Update()
 	objSponePoint_A -= c->Speed("front");
 	objSponePoint_B -= c->Speed("front");
 
-	if (goalline <= 0 && !cleared)
+	if (goalline <= 0 && !c->cleared && !c->dontClear)
 	{
-		//new Clear();
-		//cleared = TRUE;
+		c->cleared = TRUE;
+		new Clear();
 	}
 	else if (goalline < Screen::WIDTH + 700)
 	{

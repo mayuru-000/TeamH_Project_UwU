@@ -47,7 +47,6 @@ void Effects::Update()
 	else {
 		alpha = endAlpha;
 	}
-	
 }
 
 void Effects::Draw()

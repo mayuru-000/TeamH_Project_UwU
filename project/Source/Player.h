@@ -26,6 +26,7 @@ private:
 	int uiImage;
 	int carWIDTH, carHEIGHT;
 	int roadWIDTH, roadHEIGHT;
+	int txtWidth[100];
 
 	int nowSelect;
 	int scrollX;

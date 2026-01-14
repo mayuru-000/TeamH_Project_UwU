@@ -15,7 +15,7 @@ private:
 	Assault* assault = NULL;
 	Granade* granade = NULL;
 
-	///bufは割合(n％アップ)を少数で代入さす
+	//bufは割合(n％アップ)を少数で代入さす
 	//グレの最大個数だけ整数値
 	float atkBuf;		
 	float rateBuf;

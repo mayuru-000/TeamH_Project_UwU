@@ -165,6 +165,7 @@
     <ClInclude Include="Source\Gunsetting.h" />
     <ClInclude Include="Source\Objects.h" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\Score.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\PlayScene.h" />
     <ClInclude Include="Source\SceneFactory.h" />
@@ -204,6 +205,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="Source\SceneFactory.cpp" />
+    <ClCompile Include="Source\Score.cpp" />
     <ClCompile Include="Source\Select.cpp" />
     <ClCompile Include="Source\Target.cpp" />
     <ClCompile Include="Source\title.cpp" />

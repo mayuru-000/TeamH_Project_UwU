@@ -169,6 +169,7 @@ void Clear::selected()
 
 	if(c->nowStage!=0){ c->nowStage++; }		//デバッグ用
 
+	c->cleared = FALSE;
 	field->DestroyMe();
 	player->DestroyMe();
 

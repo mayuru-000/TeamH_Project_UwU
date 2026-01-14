@@ -70,11 +70,29 @@ void Player::Draw()
 		else if (c->mod[i] < 9) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 2, 64 * (c->mod[i] - 6), 64, 64, bufImage, TRUE); }
 		s--;
 	}
-	DrawFormatString(0, 20, GetColor(255, 255, 255), "STAGE=%d", c->nowStage);
-	DrawGraph(0, 0, uiImage, TRUE);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 80, GetColor(255, 255, 255), c->textFont_1, "SCORE   : %d", c->score);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), c->textFont_1, "HISCORE : %d", c->hiScore);
 
-	DrawFormatStringToHandle(1000, Screen::HEIGHT - 240, GetColor(255, 255, 255), c->textFont_2, "%0d", nowAmmo);
-	DrawFormatStringToHandle(1220, Screen::HEIGHT - 40, GetColor(255, 255, 255), c->textFont_1, "/ %d", maxAmmo);
+	DrawGraph(0, 0, uiImage, TRUE);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 80, GetColor(255, 255, 255), c->textFont[0], "SCORE   : %d", c->score);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), c->textFont[0], "HISCORE : %d", c->hiScore);
+
+	txtWidth[0] = GetDrawFormatStringWidthToHandle(c->textFont[2], "%d", nowAmmo);
+	txtWidth[1] = GetDrawFormatStringWidthToHandle(c->textFont[1], "%d", maxAmmo);
+
+	DrawFormatStringToHandle(1240 - txtWidth[0] - txtWidth[1], Screen::HEIGHT - 240, GetColor(255, 255, 255), c->textFont[2], "%d", nowAmmo);
+	DrawFormatStringToHandle(1240 - txtWidth[1], Screen::HEIGHT - 140, GetColor(255, 255, 255), c->textFont[1], "/%d", maxAmmo);
+
+	
+
+	/*debug*/
+	if (c->debugmode) {
+		for (int i = 0;i <= Screen::WIDTH / 10;i++) {
+			DrawLine(10 * i, 0, 10 * i, Screen::HEIGHT, GetColor(255, 255, 255), 0.5);
+			DrawLine(100 * i, 0, 100 * i, Screen::HEIGHT, GetColor(255, 255, 255), 2);
+		}
+		for (int i = 0;i <= Screen::HEIGHT / 10;i++) {
+			DrawLine(0, 10 * i, Screen::WIDTH, 10 * i, GetColor(255, 255, 255), 0.5);
+			DrawLine(0, 100 * i, Screen::WIDTH, 100 * i, GetColor(255, 255, 255), 2);
+		}
+		
+	}
 }

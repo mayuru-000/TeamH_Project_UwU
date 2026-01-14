@@ -13,5 +13,6 @@ public:
 	void Draw() override;
 
 private:
+	char stage[100];
 	bool prevPush;
 };

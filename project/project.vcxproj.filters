@@ -89,6 +89,7 @@
     <ClCompile Include="Source\Ammo.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Score.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="Source\Ammo.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Score.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

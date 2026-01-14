@@ -12,7 +12,6 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	bool getCleared() { return cleared; }
 	void addSpanA(int x) { objSpan_A = x; sponed_A = FALSE; }
 	void addSpanB(int x) { objSpan_B = x; sponed_B = FALSE; }
 
@@ -32,7 +31,5 @@ private:
 	int objSpan_A, objSpan_B;
 	int objSponePoint_A, objSponePoint_B;
 
-	bool lastObj;
-	bool cleared;
 	bool sponed_A, sponed_B;
 };

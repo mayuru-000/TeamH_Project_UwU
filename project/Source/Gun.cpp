@@ -20,7 +20,7 @@ Gun::Gun(float atk, float rate, float maxammo)
 		ammoDamage[num] *= ((atk + 100.0f) / 100.0f);
 	}
 	shotSpan = 400 * ((100.0f - rate) / 100.0f);
-	Maxammo = 8 * ((maxammo + 100.0f) / 100.0f);
+	Maxammo = 10 * ((maxammo + 100.0f) / 100.0f);
 	ammo = Maxammo;
 
 	x = 640;
@@ -105,9 +105,7 @@ void Gun::Update()
 
 void Gun::Draw()
 {
-	DrawString(0, 40, "GUNMODE_HANDGUN", GetColor(255, 255, 255));
-	DrawString(0, 60, "AMMO=", GetColor(255, 255, 255));
-	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
+	DrawString(0, 20, "GUNMODE_HANDGUN", GetColor(255, 255, 255));
 
 	if (shotcool) {
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);

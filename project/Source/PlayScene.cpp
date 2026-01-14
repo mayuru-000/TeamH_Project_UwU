@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "PlayScene.h"
 #include "TitleScene.h"
 #include "Gunsetting.h"
@@ -30,6 +31,12 @@ void PlayScene::Update()
 			prevPush = TRUE;
 		}
 	}
+	else if (CheckHitKey(KEY_INPUT_CAPSLOCK)) {
+		if (!prevPush) {
+			c->dontClear = !(c->dontClear);
+			prevPush = TRUE;
+		}
+	}
 	else {
 		prevPush = FALSE;
 	}
@@ -39,14 +46,21 @@ void PlayScene::Update()
 		Player* player = FindGameObject<Player>();
 		Gunsetting* gunset = FindGameObject<Gunsetting>();
 
+		c->cleared = FALSE;
 		field ->DestroyMe();
 		player->DestroyMe();
-		if (!(field->getCleared())) { gunset->DestroyMe(); }
+		if (!(c->cleared)) { gunset->DestroyMe(); }
 		SceneManager::ChangeScene("TITLE");
 	}
+
+	sprintf(stage, "STAGE_%d", c->nowStage);
 }
 
 void PlayScene::Draw()
 {
+	Common* c = FindGameObject<Common>();
+	SetMainWindowText(stage);
+
 	DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
+
 }

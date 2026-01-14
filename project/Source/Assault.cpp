@@ -102,9 +102,7 @@ void Assault::Update()
 
 void Assault::Draw()
 {
-	DrawString(0, 40, "GUNMODE_ASSAULT", GetColor(255, 255, 255));
-	DrawString(0, 60, "AMMO=", GetColor(255, 255, 255));
-	DrawFormatString(50, 60, GetColor(255, 255, 255), "%d", ammo);
+	DrawString(0, 20, "GUNMODE_ASSAULT", GetColor(255, 255, 255));
 
 	if (shotcool) {
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);

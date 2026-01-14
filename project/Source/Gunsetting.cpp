@@ -43,7 +43,7 @@ Gunsetting::Gunsetting()
 	{
 	case 1:
 		gun = new Gun(atkBuf, rateBuf, maxammoBuf);
-		granade = new Granade();
+		granade = new Granade(bomAtkBuf, bomRangeBuf, bomAmmoBuf);
 		break;
 
 	case 2:

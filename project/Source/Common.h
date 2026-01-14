@@ -10,11 +10,13 @@ public:
 	Common();
 	int Speed(string mode);
 
+	int remAmmo;
+	int remGAmmo;
 	int nowStage;
 	int weponNum;
 	int score;
 	int hiScore;
-	int textFont_1, textFont_2;
+	int textFont[100];
 	int mod[10] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
 
 	const int speedX = 12;
@@ -22,5 +24,8 @@ public:
 	const int objPattern_A[10] = { 6,13,7,0,0 };
 	const int objPattern_B[10] = { 0,0,5,0,0 };
 
+	bool cleared = FALSE;
+
+	bool dontClear = FALSE;
 	bool debugmode = FALSE;
 };
