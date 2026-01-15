@@ -15,6 +15,7 @@ public:
 	void addSpanA(int x) { objSpan_A = x; sponed_A = FALSE; }
 	void addSpanB(int x) { objSpan_B = x; sponed_B = FALSE; }
 
+	bool cleared;
 private:
 	int fImage;
 	int bgImage;

@@ -14,6 +14,7 @@ public:
 
 	void selected();
 private:
+	int x, y;
 	int bgImage;
 	int bufImage;
 	int cardImage;

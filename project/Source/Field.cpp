@@ -6,6 +6,7 @@
 #include "Objects.h"
 #include "CsvReader.h"
 #include "Effects.h"
+#include "PlayScene.h"
 #include <vector>
 #include <algorithm>
 
@@ -27,6 +28,7 @@ Field::Field()
 	objSponePoint_B = 0;
 	sponed_A = FALSE;
 	sponed_B = FALSE;
+	cleared = FALSE;
 
 	char filename[60];
 	sprintf_s<60>(filename, "data/stage/Target/Stage_%d.csv", c->nowStage);
@@ -77,6 +79,7 @@ void Field::Update()
 
 	if (goalline <= 0 && !c->cleared && !c->dontClear)
 	{
+		cleared = TRUE;
 		c->cleared = TRUE;
 		new Clear();
 	}

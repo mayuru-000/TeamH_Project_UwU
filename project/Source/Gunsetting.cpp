@@ -15,7 +15,7 @@ Gunsetting::Gunsetting()
 	bomRangeBuf = 0;
 	bomAmmoBuf = 0;
 
-	for (int i = 0;(c->mod[i] != -1) || (i > 9);i++) 
+	for (int i = 0;(c->mod[i] != -1) && (i < 9);i++) 
 	{
 		switch (c->mod[i]) {
 		case 0:
@@ -48,7 +48,7 @@ Gunsetting::Gunsetting()
 
 	case 2:
 		assault = new Assault(atkBuf, rateBuf, maxammoBuf);
-		granade = new Granade();
+		granade = new Granade(bomAtkBuf, bomRangeBuf, bomAmmoBuf);
 		break;
 
 	default:

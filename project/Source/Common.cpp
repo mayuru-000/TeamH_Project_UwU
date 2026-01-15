@@ -9,10 +9,10 @@ Common::Common()
 	score = 0;
 	hiScore = 0;
 
-	nowStage = 1;
+	nowStage = 3;
 
 	AddFontResourceExA("data/Font/POCKC___.TTF", FR_PRIVATE, NULL);
-	textFont[0] = CreateFontToHandle("Pocket Calculator", 40, -1, -1);
+	textFont[0] = CreateFontToHandle("Pocket Calculator", 60, -1, -1);
 	textFont[1] = CreateFontToHandle("Pocket Calculator", 125, -1, -1);
 	textFont[2] = CreateFontToHandle("Pocket Calculator", 250, -1, -1);
 }

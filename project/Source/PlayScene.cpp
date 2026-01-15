@@ -49,7 +49,7 @@ void PlayScene::Update()
 		c->cleared = FALSE;
 		field ->DestroyMe();
 		player->DestroyMe();
-		if (!(c->cleared)) { gunset->DestroyMe(); }
+		if (!(field->cleared)) { gunset->DestroyMe(); }
 		SceneManager::ChangeScene("TITLE");
 	}
 

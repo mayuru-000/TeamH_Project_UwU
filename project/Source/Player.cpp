@@ -28,7 +28,7 @@ Player::Player()
 	roadImage = LoadGraph(bgfile);
 	GetGraphSize(roadImage, &roadWIDTH, &roadHEIGHT);
 	
-	for (int i = 0;i < 10;i++) { if (c->mod[i] >= 0) { bufSize++; } }
+	for (int i = 0;i < 9;i++) { if (c->mod[i] >= 0) { bufSize++; } }
 }
 
 Player::~Player()
@@ -72,8 +72,8 @@ void Player::Draw()
 	}
 
 	DrawGraph(0, 0, uiImage, TRUE);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 80, GetColor(255, 255, 255), c->textFont[0], "SCORE   : %d", c->score);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 40, GetColor(255, 255, 255), c->textFont[0], "HISCORE : %d", c->hiScore);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 105, GetColor(255, 255, 255), c->textFont[0], "SCORE          : %d", c->score);
+	DrawFormatStringToHandle(0, Screen::HEIGHT - 60, GetColor(255, 255, 255), c->textFont[0], "HISCORE       : %d", c->hiScore);
 
 	txtWidth[0] = GetDrawFormatStringWidthToHandle(c->textFont[2], "%d", nowAmmo);
 	txtWidth[1] = GetDrawFormatStringWidthToHandle(c->textFont[1], "%d", maxAmmo);

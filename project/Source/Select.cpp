@@ -14,10 +14,12 @@ Select::Select()
 	wExplanaFont = CreateFontToHandle("Agency FB", 60, -1, -1);
 	wExplanaFont2 = CreateFontToHandle("BIZ UDÉSÉVÉbÉN", 30, -1, -1);
 
+	x = 0;
+	y = 0;
 	c1 = 1.0;
 	c2 = 1.0;
 	c3 = 1.0;
-	nowSelect = 1;
+	nowSelect = 2;
 }
 
 Select::~Select()
@@ -31,27 +33,37 @@ void Select::Update()
 	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
 
-	getUpdateKey();
+	GetMousePoint(&x, &y);
 
-	if (Key[KEY_INPUT_LEFT] == 1) {
-		if (nowSelect > 1) {
+	if (100 <= x && x <= 340)
+	{
+		if (nowSelect != 1) {
 			e->playSE("select", 300);
-			nowSelect--;
 		}
+		nowSelect = 1;
 	}
-	if (Key[KEY_INPUT_RIGHT] == 1) {
-		if (nowSelect < 3) {
+	if (380 <= x && x <= 620)
+	{
+		if (nowSelect != 2) {
 			e->playSE("select", 300);
-			nowSelect++;
 		}
+		nowSelect = 2;
 	}
-	if ((CheckHitKey(KEY_INPUT_RETURN) || CheckHitKey(KEY_INPUT_SPACE)) && !(t->prevPush)) {
+	if (660 <= x && x <= 900)
+	{
+		if (nowSelect != 3) {
+			e->playSE("select", 300);
+		}
+		nowSelect = 3;
+	}
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) && !(t->prevPush)) {
 		c->weponNum = nowSelect;
 		e->playSE("define", 300);
 		e->FadeIn(0.5);
 		SceneManager::ChangeScene("PLAY");
 	}
-	if (CheckHitKey(KEY_INPUT_BACK)) {
+
+	if (CheckHitKey(KEY_INPUT_BACK) || CheckHitKey(KEY_INPUT_O)) {
 		DestroyMe();
 	}
 }
@@ -106,18 +118,7 @@ void Select::Draw()
 	DrawRotaGraph(500, 580, 0.35 * c2, 0.4, wImage2, TRUE);
 	DrawRotaGraph(787, 581, 0.3 * c3, 0.4, wImage3, TRUE);
 	
-}
-
-void Select::getUpdateKey()
-{
-	char tmpKey[256];
-	GetHitKeyStateAll(tmpKey);
-	for (int i = 0;i < 256;i++) {
-		if (tmpKey[i] != 0) {
-			Key[i]++;
-		}
-		else{
-			Key[i] = 0;
-		}
-	}
+	/*DrawBox(100, 460, 340, 700, GetColor(255, 0, 0), TRUE);
+	DrawBox(380, 460, 620, 700, GetColor(255, 0, 0), TRUE);
+	DrawBox(660, 460, 900, 700, GetColor(255, 0, 0), TRUE);*/
 }

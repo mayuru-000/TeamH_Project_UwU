@@ -8,7 +8,7 @@ title::title()
 	prevPush = FALSE;
 	spaceInputed = FALSE;
 	bgImage = LoadGraph("data/image/bg/bg_pre.png");
-	tImage = LoadGraph("data/image/title_pre.png");
+	tImage = LoadGraph("data/image/title.png");
 	carImage = LoadGraph("data/image/car.png");
 
 	x = -300;
@@ -31,7 +31,7 @@ void title::Update()
 	if (flameCounter == 60) { flameCounter = 0; }
 	count = flameCounter / 30;
 
-	if (CheckHitKey(KEY_INPUT_SPACE)) {
+	if (GetMouseInput() & MOUSE_INPUT_LEFT) {
 		if (!spaceInputed) {
 			prevPush = TRUE;
 			spaceInputed = TRUE;
@@ -42,7 +42,7 @@ void title::Update()
 		prevPush = FALSE;
 	}
 
-	if (CheckHitKey(KEY_INPUT_BACK)) {
+	if (CheckHitKey(KEY_INPUT_BACK) || CheckHitKey(KEY_INPUT_O)) {
 		spaceInputed = FALSE;
 	}
 }
@@ -53,12 +53,8 @@ void title::Draw()
 	DrawRectGraph(x, Screen::HEIGHT + y, 350 * count, 0, 350, 200, carImage, TRUE);
 
 	if (!spaceInputed) {
-		DrawGraph(193, 50, tImage, TRUE);
+		DrawGraph(0, 0, tImage, TRUE);
 		y = -200;
 	}
 	else { y = -360; }
-
-	//aaaa
-	
-	
 }

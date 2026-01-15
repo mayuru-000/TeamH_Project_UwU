@@ -52,26 +52,30 @@ void Clear::Update()
 	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
 	Field* field = FindGameObject<Field>();
+	GetMousePoint(&x, &y);
 
-	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		if (prevPush) {
-			if (nowSelect > 0) {
-				e->playSE("select",255);
-				nowSelect--;
-				prevPush = FALSE;
-			}
+	if (144 <= x && x <= 461)
+	{
+		if (nowSelect != 0) {
+			e->playSE("select", 300);
 		}
+		nowSelect = 0;
 	}
-	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		if (prevPush) {
-			if (nowSelect < 2) {
-				e->playSE("select", 255);
-				nowSelect++;
-				prevPush = FALSE;
-			}
+	if (473 <= x && x <= 808)
+	{
+		if (nowSelect != 1) {
+			e->playSE("select", 300);
 		}
+		nowSelect = 1;
 	}
-	else if (CheckHitKey(KEY_INPUT_R)) {
+	if (828 <= x && x <= 1145)
+	{
+		if (nowSelect != 2) {
+			e->playSE("select", 300);
+		}
+		nowSelect = 2;
+	}
+	/*if (CheckHitKey(KEY_INPUT_R)) {
 		if (prevPush) {
 			if (nowSelect < 2) {
 				buffs[0] = GetRand(5);
@@ -85,9 +89,9 @@ void Clear::Update()
 	}
 	else {
 		prevPush = TRUE;
-	}
+	}*/
 
-	if (CheckHitKey(KEY_INPUT_RETURN)) {
+	if (GetMouseInput() & MOUSE_INPUT_LEFT) {
 		c->mod[c->nowStage - 1] = buffs[nowSelect];
 		if (c->nowStage < 10) {
 			e->playSE("define", 255);

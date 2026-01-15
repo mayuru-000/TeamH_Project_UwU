@@ -9,11 +9,10 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	void getUpdateKey();
-
 private:
 	float c1, c2, c3;
 
+	int x, y;
 	int bgImage;
 	int wImage1;
 	int wImage2;
@@ -23,5 +22,4 @@ private:
 	int wExplanaFont2;
 
 	int nowSelect;
-	char Key[256];
 };

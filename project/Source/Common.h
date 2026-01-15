@@ -17,7 +17,8 @@ public:
 	int score;
 	int hiScore;
 	int textFont[100];
-	int mod[10] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	//int mod[9] = { 1,1,1,1,1,1,-1,-1,-1 };
 
 	const int speedX = 12;
 	const int speedrange[10] = { 2,2,2,0,2 };

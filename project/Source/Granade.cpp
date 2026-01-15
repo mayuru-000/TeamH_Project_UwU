@@ -26,9 +26,11 @@ Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 	else	{ gAmmo = c->remGAmmo + ammobuf; }
 	if (gAmmo > MaxGAmmo) { gAmmo = MaxGAmmo; }
 	/*------------*/
-
-	radius = range[num - 1];
+	x = 0;
+	y = 0;
+	explTimer = 0;
 	explDuration = 80;
+	radius = range[num - 1];
 }
 
 Granade::~Granade()
@@ -45,7 +47,7 @@ void Granade::Update() {
 		c->remGAmmo = gAmmo;
 	}
 
-	if (CheckHitKey(KEY_INPUT_Q)) {
+	if (GetMouseInput() & MOUSE_INPUT_RIGHT) {
 		if (gAmmo > 0 && !exploding) {
 			for (auto t : target) {
 				t->isHit(x, y, range, ammoDamage, num);
