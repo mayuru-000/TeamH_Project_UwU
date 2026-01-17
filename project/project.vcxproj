@@ -160,6 +160,7 @@
     <ClInclude Include="Source\CsvReader.h" />
     <ClInclude Include="Source\Effects.h" />
     <ClInclude Include="Source\Field.h" />
+    <ClInclude Include="Source\GameClear.h" />
     <ClInclude Include="Source\Granade.h" />
     <ClInclude Include="Source\Gun.h" />
     <ClInclude Include="Source\Gunsetting.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Source\csvReader.cpp" />
     <ClCompile Include="Source\Effects.cpp" />
     <ClCompile Include="Source\Field.cpp" />
+    <ClCompile Include="Source\GameClear.cpp" />
     <ClCompile Include="Source\Granade.cpp" />
     <ClCompile Include="Source\Gun.cpp" />
     <ClCompile Include="Source\Gunsetting.cpp" />

@@ -37,11 +37,12 @@ Assault::~Assault()
 
 void Assault::Update()
 {
+	Common* c = FindGameObject<Common>();
 	Player* p = FindGameObject<Player>();
 	Effects* e = FindGameObject<Effects>();
 
 	GetMousePoint(&x, &y);
-	if (!reroading) {
+	if (!c->reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT)	// ¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
 		{
 			if (ammo > 0) {
@@ -94,7 +95,7 @@ void Assault::Update()
 		if (GetNowCount() - startTime >= reroadTime) {
 			e->playSE("reroaded",150);
 			ammo = Maxammo;
-			reroading = FALSE;
+			c->reroading = FALSE;
 		}
 	}
 	p->AddGunData(ammo, Maxammo);
@@ -102,7 +103,7 @@ void Assault::Update()
 
 void Assault::Draw()
 {
-	DrawString(0, 20, "GUNMODE_ASSAULT", GetColor(255, 255, 255));
+	//DrawString(0, 20, "GUNMODE_ASSAULT", GetColor(255, 255, 255));
 
 	if (shotcool) {
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
@@ -116,8 +117,9 @@ void Assault::Draw()
 
 void Assault::Reroad()
 {
+	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
 	e->playSE("reroading",150);
-	reroading = TRUE;
+	c->reroading = TRUE;
 	startTime = GetNowCount();
 }

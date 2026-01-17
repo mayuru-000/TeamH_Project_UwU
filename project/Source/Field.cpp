@@ -6,6 +6,7 @@
 #include "Objects.h"
 #include "CsvReader.h"
 #include "Effects.h"
+#include "GameClear.h"
 #include "PlayScene.h"
 #include <vector>
 #include <algorithm>
@@ -79,9 +80,18 @@ void Field::Update()
 
 	if (goalline <= 0 && !c->cleared && !c->dontClear)
 	{
-		cleared = TRUE;
-		c->cleared = TRUE;
-		new Clear();
+		if (c->nowStage == 9) 
+		{
+			cleared = TRUE;
+			c->cleared = TRUE;
+			new GameClear();
+		}
+		else
+		{
+			cleared = TRUE;
+			c->cleared = TRUE;
+			new Clear();
+		}
 	}
 	else if (goalline < Screen::WIDTH + 700)
 	{

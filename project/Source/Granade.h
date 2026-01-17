@@ -1,9 +1,13 @@
 #pragma once
 #include "../Library/GameObject.h"
+#include "Common.h"
 
 class Granade : public GameObject
 {
+private:
 public:
+	Common* c = FindGameObject<Common>();
+
 	Granade();
 	Granade(float atkbuf, float rangebuf, float ammobuf);
 	~Granade();
@@ -11,6 +15,7 @@ public:
 	void Draw() override;
 
 	int getGAmmo() { return gAmmo; }
+	void setGAmmo() { c->remGAmmo = gAmmo; }
 private:
 	int exploImage;
 

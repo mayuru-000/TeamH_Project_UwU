@@ -1,6 +1,7 @@
 #include "Granade.h"
 #include "Target.h"
 #include "Effects.h"
+#include "Field.h"
 #include "Common.h"
 #include <vector>
 
@@ -39,11 +40,12 @@ Granade::~Granade()
 
 void Granade::Update() {
 	Effects* e = FindGameObject<Effects>();
+	Field* field = FindGameObject<Field>();
 	Common* c = FindGameObject<Common>();
 	auto target = FindGameObjects<Target>();
 	GetMousePoint(&x, &y);
 
-	if (c->cleared) {
+	if (field->cleared) {
 		c->remGAmmo = gAmmo;
 	}
 
@@ -69,7 +71,7 @@ void Granade::Update() {
 
 void Granade::Draw() {
 	// íeêîï\é¶
-	DrawFormatString(0, 60, GetColor(255, 255, 255), "GRANADE=%d", gAmmo);
+	//DrawFormatString(0, 60, GetColor(255, 255, 255), "GRANADE=%d", gAmmo);
 
 	if (exploding) {
 		DrawRectExtendGraph(x - radius - 100, y - radius - 100, x + radius + 100, y + radius + 100, 64 * (explTimer / 5), 0, 64, 64, exploImage, TRUE);

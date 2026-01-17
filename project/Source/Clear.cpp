@@ -1,5 +1,6 @@
 #include "Clear.h"
 #include "Common.h"
+#include "Granade.h"
 #include "Gunsetting.h"
 #include "Field.h"
 #include "Player.h"
@@ -10,10 +11,13 @@ using namespace std;
 
 Clear::Clear()
 {
+	Effects* e = FindGameObject<Effects>();
 	Common* c = FindGameObject<Common>();
+	Granade* g = FindGameObject<Granade>();
 	Gunsetting* Gset = FindGameObject<Gunsetting>();
 	SetDrawOrder(-10000);
 
+	g->setGAmmo();
 	Gset->DestroyMe();
 
 	bgImage = LoadGraph("data/image/bg/clear_bg.png");
@@ -41,6 +45,8 @@ Clear::Clear()
 	count = 0;
 	nowSelect =	0;
 	for (int i = 0;i < size(c->mod);i++) { if (c->mod[i] >= 0) { count++; } }
+	e->FadeOut(0.5);
+	e->FadeIn(0.5);
 }
 
 Clear::~Clear()
@@ -93,7 +99,7 @@ void Clear::Update()
 
 	if (GetMouseInput() & MOUSE_INPUT_LEFT) {
 		c->mod[c->nowStage - 1] = buffs[nowSelect];
-		if (c->nowStage < 10) {
+		if (c->nowStage < 9) {
 			e->playSE("define", 255);
 			selected();
 		}
@@ -167,6 +173,7 @@ void Clear::Draw()
 
 void Clear::selected()
 {
+	Effects* e = FindGameObject<Effects>();
 	Common* c = FindGameObject<Common>();
 	Field* field = FindGameObject<Field>();
 	Player* player = FindGameObject<Player>();
@@ -181,5 +188,7 @@ void Clear::selected()
 	new Gunsetting();
 	new Player();
 
+	e->FadeOut(0.5);
+	e->FadeIn(0.5);
 	DestroyMe();
 }

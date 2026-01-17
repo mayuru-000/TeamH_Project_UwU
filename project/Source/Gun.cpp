@@ -4,6 +4,7 @@
 #include "Ammo.h"
 #include "Screen.h"
 #include "Effects.h"
+#include "Common.h"
 
 Gun::Gun()
 {
@@ -38,6 +39,7 @@ Gun::~Gun()
 
 void Gun::Update()
 {
+	Common* c = FindGameObject<Common>();
 	Player* p = FindGameObject<Player>();
 	Effects* e = FindGameObject<Effects>();
 
@@ -46,7 +48,7 @@ void Gun::Update()
 	y += input.Y / 100;
 	if (GetJoypadNum() == 0) { GetMousePoint(&x, &y); }
 	GetMousePoint(&x, &y);
-	if (!reroading) {
+	if (!c->reroading) {
 		if (GetMouseInput() & MOUSE_INPUT_LEFT || input.Buttons[7] == 128)// ¶ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
 		{
 			if (ammo > 0) {
@@ -97,7 +99,8 @@ void Gun::Update()
 		if (GetNowCount() - startTime >= reroadTime) {
 			e->playSE("reroaded", 150);
 			ammo = Maxammo;
-			reroading = FALSE;
+			
+			c->reroading = FALSE;
 		}
 	}
 	p->AddGunData(ammo, Maxammo);
@@ -105,7 +108,7 @@ void Gun::Update()
 
 void Gun::Draw()
 {
-	DrawString(0, 20, "GUNMODE_HANDGUN", GetColor(255, 255, 255));
+	//DrawString(0, 20, "GUNMODE_HANDGUN", GetColor(255, 255, 255));
 
 	if (shotcool) {
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage, TRUE, FALSE);
@@ -122,9 +125,10 @@ void Gun::Draw()
 
 void Gun::Reroad() 
 {
+	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
 
-	reroading = TRUE;
+	c->reroading = TRUE;
 	e->playSE("reroading", 150);
 	startTime = GetNowCount();
 }

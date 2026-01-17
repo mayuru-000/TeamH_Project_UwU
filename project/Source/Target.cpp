@@ -50,6 +50,7 @@ void Target::Update()
 	if (breaked) {
 		deadCounter++;
 		if (deadCounter == 51) {
+			c->breakcount++;
 			DestroyMe();
 		}
 		return;

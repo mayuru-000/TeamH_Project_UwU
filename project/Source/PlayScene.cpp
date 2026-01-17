@@ -11,6 +11,9 @@
 
 PlayScene::PlayScene()
 {
+	Effects* e = FindGameObject<Effects>();
+	e->playSE("BGM", 100);
+
 	new Field();
 	new Gunsetting();
 	new Player();
@@ -42,13 +45,16 @@ void PlayScene::Update()
 	}
 
 	if (CheckHitKey(KEY_INPUT_O)) {
+		Effects* e = FindGameObject<Effects>();
 		Field* field = FindGameObject<Field>();
 		Player* player = FindGameObject<Player>();
 		Gunsetting* gunset = FindGameObject<Gunsetting>();
 
+		c->Init();
 		c->cleared = FALSE;
 		field ->DestroyMe();
 		player->DestroyMe();
+		e->playSE("BGM", 200);
 		if (!(field->cleared)) { gunset->DestroyMe(); }
 		SceneManager::ChangeScene("TITLE");
 	}
@@ -61,6 +67,5 @@ void PlayScene::Draw()
 	Common* c = FindGameObject<Common>();
 	SetMainWindowText(stage);
 
-	DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
-
+	//DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
 }

@@ -75,13 +75,23 @@ void Player::Draw()
 	DrawFormatStringToHandle(0, Screen::HEIGHT - 105, GetColor(255, 255, 255), c->textFont[0], "SCORE          : %d", c->score);
 	DrawFormatStringToHandle(0, Screen::HEIGHT - 60, GetColor(255, 255, 255), c->textFont[0], "HISCORE       : %d", c->hiScore);
 
-	txtWidth[0] = GetDrawFormatStringWidthToHandle(c->textFont[2], "%d", nowAmmo);
-	txtWidth[1] = GetDrawFormatStringWidthToHandle(c->textFont[1], "%d", maxAmmo);
+	if (!c->reroading) {
+		txtWidth[0] = GetDrawFormatStringWidthToHandle(c->textFont[2], "%d", nowAmmo);
+		txtWidth[1] = GetDrawFormatStringWidthToHandle(c->textFont[1], "%d", maxAmmo);
+		DrawFormatStringToHandle(1250 - txtWidth[0] - txtWidth[1], Screen::HEIGHT + 10 - 240, GetColor(0, 0, 0), c->textFont[2], "%d", nowAmmo);
+		DrawFormatStringToHandle(1240 - txtWidth[0] - txtWidth[1], Screen::HEIGHT - 240, GetColor(255, 255, 255), c->textFont[2], "%d", nowAmmo);
+		DrawFormatStringToHandle(1250 - txtWidth[1], Screen::HEIGHT + 10 - 140, GetColor(0, 0, 0), c->textFont[1], "/%d", maxAmmo);
+		DrawFormatStringToHandle(1240 - txtWidth[1], Screen::HEIGHT - 140, GetColor(255, 255, 255), c->textFont[1], "/%d", maxAmmo);
+	}
+	else{
+		txtWidth[0] = GetDrawFormatStringWidthToHandle(c->textFont[2], "--");
+		txtWidth[1] = GetDrawFormatStringWidthToHandle(c->textFont[1], "--");
+		DrawFormatStringToHandle(1250 - txtWidth[0] - txtWidth[1], Screen::HEIGHT + 10 - 240, GetColor(0, 0, 0), c->textFont[2], "--");
+		DrawFormatStringToHandle(1240 - txtWidth[0] - txtWidth[1], Screen::HEIGHT - 240, GetColor(255, 255, 255), c->textFont[2], "--");
+		DrawFormatStringToHandle(1250 - txtWidth[1], Screen::HEIGHT + 10 - 140, GetColor(0, 0, 0), c->textFont[1], "/--");
+		DrawFormatStringToHandle(1240 - txtWidth[1], Screen::HEIGHT - 140, GetColor(255, 255, 255), c->textFont[1], "/--");
 
-	DrawFormatStringToHandle(1240 - txtWidth[0] - txtWidth[1], Screen::HEIGHT - 240, GetColor(255, 255, 255), c->textFont[2], "%d", nowAmmo);
-	DrawFormatStringToHandle(1240 - txtWidth[1], Screen::HEIGHT - 140, GetColor(255, 255, 255), c->textFont[1], "/%d", maxAmmo);
-
-	
+	}
 
 	/*debug*/
 	if (c->debugmode) {

@@ -38,8 +38,7 @@ private:
 	int range[num] = { 20,40,80 };				//中心からのHIT判定距離
 	int ammoDamage[num] = { 150,50,10 };		//HIT判定距離に応じた威力減衰
 
-	bool reroading = FALSE;						//リロード実行状態
 	bool shotcool = TRUE;						//打っていない状態
 
-	DINPUT_JOYSTATE input;						//コントローラー入力検知	(使うかも)
+	DINPUT_JOYSTATE input;						//コントローラー入力検知	(使わない)
 };

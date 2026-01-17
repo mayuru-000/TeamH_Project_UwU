@@ -4,7 +4,7 @@
 Effects::Effects()
 {
 	DontDestroyOnSceneChange();
-	SetDrawOrder(-10000);
+	SetDrawOrder(-10000000);
 
 	alpha = 0;
 	startAlpha = 0;
@@ -30,6 +30,8 @@ Effects::Effects()
 	breakSE[1] = LoadSoundMem("data/Sound/SE/break_2.mp3");
 	breakSE[2] = LoadSoundMem("data/Sound/SE/break_3.mp3");
 	parrySE = LoadSoundMem("data/Sound/SE/parry.mp3");
+
+	BGM = LoadSoundMem("data/sound/bgm/yuta's_bgm_pre.wav");
 }
 
 Effects::~Effects()
@@ -70,6 +72,7 @@ void Effects::playSE(const char* name, int vol)
 	ChangeNextPlayVolumeSoundMem(vol, hitSE[i]);
 	ChangeNextPlayVolumeSoundMem(vol, breakSE[i]);
 	ChangeNextPlayVolumeSoundMem(vol, parrySE);
+	ChangeNextPlayVolumeSoundMem(vol, BGM);
 
 	if (name == nullptr) return;
 	if (name == "select") { PlaySoundMem(selectSE, DX_PLAYTYPE_BACK); }
@@ -85,6 +88,11 @@ void Effects::playSE(const char* name, int vol)
 	if (name == "hit")   { PlaySoundMem(hitSE[i], DX_PLAYTYPE_BACK); }
 	if (name == "break") { PlaySoundMem(breakSE[i], DX_PLAYTYPE_BACK); }
 	if (name == "parry") { PlaySoundMem(parrySE, DX_PLAYTYPE_BACK); }
+
+	if (name == "BGM")	 { 
+		if (CheckSoundMem(BGM) == 0) { PlaySoundMem(BGM, DX_PLAYTYPE_LOOP); }
+		else { StopSoundMem(BGM); }
+	}
 }
 
 void Effects::FadeIn(float sec)

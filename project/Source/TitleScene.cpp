@@ -1,6 +1,8 @@
 #include "TitleScene.h"
 #include "Screen.h"
+#include "Common.h"
 #include "title.h"
+#include "Effects.h"
 
 TitleScene::TitleScene()
 {
