@@ -18,8 +18,8 @@ public:
 	int hiScore;
 	int breakcount;
 	int textFont[100];
-	//int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
-	int mod[9] = { 1,1,1,1,1,1,-1,-1,-1 };
+	int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	//int mod[9] = { 1,1,1,1,1,1,-1,-1,-1 };
 
 	const int speedX = 12;
 	const int speedrange[10] = { 3,3,3,3,3 };

@@ -43,7 +43,7 @@ Clear::Clear()
 
 	/*ƒoƒt’·‚³Žæ“¾*/
 	count = 0;
-	nowSelect =	0;
+	nowSelect =	-1;
 	for (int i = 0;i < size(c->mod);i++) { if (c->mod[i] >= 0) { count++; } }
 }
 
@@ -155,6 +155,12 @@ void Clear::Draw()
 	{
 		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  10, cardDImage_1, TRUE);
 		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 10, cardDImage_2, TRUE);
+	}
+	else
+	{
+		DrawGraph(Screen::WIDTH / 2 - 515 +  19, 10, cardDImage_1, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 10, cardDImage_2, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 10, cardDImage_3, TRUE);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
 

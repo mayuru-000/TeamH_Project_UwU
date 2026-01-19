@@ -7,11 +7,11 @@ Common::Common()
 	remGAmmo = 0;
 	weponNum = 0;
 
-	score = 100;
-	breakcount = 10;
+	score = 0;
+	breakcount = 0;
 	hiScore = 0;
 
-	nowStage = 4;
+	nowStage = 1;
 
 	AddFontResourceExA("data/Font/POCKC___.TTF", FR_PRIVATE, NULL);
 	textFont[0] = CreateFontToHandle("Pocket Calculator", 60, -1, -1);

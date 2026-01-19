@@ -19,7 +19,7 @@ Launcher::Launcher(float atk, float rate, float maxammo)
 	{
 		ammoDamage[num] *= ((atk + 100.0f) / 100.0f);
 	}
-	shotSpan = 1800 * ((100.0f - rate) / 100.0f);
+	shotSpan = 1600 * ((100.0f - rate) / 100.0f);
 	Maxammo = 3 * ((maxammo + 100.0f) / 100.0f);
 	ammo = Maxammo;
 
@@ -31,7 +31,7 @@ Launcher::Launcher(float atk, float rate, float maxammo)
 	delayCount = 0;
 	startTime = 0;
 	Expansion = 0.15;
-	reroadTime = shotSpan;
+	reroadTime = shotSpan + 200;
 
 	shotcool = TRUE;
 	exploding = FALSE;
