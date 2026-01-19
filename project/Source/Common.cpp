@@ -6,11 +6,12 @@ Common::Common()
 	remAmmo = 0;
 	remGAmmo = 0;
 	weponNum = 0;
-	score = 0;
-	hiScore = 0;
-	breakcount = 0;
 
-	nowStage = 1;
+	score = 100;
+	breakcount = 10;
+	hiScore = 0;
+
+	nowStage = 4;
 
 	AddFontResourceExA("data/Font/POCKC___.TTF", FR_PRIVATE, NULL);
 	textFont[0] = CreateFontToHandle("Pocket Calculator", 60, -1, -1);
@@ -32,9 +33,13 @@ void Common::Init()
 	remGAmmo = 0;
 	weponNum = 0;
 	breakcount = 0;
-
 	nowStage = 1;
+
+	reroading = FALSE;
 	cleared = FALSE;
+	gameCleared = FALSE;
+
+	debugmode = FALSE;
 	dontClear = FALSE;
 	for (int i = 0;i < 9;i++) { mod[i] = -1; }
 }

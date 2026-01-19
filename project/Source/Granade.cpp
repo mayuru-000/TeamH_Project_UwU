@@ -13,6 +13,7 @@ Granade::Granade()
 
 Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 {
+	SetDrawOrder(-400);
 	Common* c = FindGameObject<Common>();
 	exploImage = LoadGraph("data/Image/explode.png");
 
@@ -32,6 +33,8 @@ Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 	explTimer = 0;
 	explDuration = 80;
 	radius = range[num - 1];
+
+	gAmmo = 30;
 }
 
 Granade::~Granade()
@@ -75,6 +78,6 @@ void Granade::Draw() {
 
 	if (exploding) {
 		DrawRectExtendGraph(x - radius - 100, y - radius - 100, x + radius + 100, y + radius + 100, 64 * (explTimer / 5), 0, 64, 64, exploImage, TRUE);
-		DrawCircle(x, y, radius, GetColor(255, 0, 0), FALSE);
+		//DrawCircle(x, y, radius, GetColor(255, 0, 0), FALSE);
 	}
 }

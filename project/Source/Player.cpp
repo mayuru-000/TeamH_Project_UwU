@@ -9,8 +9,9 @@ using namespace std;
 Player::Player()
 {
 	Common* c = FindGameObject<Common>();
-	SetDrawOrder(-1000);
+	SetDrawOrder(-10000);
 
+	x = 0;
 	count = 0;
 	bufSize = 0;
 	flameCounter = 0;
@@ -44,16 +45,15 @@ void Player::Update()
 	scrollX += c->Speed("front");
 
 	if (flameCounter == 60) { flameCounter = 0; }
-
 	count = flameCounter / 30;
+
+
 }
 
 void Player::Draw()
 {
-	int x, y;
 	Common* c = FindGameObject<Common>();
 	Gunsetting* g = FindGameObject<Gunsetting>();
-	GetMousePoint(&x, &y);
 
 	DrawGraph(0 - scrollX, Screen::HEIGHT - roadHEIGHT, roadImage, TRUE);
 	DrawGraph(0 + roadWIDTH - scrollX, Screen::HEIGHT - roadHEIGHT, roadImage, TRUE);
@@ -61,7 +61,7 @@ void Player::Draw()
 		scrollX = 0;
 	}
 
-	DrawRectGraph(30, Screen::HEIGHT - 300, 350 * count, 0, 350, 200, carImage, TRUE);
+	DrawRectGraph(30 + x, Screen::HEIGHT - 300, 350 * count, 0, 350, 200, carImage, TRUE);
 
 	int s = bufSize;
 	for (int i = 0;i < bufSize;i++) {

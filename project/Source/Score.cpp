@@ -1,6 +1,7 @@
 #include "Score.h"
 #include "Common.h"
 #include "Screen.h"
+#include "Effects.h"
 
 Score::Score()
 {
@@ -38,6 +39,14 @@ void Score::Update()
 
 void Score::Draw()
 {
+	Effects* e = FindGameObject<Effects>();
 	Common* c = FindGameObject<Common>();
-	DrawFormatStringToHandle(x - (txtWidth / 2), y, GetColor(255, 0, 0), c->textFont[0], "+%d", score);
+
+	e->setFlash(0);
+	if (e->getFlash()) {
+		DrawFormatStringToHandle(x - (txtWidth / 2), y, GetColor(255, 0, 0), c->textFont[0], "+%d", score);
+	}
+	else{
+		DrawFormatStringToHandle(x - (txtWidth / 2), y, GetColor(255, 255, 0), c->textFont[0], "+%d", score);
+	}
 }

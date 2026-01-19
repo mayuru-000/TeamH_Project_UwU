@@ -69,9 +69,7 @@ void Assault::Update()
 			{
 				deg = 0.0;
 				e->playSE("outAmmo",255);
-				if (shotcool) {
-					Reroad();
-				}
+				Reroad();
 			}
 		}
 		else

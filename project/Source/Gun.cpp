@@ -24,8 +24,8 @@ Gun::Gun(float atk, float rate, float maxammo)
 	Maxammo = 10 * ((maxammo + 100.0f) / 100.0f);
 	ammo = Maxammo;
 
-	x = 640;
-	y = 360;
+	x = 0;
+	y = 0;
 	deg = 0.0;
 	Expansion = 0.1;
 	reroadTime = 800;
@@ -43,13 +43,13 @@ void Gun::Update()
 	Player* p = FindGameObject<Player>();
 	Effects* e = FindGameObject<Effects>();
 
-	GetJoypadDirectInputState(DX_INPUT_PAD1, &input);
+	/*GetJoypadDirectInputState(DX_INPUT_PAD1, &input);
 	x += input.X / 100;
 	y += input.Y / 100;
-	if (GetJoypadNum() == 0) { GetMousePoint(&x, &y); }
+	if (GetJoypadNum() == 0) { GetMousePoint(&x, &y); }*/
 	GetMousePoint(&x, &y);
 	if (!c->reroading) {
-		if (GetMouseInput() & MOUSE_INPUT_LEFT || input.Buttons[7] == 128)// 左クリックされたときの処理
+		if (GetMouseInput() & MOUSE_INPUT_LEFT)// 左クリックされたときの処理
 		{
 			if (ammo > 0) {
 				deg += 20;
@@ -74,9 +74,7 @@ void Gun::Update()
 			else
 			{
 				deg = 0.0;
-				if (shotcool) {
-					Reroad();
-;				}
+				Reroad();
 			}
 		}
 		else

@@ -15,7 +15,7 @@ Clear::Clear()
 	Common* c = FindGameObject<Common>();
 	Granade* g = FindGameObject<Granade>();
 	Gunsetting* Gset = FindGameObject<Gunsetting>();
-	SetDrawOrder(-10000);
+	SetDrawOrder(-1000);
 
 	g->setGAmmo();
 	Gset->DestroyMe();
@@ -30,9 +30,9 @@ Clear::Clear()
 	bufBgImage = LoadGraph("data/image/icon/buf_bg.png");
 	bufImage = LoadGraph("data/image/icon/buf_image.png");
 
-	/*スコア登録*/
-	c->hiScore == c->score;
+	alpha = 0;
 	prevPush = FALSE;
+	selected = FALSE;
 
 	/*バフ選出*/
 	buffs[0] = GetRand(5);
@@ -45,8 +45,6 @@ Clear::Clear()
 	count = 0;
 	nowSelect =	0;
 	for (int i = 0;i < size(c->mod);i++) { if (c->mod[i] >= 0) { count++; } }
-	e->FadeOut(0.5);
-	e->FadeIn(0.5);
 }
 
 Clear::~Clear()
@@ -58,108 +56,109 @@ void Clear::Update()
 	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
 	Field* field = FindGameObject<Field>();
+	Player* player = FindGameObject<Player>();
 	GetMousePoint(&x, &y);
+	if (alpha < 255) 
+	{
+		alpha += 5;
+	}
+	else
+	{
+		if (!selected)
+		{
+			if (144 <= x && x <= 461)
+			{
+				if (nowSelect != 0) {
+					e->playSE("select", 300);
+				}
+				nowSelect = 0;
+			}
+			if (473 <= x && x <= 808)
+			{
+				if (nowSelect != 1) {
+					e->playSE("select", 300);
+				}
+				nowSelect = 1;
+			}
+			if (828 <= x && x <= 1145)
+			{
+				if (nowSelect != 2) {
+					e->playSE("select", 300);
+				}
+				nowSelect = 2;
+			}
 
-	if (144 <= x && x <= 461)
-	{
-		if (nowSelect != 0) {
-			e->playSE("select", 300);
-		}
-		nowSelect = 0;
-	}
-	if (473 <= x && x <= 808)
-	{
-		if (nowSelect != 1) {
-			e->playSE("select", 300);
-		}
-		nowSelect = 1;
-	}
-	if (828 <= x && x <= 1145)
-	{
-		if (nowSelect != 2) {
-			e->playSE("select", 300);
-		}
-		nowSelect = 2;
-	}
-	/*if (CheckHitKey(KEY_INPUT_R)) {
-		if (prevPush) {
-			if (nowSelect < 2) {
-				buffs[0] = GetRand(5);
-				do { buffs[1] = GetRand(5); } while (buffs[0] == buffs[1]);
-				do { buffs[2] = GetRand(5); } while (buffs[0] == buffs[2] || buffs[1] == buffs[2]);
-
-				sort(buffs, buffs + 3);
-				prevPush = FALSE;
+			if (GetMouseInput() & MOUSE_INPUT_LEFT) {
+				c->mod[c->nowStage - 1] = buffs[nowSelect];
+				if (c->nowStage < 9) {
+					selected = TRUE;
+					e->playSE("define", 255);
+					e->FadeOut(2);
+				}
 			}
 		}
-	}
-	else {
-		prevPush = TRUE;
-	}*/
-
-	if (GetMouseInput() & MOUSE_INPUT_LEFT) {
-		c->mod[c->nowStage - 1] = buffs[nowSelect];
-		if (c->nowStage < 9) {
-			e->playSE("define", 255);
-			selected();
+		else
+		{
+			player->addX(10);
+			if (e->Finished() && player->Finished()) { select(); }
 		}
-		
 	}
 }
 
 void Clear::Draw()
 {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+
 	int buf1 = buffs[0];
 	int buf2 = buffs[1];
 	int buf3 = buffs[2];
 	
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 160);
+	/*SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha - 95);
 	DrawBox(0, 0, Screen::WIDTH, Screen::HEIGHT, GetColor(255, 255, 255), TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
 
-	DrawGraph(0, 0, bgImage, TRUE);
+	DrawGraph(0, 0, bgImage, TRUE);*/
 
-	if (buf1 == 0 || buf1 == 3) { DrawRectGraph(180, 250, 0, 240 * 0, 240, 240, bufBgImage, TRUE); }
-	else if (buf1 == 1 || buf1 == 4) { DrawRectGraph(180, 250, 0, 240 * 1, 240, 240, bufBgImage, TRUE); }
-	else if (buf1 == 2 || buf1 == 5) { DrawRectGraph(180, 250, 0, 240 * 2, 240, 240, bufBgImage, TRUE); }
-	if (buf2 == 0 || buf2 == 3) { DrawRectGraph(520, 250, 0, 240 * 0, 240, 240, bufBgImage, TRUE); }
-	else if (buf2 == 1 || buf2 == 4) { DrawRectGraph(520, 250, 0, 240 * 1, 240, 240, bufBgImage, TRUE); }
-	else if (buf2 == 2 || buf2 == 5) { DrawRectGraph(520, 250, 0, 240 * 2, 240, 240, bufBgImage, TRUE); }
-	if (buf3 == 0 || buf3 == 3) { DrawRectGraph(860, 250, 0, 240 * 0, 240, 240, bufBgImage, TRUE); }
-	else if (buf3 == 1 || buf3 == 4) { DrawRectGraph(860, 250, 0, 240 * 1, 240, 240, bufBgImage, TRUE); }
-	else if (buf3 == 2 || buf3 == 5) { DrawRectGraph(860, 250, 0, 240 * 2, 240, 240, bufBgImage, TRUE); }
+	if (buf1 == 0 || buf1 == 3) { DrawRectGraph(180, 60, 0, 240 * 0, 240, 240, bufBgImage, TRUE); }
+	else if (buf1 == 1 || buf1 == 4) { DrawRectGraph(180, 60, 0, 240 * 1, 240, 240, bufBgImage, TRUE); }
+	else if (buf1 == 2 || buf1 == 5) { DrawRectGraph(180, 60, 0, 240 * 2, 240, 240, bufBgImage, TRUE); }
+	if (buf2 == 0 || buf2 == 3) { DrawRectGraph(520, 60, 0, 240 * 0, 240, 240, bufBgImage, TRUE); }
+	else if (buf2 == 1 || buf2 == 4) { DrawRectGraph(520, 60, 0, 240 * 1, 240, 240, bufBgImage, TRUE); }
+	else if (buf2 == 2 || buf2 == 5) { DrawRectGraph(520, 60, 0, 240 * 2, 240, 240, bufBgImage, TRUE); }
+	if (buf3 == 0 || buf3 == 3) { DrawRectGraph(860, 60, 0, 240 * 0, 240, 240, bufBgImage, TRUE); }
+	else if (buf3 == 1 || buf3 == 4) { DrawRectGraph(860, 60, 0, 240 * 1, 240, 240, bufBgImage, TRUE); }
+	else if (buf3 == 2 || buf3 == 5) { DrawRectGraph(860, 60, 0, 240 * 2, 240, 240, bufBgImage, TRUE); }
 
-	DrawGraph(Screen::WIDTH / 2 - 515, 200, cardImage, TRUE);
+	DrawGraph(Screen::WIDTH / 2 - 515, 10, cardImage, TRUE);
 
-	if (buf1 < 3) { DrawRectGraph(180, 250, 240 * 0, 240 * buf1, 240, 240, bufImage, TRUE); }
-	else { DrawRectGraph(180, 250, 240 * 1, 240 * (buf1 - 3), 240, 240, bufImage, TRUE); }
-	if (buf2 < 3) { DrawRectGraph(520, 250, 240 * 0, 240 * buf2, 240, 240, bufImage, TRUE); }
-	else { DrawRectGraph(520, 250, 240 * 1, 240 * (buf2 - 3), 240, 240, bufImage, TRUE); }
-	if (buf3 < 3) { DrawRectGraph(860, 250, 240 * 0, 240 * buf3, 240, 240, bufImage, TRUE); }
-	else { DrawRectGraph(860, 250, 240 * 1, 240 * (buf3 - 3), 240, 240, bufImage, TRUE); }
+	if (buf1 < 3) { DrawRectGraph(180, 60, 240 * 0, 240 * buf1, 240, 240, bufImage, TRUE); }
+	else { DrawRectGraph(180, 60, 240 * 1, 240 * (buf1 - 3), 240, 240, bufImage, TRUE); }
+	if (buf2 < 3) { DrawRectGraph(520, 60, 240 * 0, 240 * buf2, 240, 240, bufImage, TRUE); }
+	else { DrawRectGraph(520, 60, 240 * 1, 240 * (buf2 - 3), 240, 240, bufImage, TRUE); }
+	if (buf3 < 3) { DrawRectGraph(860, 60, 240 * 0, 240 * buf3, 240, 240, bufImage, TRUE); }
+	else { DrawRectGraph(860, 60, 240 * 1, 240 * (buf3 - 3), 240, 240, bufImage, TRUE); }
 
 	int widthB = 300;
 	int heightB = 425;
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 130);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha - 125);
 	if (nowSelect == 0)
 	{
-		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 200, cardDImage_2, TRUE);
-		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 200, cardDImage_3, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 10, cardDImage_2, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 10, cardDImage_3, TRUE);
 	}
 	else if(nowSelect == 1)
 	{
-		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  200, cardDImage_1, TRUE);
-		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 200, cardDImage_3, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  10, cardDImage_1, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 698, 10, cardDImage_3, TRUE);
 	}
 	else if (nowSelect == 2)
 	{
-		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  200, cardDImage_1, TRUE);
-		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 200, cardDImage_2, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 19,  10, cardDImage_1, TRUE);
+		DrawGraph(Screen::WIDTH / 2 - 515 + 348, 10, cardDImage_2, TRUE);
 	}
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
 
-
-	DrawFormatString(0, 20, GetColor(0, 0, 0), "%d", nowSelect);
+	//DrawFormatString(0, 20, GetColor(0, 0, 0), "%d", nowSelect);
 
 	Common* c = FindGameObject<Common>();
 	int s = count;
@@ -169,9 +168,10 @@ void Clear::Draw()
 		else if (c->mod[i] < 9) { DrawRectGraph(Screen::WIDTH - 64 * s, 0, 64 * 2, 64 * (c->mod[i] - 6), 64, 64, bufIcon, TRUE); }
 		s--;
 	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-void Clear::selected()
+void Clear::select()
 {
 	Effects* e = FindGameObject<Effects>();
 	Common* c = FindGameObject<Common>();
@@ -188,7 +188,7 @@ void Clear::selected()
 	new Gunsetting();
 	new Player();
 
-	e->FadeOut(0.5);
 	e->FadeIn(0.5);
+
 	DestroyMe();
 }

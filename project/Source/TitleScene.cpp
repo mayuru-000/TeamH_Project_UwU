@@ -6,6 +6,9 @@
 
 TitleScene::TitleScene()
 {
+	Effects* e = FindGameObject<Effects>();
+	e->ResetAlpha();
+
 	new title();
 }
 

@@ -1,4 +1,5 @@
 ﻿#include "Effects.h"
+#include "Common.h"
 #include "Screen.h"
 
 Effects::Effects()
@@ -12,6 +13,12 @@ Effects::Effects()
 	time = 0;
 	now = 0;
 	rgb = 0;
+	bgmTime = 0;
+	bgmNow = 0;
+
+	nowVolume = 0;
+	flashCount = 0;
+	flashSpan = 0.12;
 
 	selectSE = LoadSoundMem("data/sound/se/select.mp3");
 	defineSE = LoadSoundMem("data/sound/se/define.mp3");
@@ -21,7 +28,7 @@ Effects::Effects()
 	reroadingSE = LoadSoundMem("data/Sound/SE/reroaro.mp3");
 	//reroadedSE = LoadSoundMem("data/Sound/SE/");
 	explosionSE = LoadSoundMem("data/Sound/SE/Explosion.mp3");
-	//outAmmoSE= LoadSoundMem("data/Sound/SE/");
+	launcherSE = LoadSoundMem("data/Sound/SE/launcher.mp3");
 
 	hitSE[0] = LoadSoundMem("data/Sound/SE/hit_1.mp3");
 	hitSE[1] = LoadSoundMem("data/Sound/SE/hit_2.mp3");
@@ -31,7 +38,10 @@ Effects::Effects()
 	breakSE[2] = LoadSoundMem("data/Sound/SE/break_3.mp3");
 	parrySE = LoadSoundMem("data/Sound/SE/parry.mp3");
 
-	BGM = LoadSoundMem("data/sound/bgm/yuta's_bgm_pre.wav");
+	BGM = LoadSoundMem("data/sound/bgm/yuta's_bgm.wav");
+	clearBGM = LoadSoundMem("data/sound/bgm/yuta's_clearBgm_pre.wav");
+
+	nowBGM = BGM;
 }
 
 Effects::~Effects()
@@ -41,13 +51,42 @@ Effects::~Effects()
 
 void Effects::Update()
 {
-	if (now < time) {
-		now += Time::DeltaTime();
-		float rate = now / time;
-		alpha = (endAlpha - startAlpha) * rate + startAlpha;
+	if (!reset) {
+		if (now < time) {
+			now += Time::DeltaTime();
+			float rate = now / time;
+			alpha = (endAlpha - startAlpha) * rate + startAlpha;
+		}
+		else {
+			alpha = endAlpha;
+		}
+	}
+	else{
+		now = 0;
+		time = 0;
+		alpha = 0;
+		endAlpha = 0;
+		reset = FALSE;
+	}
+
+	if (nowVolume > 0) {
+		if (bgmNow < bgmTime) {
+			bgmNow += Time::DeltaTime();
+			float rate = 1 - (bgmNow / bgmTime);
+			ChangeVolumeSoundMem(nowVolume * rate, nowBGM);
+			if (rate <= 0) {
+				nowVolume = 0;
+				StopSoundMem(nowBGM, 0);
+			}
+		}
+	}
+
+	if (flashCount >= flashSpan) {
+		flashCount = 0;
+		flash = !flash;
 	}
 	else {
-		alpha = endAlpha;
+		flashCount += Time::DeltaTime();
 	}
 }
 
@@ -68,11 +107,13 @@ void Effects::playSE(const char* name, int vol)
 	ChangeNextPlayVolumeSoundMem(vol, gunSE);
 	ChangeNextPlayVolumeSoundMem(vol, assaultSE);
 	ChangeNextPlayVolumeSoundMem(vol, explosionSE);
-	//ChangeNextPlayVolumeSoundMem(vol, outAmmoSE);
+	ChangeNextPlayVolumeSoundMem(vol, launcherSE);
 	ChangeNextPlayVolumeSoundMem(vol, hitSE[i]);
 	ChangeNextPlayVolumeSoundMem(vol, breakSE[i]);
 	ChangeNextPlayVolumeSoundMem(vol, parrySE);
+
 	ChangeNextPlayVolumeSoundMem(vol, BGM);
+	ChangeNextPlayVolumeSoundMem(vol, clearBGM);
 
 	if (name == nullptr) return;
 	if (name == "select") { PlaySoundMem(selectSE, DX_PLAYTYPE_BACK); }
@@ -81,18 +122,37 @@ void Effects::playSE(const char* name, int vol)
 	if (name == "reroading") { PlaySoundMem(reroadingSE, DX_PLAYTYPE_BACK); }
 	if (name == "reroaded")  {}
 	if (name == "assault")   { PlaySoundMem(assaultSE, DX_PLAYTYPE_BACK); }
+	if (name == "launcher")  { PlaySoundMem(launcherSE, DX_PLAYTYPE_BACK); }
 	if (name == "bomb")	     { PlaySoundMem(explosionSE, DX_PLAYTYPE_BACK); }
 	if (name == "gun")       { PlaySoundMem(gunSE, DX_PLAYTYPE_BACK); }
-	if (name == "outAmmo")	 {}
 
 	if (name == "hit")   { PlaySoundMem(hitSE[i], DX_PLAYTYPE_BACK); }
 	if (name == "break") { PlaySoundMem(breakSE[i], DX_PLAYTYPE_BACK); }
 	if (name == "parry") { PlaySoundMem(parrySE, DX_PLAYTYPE_BACK); }
 
 	if (name == "BGM")	 { 
-		if (CheckSoundMem(BGM) == 0) { PlaySoundMem(BGM, DX_PLAYTYPE_LOOP); }
-		else { StopSoundMem(BGM); }
+		if (CheckSoundMem(BGM) == 0) { 
+			PlaySoundMem(BGM, DX_PLAYTYPE_LOOP); 
+			nowBGM = BGM;
+		}
 	}
+	if (name == "clearBGM") {
+		if (CheckSoundMem(clearBGM) == 0) {
+			PlaySoundMem(clearBGM, DX_PLAYTYPE_LOOP);
+			nowBGM = clearBGM;
+		}
+	}
+
+	if (name == "stopBGM") {
+		StopSoundMem(nowBGM);
+	}
+}
+
+void Effects::FadeOutBGM(float sec)
+{
+	nowVolume = GetVolumeSoundMem2(nowBGM);
+	bgmTime = sec;
+	bgmNow = 0;
 }
 
 void Effects::FadeIn(float sec)

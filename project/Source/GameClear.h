@@ -13,8 +13,14 @@ private:
 	int bgImage;
 	int abcImage[3];
 
-	int s, b;
+	float y;
+	int s, b, t;
 	int Width;
 	int scoreDigit;
 	int breakDigit;
+	int tScoreDigit;
+	int totalscore;
+
+	bool moveY;
+	bool newrecord;
 };

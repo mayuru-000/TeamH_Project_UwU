@@ -51,6 +51,11 @@ Gunsetting::Gunsetting()
 		granade = new Granade(bomAtkBuf, bomRangeBuf, bomAmmoBuf);
 		break;
 
+	case 3:
+		launcher = new Launcher(atkBuf, rateBuf, maxammoBuf);
+		granade = new Granade(bomAtkBuf, bomRangeBuf, bomAmmoBuf);
+		break;
+
 	default:
 		SceneManager::ChangeScene("TITLE");
 		break;
@@ -62,4 +67,5 @@ Gunsetting::~Gunsetting()
 	delete gun;
 	delete assault;
 	delete granade;
+	delete launcher;
 }

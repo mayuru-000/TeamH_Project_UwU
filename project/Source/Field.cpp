@@ -11,7 +11,6 @@
 #include <vector>
 #include <algorithm>
 
-
 using namespace std;
 
 vector<vector<int>> maps;
@@ -56,11 +55,9 @@ Field::Field()
 	{
 		if (Max < maps[0][x]) { Max = maps[0][x]; }
 		if (Maxfast < maps[4][x]) { Maxfast = maps[4][x]; }
-		if (x == maps[1].size() - 1) { goalline = Max + 700; }
-		if (maps[2][x] != 0) { new Target(maps[0][x], maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX); }
+		if (x == maps[1].size() - 1) { goalline = Max + blank + 700; }
+		if (maps[2][x] != 0) { new Target(maps[0][x] + blank, maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX); }
 	}
-	/*new Objects(2000, 310, 0, Maxfast + c->speedX + 1);
-	new Objects(4500, 310, 0, Maxfast + c->speedX + 1);*/
 }
 
 Field::~Field()
@@ -77,23 +74,31 @@ void Field::Update()
 	scrollX += c->Speed("back");
 	objSponePoint_A -= c->Speed("front");
 	objSponePoint_B -= c->Speed("front");
-
-	if (goalline <= 0 && !c->cleared && !c->dontClear)
+	
+	if (goalline <= 0 && !c->dontClear)
 	{
-		if (c->nowStage == 9) 
+		if (!cleared)
 		{
-			cleared = TRUE;
-			c->cleared = TRUE;
+			if (c->nowStage >= 1)
+			{
+				cleared = TRUE;
+				c->cleared = TRUE;
+				e->FadeOut(2);
+				e->FadeOutBGM(2);
+			}
+			else
+			{
+				cleared = TRUE;
+				c->cleared = TRUE;
+				new Clear();
+			}
+		}
+		else if (e->Finished() && c->nowStage >= 1)
+		{
 			new GameClear();
 		}
-		else
-		{
-			cleared = TRUE;
-			c->cleared = TRUE;
-			new Clear();
-		}
 	}
-	else if (goalline < Screen::WIDTH + 700)
+	if (goalline <= Screen::WIDTH)
 	{
 		return;
 	}
@@ -128,6 +133,11 @@ void Field::Draw()
 	DrawGraph(0 + ImageX - scrollX, 0, bgImage, TRUE);
 	if (scrollX >= ImageX) {
 		scrollX = 0;
+	}
+
+	if (cleared) 
+	{
+
 	}
 
 	/*debug*/

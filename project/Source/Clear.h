@@ -12,9 +12,10 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	void selected();
+	void select();
 private:
 	int x, y;
+	int alpha;
 	int bgImage;
 	int bufImage;
 	int cardImage;
@@ -24,7 +25,9 @@ private:
 
 	int count;
 	int nowSelect;
+
 	bool prevPush;
+	bool selected;
 
 	int  buffs[3];
 };

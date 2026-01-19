@@ -31,6 +31,7 @@ private:
 	int dx, dy;
 	int objSpan_A, objSpan_B;
 	int objSponePoint_A, objSponePoint_B;
+	const int blank = 1000;
 
 	bool sponed_A, sponed_B;
 };

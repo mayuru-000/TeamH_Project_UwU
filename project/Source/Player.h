@@ -5,6 +5,7 @@
 #include "Gun.h"
 #include "Assault.h"
 #include "Granade.h"
+#include "Screen.h"
 #include "../Library/GameObject.h"
 
 class Player : public GameObject
@@ -15,11 +16,15 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void addX(int num) { x += num; }
 	void AddGunData(int nowAm, int maxAm) { nowAmmo = nowAm; maxAmmo = maxAm; }
+	bool Finished() { return x >= Screen::WIDTH + 300; }
+
 private:
 	Gun* gun = NULL;
 	Assault* assault = NULL;
 
+	int x;
 	int bufImage;
 	int carImage;
 	int roadImage;
