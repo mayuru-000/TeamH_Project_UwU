@@ -11,7 +11,7 @@ public:
 private:
 	int scImage;
 	int bgImage;
-	int abcImage[3];
+	int abcImage[10];
 
 	float y;
 	int s, b, t;

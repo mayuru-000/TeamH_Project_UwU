@@ -32,7 +32,8 @@ Assault::Assault(float atk, float rate, float maxammo)
 
 Assault::~Assault()
 {
-
+	DeleteGraph(weponImage);
+	DeleteGraph(weponImage2);
 }
 
 void Assault::Update()

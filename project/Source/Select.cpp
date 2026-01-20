@@ -24,7 +24,14 @@ Select::Select()
 
 Select::~Select()
 {
-	
+	DeleteGraph(bgImage);
+	DeleteGraph(wImage1);
+	DeleteGraph(wImage2);
+	DeleteGraph(wImage3);
+
+	DeleteFontToHandle(wTitleFont);
+	DeleteFontToHandle(wExplanaFont);
+	DeleteFontToHandle(wExplanaFont2);
 }
 
 void Select::Update()

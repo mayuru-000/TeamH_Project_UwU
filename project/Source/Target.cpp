@@ -38,7 +38,8 @@ Target::Target(int fx, int fy, int handle, int fhp, int speed)
 
 Target::~Target()
 {
-	
+	DeleteGraph(tImage);
+	DeleteGraph(bmImage);
 }
 
 void Target::Update()

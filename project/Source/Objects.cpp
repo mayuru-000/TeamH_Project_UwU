@@ -55,6 +55,7 @@ Objects::Objects(const char* mode)
 
 Objects::~Objects()
 {
+	DeleteGraph(tImage);
 }
 
 void Objects::Update()

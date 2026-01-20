@@ -58,11 +58,13 @@ Field::Field()
 		if (x == maps[1].size() - 1) { goalline = Max + blank + 700; }
 		if (maps[2][x] != 0) { new Target(maps[0][x] + blank, maps[1][x], maps[2][x], maps[3][x], maps[4][x] + c->speedX); }
 	}
+
+	delete csv;
 }
 
 Field::~Field()
 {
-	
+	DeleteGraph(bgImage);
 }
 
 void Field::Update()

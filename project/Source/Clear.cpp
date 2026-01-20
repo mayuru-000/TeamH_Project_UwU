@@ -49,6 +49,14 @@ Clear::Clear()
 
 Clear::~Clear()
 {
+	DeleteGraph(bgImage);
+	DeleteGraph(bufIcon);
+	DeleteGraph(cardImage);
+	DeleteGraph(cardDImage_1);
+	DeleteGraph(cardDImage_2);
+	DeleteGraph(cardDImage_3);
+	DeleteGraph(bufBgImage);
+	DeleteGraph(bufImage);
 }
 
 void Clear::Update()

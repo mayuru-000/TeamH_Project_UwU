@@ -39,6 +39,7 @@ Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 
 Granade::~Granade()
 {
+	DeleteGraph(exploImage);
 }
 
 void Granade::Update() {

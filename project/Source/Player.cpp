@@ -34,7 +34,10 @@ Player::Player()
 
 Player::~Player()
 {
-	
+	DeleteGraph(bufImage);
+	DeleteGraph(carImage);
+	DeleteGraph(uiImage);
+	DeleteGraph(roadImage);
 }
 
 void Player::Update()

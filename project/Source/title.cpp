@@ -19,6 +19,9 @@ title::title()
 
 title::~title()
 {
+	DeleteGraph(bgImage);
+	DeleteGraph(tImage);
+	DeleteGraph(carImage);	
 }
 
 void title::Update()

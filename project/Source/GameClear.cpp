@@ -64,6 +64,12 @@ GameClear::GameClear()
 
 GameClear::~GameClear()
 {
+	DeleteGraph(abcImage[0]);
+	DeleteGraph(abcImage[1]);
+	DeleteGraph(abcImage[2]);
+	DeleteGraph(abcImage[3]);
+	DeleteGraph(bgImage);
+	DeleteGraph(scImage);
 }
 
 void GameClear::Update()

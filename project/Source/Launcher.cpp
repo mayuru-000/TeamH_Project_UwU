@@ -39,6 +39,7 @@ Launcher::Launcher(float atk, float rate, float maxammo)
 
 Launcher::~Launcher()
 {
+	DeleteGraph(exploImage);
 	DeleteGraph(weponImage);
 	DeleteGraph(weponImage2);
 }
