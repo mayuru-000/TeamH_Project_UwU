@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Screen.h"
 #include "Gunsetting.h"
+#include "Effects.h"
 #include <Windows.h>
 
 using namespace std;
@@ -23,6 +24,8 @@ Player::Player()
 	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 	carImage = LoadGraph("data/image/car.png");
 	uiImage = LoadGraph("data/image/Game_UI.png");
+	granadeUI = LoadGraph("data/image/Granade_UI.png");
+	granadeChargeUI = LoadGraph("data/image/Granade_UI_charge.png");
 
 	char bgfile[60];
 	sprintf_s<60>(bgfile, "data/image/road/road_%d.png", c->nowStage);
@@ -55,6 +58,7 @@ void Player::Update()
 
 void Player::Draw()
 {
+	Effects* e = FindGameObject<Effects>();
 	Common* c = FindGameObject<Common>();
 	Gunsetting* g = FindGameObject<Gunsetting>();
 
@@ -75,8 +79,53 @@ void Player::Draw()
 	}
 
 	DrawGraph(0, 0, uiImage, TRUE);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 105, GetColor(255, 255, 255), c->textFont[0], "SCORE          : %d", c->score);
-	DrawFormatStringToHandle(0, Screen::HEIGHT - 60, GetColor(255, 255, 255), c->textFont[0], "HISCORE       : %d", c->hiScore);
+	if (nowGAmmo == maxGAmmo) {
+		DrawGraph(0, 0, granadeChargeUI, TRUE);
+		e->setFlash(0.01);
+		if (e->getFlash()) {
+			DrawFormatStringToHandle(695, Screen::HEIGHT - 105 + 5, GetColor(0, 0, 0), c->textFont[1], "%d", nowGAmmo);
+			DrawFormatStringToHandle(690, Screen::HEIGHT - 105, GetColor(255, 0, 255), c->textFont[1], "%d", nowGAmmo);
+		}
+		else {
+			DrawFormatStringToHandle(695, Screen::HEIGHT - 105 + 5, GetColor(0, 0, 0), c->textFont[1], "%d", nowGAmmo);
+			DrawFormatStringToHandle(690, Screen::HEIGHT - 105, GetColor(255, 255, 0), c->textFont[1], "%d", nowGAmmo);
+		}
+	}
+	else if (nowGAmmo > 0) {
+		DrawGraph(0, 0, granadeChargeUI, TRUE);
+		e->setFlash(0.01);
+		if (e->getFlash()) {
+			DrawFormatStringToHandle(695, Screen::HEIGHT - 105 + 5, GetColor(0, 0, 0), c->textFont[1], "%d", nowGAmmo);
+			DrawFormatStringToHandle(690, Screen::HEIGHT - 105, GetColor(255, 0, 0), c->textFont[1], "%d", nowGAmmo);
+		}
+		else {
+			DrawFormatStringToHandle(695, Screen::HEIGHT - 105 + 5, GetColor(0, 0, 0), c->textFont[1], "%d", nowGAmmo);
+			DrawFormatStringToHandle(690, Screen::HEIGHT - 105, GetColor(255, 255, 0), c->textFont[1], "%d", nowGAmmo);
+		}
+	}
+	else{
+		DrawGraph(0, 0, granadeUI, TRUE);
+		DrawFormatStringToHandle(695, Screen::HEIGHT - 105 + 5, GetColor(0, 0, 0), c->textFont[1], "%d", nowGAmmo);
+		DrawFormatStringToHandle(690, Screen::HEIGHT - 105, GetColor(150, 150, 150), c->textFont[1], "%d", nowGAmmo);
+	}
+
+	switch (c->weponNum)
+	{
+	case 1:
+		DrawFormatStringToHandle(0, Screen::HEIGHT - 105, GetColor(255, 255, 255), c->textFont[0], "SCORE          : %d", c->score);
+		DrawFormatStringToHandle(0, Screen::HEIGHT - 60, GetColor(255, 255, 255), c->textFont[0], "HISCORE       : %d", c->gnHiScore);
+		break;
+	case 2:
+		DrawFormatStringToHandle(0, Screen::HEIGHT - 105, GetColor(255, 255, 255), c->textFont[0], "SCORE          : %d", c->score);
+		DrawFormatStringToHandle(0, Screen::HEIGHT - 60, GetColor(255, 255, 255), c->textFont[0], "HISCORE       : %d", c->asHiScore);
+		break;
+	case 3:
+		DrawFormatStringToHandle(0, Screen::HEIGHT - 105, GetColor(255, 255, 255), c->textFont[0], "SCORE          : %d", c->score);
+		DrawFormatStringToHandle(0, Screen::HEIGHT - 60, GetColor(255, 255, 255), c->textFont[0], "HISCORE       : %d", c->rkHiScore);
+		break;
+	default:
+		break;
+	}
 
 	if (!c->reroading) {
 		txtWidth[0] = GetDrawFormatStringWidthToHandle(c->textFont[2], "%d", nowAmmo);

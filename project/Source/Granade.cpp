@@ -2,6 +2,7 @@
 #include "Target.h"
 #include "Effects.h"
 #include "Field.h"
+#include "Player.h"
 #include "Common.h"
 #include <vector>
 
@@ -22,19 +23,16 @@ Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 		range[num] *= ((rangebuf + 100.0f) / 100.0f);
 		ammoDamage[num] *= ((atkbuf + 100.0f) / 100.0f);
 	}
-	/*‚±‚Ì•Ó—v‘Š’k*/
-	MaxGAmmo = 3 + ammobuf;
-	if (c->nowStage == 1) { gAmmo = MaxGAmmo; }
-	else	{ gAmmo = c->remGAmmo + ammobuf; }
-	if (gAmmo > MaxGAmmo) { gAmmo = MaxGAmmo; }
-	/*------------*/
+	chargeSpeed = 75000 * ((100.0f - ammobuf) / 100.0f);
+	MaxGAmmo = 3;
+
+	if (c->nowStage == 1) { gAmmo = 1; }
+	else	{ gAmmo = c->remGAmmo; }
 	x = 0;
 	y = 0;
 	explTimer = 0;
 	explDuration = 80;
 	radius = range[num - 1];
-
-	gAmmo = 30;
 }
 
 Granade::~Granade()
@@ -45,12 +43,21 @@ Granade::~Granade()
 void Granade::Update() {
 	Effects* e = FindGameObject<Effects>();
 	Field* field = FindGameObject<Field>();
+	Player* p = FindGameObject<Player>();
 	Common* c = FindGameObject<Common>();
 	auto target = FindGameObjects<Target>();
 	GetMousePoint(&x, &y);
 
 	if (field->cleared) {
 		c->remGAmmo = gAmmo;
+	}
+
+	if (c->score - c->rastCharge >= chargeSpeed) {
+		c->rastCharge = c->score;
+		gAmmo++;
+		if (gAmmo > MaxGAmmo) {
+			gAmmo = MaxGAmmo;
+		}
 	}
 
 	if (GetMouseInput() & MOUSE_INPUT_RIGHT) {
@@ -71,6 +78,7 @@ void Granade::Update() {
 			exploding = false;
 		}
 	}
+	p->AddGrData(gAmmo, MaxGAmmo);
 }
 
 void Granade::Draw() {

@@ -17,6 +17,7 @@ public:
 	void Draw() override;
 
 	void addX(int num) { x += num; }
+	void AddGrData(int nowAm, int maxAm) { nowGAmmo = nowAm; maxGAmmo = maxAm; }
 	void AddGunData(int nowAm, int maxAm) { nowAmmo = nowAm; maxAmmo = maxAm; }
 	bool Finished() { return x >= Screen::WIDTH + 300; }
 
@@ -29,6 +30,7 @@ private:
 	int carImage;
 	int roadImage;
 	int uiImage;
+	int granadeUI, granadeChargeUI;
 	int carWIDTH, carHEIGHT;
 	int roadWIDTH, roadHEIGHT;
 	int txtWidth[100];
@@ -39,6 +41,7 @@ private:
 	int count;
 	int flameCounter;
 	int nowAmmo, maxAmmo;
+	int nowGAmmo, maxGAmmo;
 
 	bool prevPush;
 };

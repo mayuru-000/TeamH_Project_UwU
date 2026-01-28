@@ -24,5 +24,5 @@ private:
 	float maxammoBuf;
 	float bomAtkBuf;
 	float bomRangeBuf;
-	int   bomAmmoBuf;
+	float bomAmmoBuf;
 };

@@ -39,7 +39,7 @@ Effects::Effects()
 	parrySE = LoadSoundMem("data/Sound/SE/parry.mp3");
 
 	BGM = LoadSoundMem("data/sound/bgm/yuta's_bgm.wav");
-	clearBGM = LoadSoundMem("data/sound/bgm/yuta's_clearBgm_pre.wav");
+	clearBGM = LoadSoundMem("data/sound/bgm/yuta's_clearBgm.wav");
 
 	nowBGM = BGM;
 }

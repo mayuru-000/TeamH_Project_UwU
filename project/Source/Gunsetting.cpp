@@ -34,7 +34,7 @@ Gunsetting::Gunsetting()
 			bomRangeBuf += 10.0f;
 			break;
 		case 5:
-			bomAmmoBuf += 1;
+			bomAmmoBuf += 10.0f;
 			break;
 		}
 	}

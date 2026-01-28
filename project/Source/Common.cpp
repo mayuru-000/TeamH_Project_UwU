@@ -5,11 +5,14 @@ Common::Common()
 	DontDestroyOnSceneChange();
 	remAmmo = 0;
 	remGAmmo = 0;
+	rastCharge = 0;
 	weponNum = 0;
 
 	score = 0;
 	breakcount = 0;
-	hiScore = 0;
+	gnHiScore = 0;
+	asHiScore = 0;
+	rkHiScore = 0;
 
 	nowStage = 4;
 
@@ -17,6 +20,7 @@ Common::Common()
 	textFont[0] = CreateFontToHandle("Pocket Calculator", 60, -1, -1);
 	textFont[1] = CreateFontToHandle("Pocket Calculator", 125, -1, -1);
 	textFont[2] = CreateFontToHandle("Pocket Calculator", 250, -1, -1);
+	textFont[3] = CreateFontToHandle("Pocket Calculator", 30, -1, -1);
 }
 
 int Common::Speed(string mode)
@@ -31,6 +35,7 @@ void Common::Init()
 	score = 0;
 	remAmmo = 0;
 	remGAmmo = 0;
+	rastCharge = 0;
 	weponNum = 0;
 	breakcount = 0;
 	nowStage = 1;

@@ -110,10 +110,13 @@ bool Target::isHit(int px, int py, int r[], int dmg[], int num)
 					if (hp - dmg[i] <= 0) { e->playSE("break", 200); }
 					else { e->playSE("hit", 200); }
 				}
+
 				if (hp - dmg[i] <= 0) { 
-					new Score(px, py + 40, (float)maxhp * ((float)c->nowStage));
+					new Score(px, py, (float)maxhp * ((float)c->nowStage));
 				}
-				new Score(px, py, (float)maxhp* ((float)c->nowStage / 2.0));
+				else{
+					new Score(px, py, (float)maxhp * ((float)c->nowStage / 5.0));
+				}
 				hp -= dmg[i];
 				return true;
 			}

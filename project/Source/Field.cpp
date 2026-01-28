@@ -81,7 +81,7 @@ void Field::Update()
 	{
 		if (!cleared)
 		{
-			if (c->nowStage >= 9)
+			if (c->nowStage <= 9)
 			{
 				cleared = TRUE;
 				c->cleared = TRUE;
@@ -95,7 +95,7 @@ void Field::Update()
 				new Clear();
 			}
 		}
-		else if (e->Finished() && c->nowStage >= 9)
+		else if (e->Finished() && c->nowStage <= 9)
 		{
 			new GameClear();
 		}

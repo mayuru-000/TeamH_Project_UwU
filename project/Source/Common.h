@@ -15,11 +15,23 @@ public:
 	int nowStage;
 	int weponNum;
 	int score;
-	int hiScore;
 	int breakcount;
+	int rastCharge;
 	int textFont[100];
-	int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
-	//int mod[9] = { 1,1,1,1,1,1,-1,-1,-1 };
+
+	int gnHiScore;
+	int asHiScore;
+	int rkHiScore;
+
+	//int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	int mod[9] = { 1,1,1,1,1,1,-1,-1,-1 };
+	//int gnRanking[3] = { 0,0,0 };
+	//int asRanking[3] = { 0,0,0 };
+	//int rkRanking[3] = { 0,0,0 };
+	int gnRanking[3] = { 1111,111,11 };
+	int asRanking[3] = { 2222,222,22 };
+	int rkRanking[3] = { 3333,333,33 };
+
 
 	const int speedX = 12;
 	const int speedrange[10] = { 3,3,3,3,3,3,3,3,3 };

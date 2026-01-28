@@ -26,6 +26,7 @@ private:
 	int explDuration;							//連射速度
 	int explTimer;								//連射速度用カウント
 	int radius;									//最大爆発範囲
+	int chargeSpeed;							//グレネードチャージスピード
 
 	static const int num = 3;					//中心からのHIT判定段階数
 	int range[num] = { 50,200,500 };			//中心からのHIT判定距離
