@@ -214,79 +214,79 @@ void GameClear::Draw()
 	
 	//1st
 	rWidth = GetDrawFormatStringWidthToHandle(c->textFont[1], "1st");
-	DrawFormatStringToHandle(340 - rWidth + Screen::WIDTH - x, 130, GetColor(0, 0, 0), c->textFont[1], "1st");
-	DrawFormatStringToHandle(330 - rWidth + Screen::WIDTH - x, 120, GetColor(255, 215, 0), c->textFont[1], "1st");
+	DrawFormatStringToHandle(340 + 70 - rWidth + Screen::WIDTH - x, 130, GetColor(0, 0, 0), c->textFont[1], "1st");
+	DrawFormatStringToHandle(330 + 70 - rWidth + Screen::WIDTH - x, 120, GetColor(255, 215, 0), c->textFont[1], "1st");
 	for (int i = 0;i < 8 - rank1Digit;i++)
 	{
-		DrawFormatStringToHandle(380 - x + Screen::WIDTH + Width * i, 130, GetColor(0, 0, 0), c->textFont[1], "0");
-		DrawFormatStringToHandle(370 - x + Screen::WIDTH + Width * i, 120, GetColor(150, 150, 150), c->textFont[1], "0");
+		DrawFormatStringToHandle(380 + 70 - x + Screen::WIDTH + Width * i, 130, GetColor(0, 0, 0), c->textFont[1], "0");
+		DrawFormatStringToHandle(370 + 70 - x + Screen::WIDTH + Width * i, 120, GetColor(150, 150, 150), c->textFont[1], "0");
 	}
 	if (rank == 1) {
 		e->setFlash(0.01);
 		if (e->getFlash()) {
-			DrawFormatStringToHandle(380 - x + Screen::WIDTH + Width * (8 - rank1Digit), 130, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[0]);
-			DrawFormatStringToHandle(370 - x + Screen::WIDTH + Width * (8 - rank1Digit), 120, GetColor(255, 0, 0), c->textFont[1], "%d", ranking[0]);
+			DrawFormatStringToHandle(380 + 70 - x + Screen::WIDTH + Width * (8 - rank1Digit), 130, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[0]);
+			DrawFormatStringToHandle(370 + 70 - x + Screen::WIDTH + Width * (8 - rank1Digit), 120, GetColor(255, 0, 0), c->textFont[1], "%d", ranking[0]);
 		}
 		else {
-			DrawFormatStringToHandle(380 - x + Screen::WIDTH + Width * (8 - rank1Digit), 130, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[0]);
-			DrawFormatStringToHandle(370 - x + Screen::WIDTH + Width * (8 - rank1Digit), 120, GetColor(255, 255, 0), c->textFont[1], "%d", ranking[0]);
+			DrawFormatStringToHandle(380 + 70 - x + Screen::WIDTH + Width * (8 - rank1Digit), 130, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[0]);
+			DrawFormatStringToHandle(370 + 70 - x + Screen::WIDTH + Width * (8 - rank1Digit), 120, GetColor(255, 255, 0), c->textFont[1], "%d", ranking[0]);
 		}
 	}
 	else {
-		DrawFormatStringToHandle(380 - x + Screen::WIDTH + Width * (8 - rank1Digit), 130, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[0]);
-		DrawFormatStringToHandle(370 - x + Screen::WIDTH + Width * (8 - rank1Digit), 120, GetColor(255, 255, 255), c->textFont[1], "%d", ranking[0]);
+		DrawFormatStringToHandle(380 + 70 - x + Screen::WIDTH + Width * (8 - rank1Digit), 130, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[0]);
+		DrawFormatStringToHandle(370 + 70 - x + Screen::WIDTH + Width * (8 - rank1Digit), 120, GetColor(255, 255, 255), c->textFont[1], "%d", ranking[0]);
 	}
 	
 
 	//2nd
 	rWidth = GetDrawFormatStringWidthToHandle(c->textFont[1], "2nd");
-	DrawFormatStringToHandle(400 - rWidth + Screen::WIDTH - x, 230, GetColor(0, 0, 0), c->textFont[1], "2nd");
-	DrawFormatStringToHandle(390 - rWidth + Screen::WIDTH - x, 220, GetColor(192, 192, 192), c->textFont[1], "2nd");
+	DrawFormatStringToHandle(400 + 70 - rWidth + Screen::WIDTH - x, 230, GetColor(0, 0, 0), c->textFont[1], "2nd");
+	DrawFormatStringToHandle(390 + 70 - rWidth + Screen::WIDTH - x, 220, GetColor(192, 192, 192), c->textFont[1], "2nd");
 	for (int i = 0;i < 8 - rank2Digit;i++)
 	{
-		DrawFormatStringToHandle(440 - x + Screen::WIDTH + Width * i, 230, GetColor(0, 0, 0), c->textFont[1], "0");
-		DrawFormatStringToHandle(430 - x + Screen::WIDTH + Width * i, 220, GetColor(150, 150, 150), c->textFont[1], "0");
+		DrawFormatStringToHandle(440 + 70 - x + Screen::WIDTH + Width * i, 230, GetColor(0, 0, 0), c->textFont[1], "0");
+		DrawFormatStringToHandle(430 + 70 - x + Screen::WIDTH + Width * i, 220, GetColor(150, 150, 150), c->textFont[1], "0");
 	}
 	if (rank == 2) {
 		e->setFlash(0.01);
 		if (e->getFlash()) {
-			DrawFormatStringToHandle(440 + Screen::WIDTH - x + Width * (8 - rank2Digit), 230, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[1]);
-			DrawFormatStringToHandle(430 + Screen::WIDTH - x + Width * (8 - rank2Digit), 220, GetColor(255, 0, 0), c->textFont[1], "%d", ranking[1]);
+			DrawFormatStringToHandle(440 + 70 + Screen::WIDTH - x + Width * (8 - rank2Digit), 230, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[1]);
+			DrawFormatStringToHandle(430 + 70 + Screen::WIDTH - x + Width * (8 - rank2Digit), 220, GetColor(255, 0, 0), c->textFont[1], "%d", ranking[1]);
 		}
 		else {
-			DrawFormatStringToHandle(440 + Screen::WIDTH - x + Width * (8 - rank2Digit), 230, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[1]);
-			DrawFormatStringToHandle(430 + Screen::WIDTH - x + Width * (8 - rank2Digit), 220, GetColor(255, 255, 0), c->textFont[1], "%d", ranking[1]);
+			DrawFormatStringToHandle(440 + 70 + Screen::WIDTH - x + Width * (8 - rank2Digit), 230, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[1]);
+			DrawFormatStringToHandle(430 + 70 + Screen::WIDTH - x + Width * (8 - rank2Digit), 220, GetColor(255, 255, 0), c->textFont[1], "%d", ranking[1]);
 		}
 	}
 	else {
-		DrawFormatStringToHandle(440 + Screen::WIDTH - x + Width * (8 - rank2Digit), 230, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[1]);
-		DrawFormatStringToHandle(430 + Screen::WIDTH - x + Width * (8 - rank2Digit), 220, GetColor(255, 255, 255), c->textFont[1], "%d", ranking[1]);
+		DrawFormatStringToHandle(440 + 70 + Screen::WIDTH - x + Width * (8 - rank2Digit), 230, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[1]);
+		DrawFormatStringToHandle(430 + 70 + Screen::WIDTH - x + Width * (8 - rank2Digit), 220, GetColor(255, 255, 255), c->textFont[1], "%d", ranking[1]);
 	}
 	
 
 	//3rd
 	rWidth = GetDrawFormatStringWidthToHandle(c->textFont[1], "3rd");
-	DrawFormatStringToHandle(450 - rWidth + Screen::WIDTH - x, 330, GetColor(0, 0, 0), c->textFont[1], "3rd");
-	DrawFormatStringToHandle(440 - rWidth + Screen::WIDTH - x, 320, GetColor(196, 112, 34), c->textFont[1], "3rd");
+	DrawFormatStringToHandle(450 + 70 - rWidth + Screen::WIDTH - x, 330, GetColor(0, 0, 0), c->textFont[1], "3rd");
+	DrawFormatStringToHandle(440 + 70 - rWidth + Screen::WIDTH - x, 320, GetColor(196, 112, 34), c->textFont[1], "3rd");
 	for (int i = 0;i < 8 - rank3Digit;i++)
 	{
-		DrawFormatStringToHandle(490 - x + Screen::WIDTH + Width * i, 330, GetColor(0, 0, 0), c->textFont[1], "0");
-		DrawFormatStringToHandle(480 - x + Screen::WIDTH + Width * i, 320, GetColor(150, 150, 150), c->textFont[1], "0");
+		DrawFormatStringToHandle(490 + 70 - x + Screen::WIDTH + Width * i, 330, GetColor(0, 0, 0), c->textFont[1], "0");
+		DrawFormatStringToHandle(480 + 70 - x + Screen::WIDTH + Width * i, 320, GetColor(150, 150, 150), c->textFont[1], "0");
 	}
 	if (rank == 3) {
 		e->setFlash(0.01);
 		if (e->getFlash()) {
-			DrawFormatStringToHandle(490 + Screen::WIDTH - x + Width * (8 - rank3Digit), 330, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[2]);
-			DrawFormatStringToHandle(480 + Screen::WIDTH - x + Width * (8 - rank3Digit), 320, GetColor(255, 0, 0), c->textFont[1], "%d", ranking[2]);
+			DrawFormatStringToHandle(490 + 70 + Screen::WIDTH - x + Width * (8 - rank3Digit), 330, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[2]);
+			DrawFormatStringToHandle(480 + 70 + Screen::WIDTH - x + Width * (8 - rank3Digit), 320, GetColor(255, 0, 0), c->textFont[1], "%d", ranking[2]);
 		}
 		else {
-			DrawFormatStringToHandle(490 + Screen::WIDTH - x + Width * (8 - rank3Digit), 330, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[2]);
-			DrawFormatStringToHandle(480 + Screen::WIDTH - x + Width * (8 - rank3Digit), 320, GetColor(255, 255, 0), c->textFont[1], "%d", ranking[2]);
+			DrawFormatStringToHandle(490 + 70 + Screen::WIDTH - x + Width * (8 - rank3Digit), 330, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[2]);
+			DrawFormatStringToHandle(480 + 70 + Screen::WIDTH - x + Width * (8 - rank3Digit), 320, GetColor(255, 255, 0), c->textFont[1], "%d", ranking[2]);
 		}
 	}
 	else {
-		DrawFormatStringToHandle(490 + Screen::WIDTH - x + Width * (8 - rank3Digit), 330, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[2]);
-		DrawFormatStringToHandle(480 + Screen::WIDTH - x + Width * (8 - rank3Digit), 320, GetColor(255, 255, 255), c->textFont[1], "%d", ranking[2]);
+		DrawFormatStringToHandle(490 + 70 + Screen::WIDTH - x + Width * (8 - rank3Digit), 330, GetColor(0, 0, 0), c->textFont[1], "%d", ranking[2]);
+		DrawFormatStringToHandle(480 + 70 + Screen::WIDTH - x + Width * (8 - rank3Digit), 320, GetColor(255, 255, 255), c->textFont[1], "%d", ranking[2]);
 	}
 	
 
@@ -336,6 +336,8 @@ void GameClear::Draw()
 			DrawLine(0, 10 * i, Screen::WIDTH, 10 * i, GetColor(255, 255, 255), 1);
 			DrawLine(0, 100 * i, Screen::WIDTH, 100 * i, GetColor(255, 0, 0), 2);
 		}
+		DrawLine(0, Screen::HEIGHT / 2, Screen::WIDTH, Screen::HEIGHT / 2, GetColor(0, 0, 255), 1);
+		DrawLine(Screen::WIDTH / 2, 0, Screen::WIDTH / 2, Screen::HEIGHT, GetColor(0, 0, 255), 1);
 	}
 }
 
