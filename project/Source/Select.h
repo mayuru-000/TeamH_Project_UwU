@@ -17,9 +17,12 @@ private:
 	int wImage1;
 	int wImage2;
 	int wImage3;
+	int tutorial;
 	int wTitleFont;
 	int wExplanaFont;
 	int wExplanaFont2;
 
 	int nowSelect;
+	bool selected;
+	bool waited;
 };

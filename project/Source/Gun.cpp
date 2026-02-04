@@ -63,7 +63,7 @@ void Gun::Update()
 					spanCount = GetNowCount();
 
 					e->playSE("gun", 255);
-					new Ammo(x, y, 20);
+					new Ammo(x, y, 10);
 
 					auto target = FindGameObjects<Target>();
 					for (auto t : target) {
@@ -95,7 +95,7 @@ void Gun::Update()
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
 		if (GetNowCount() - startTime >= reroadTime) {
-			e->playSE("reroaded", 150);
+			e->playSE("reroaded", 255);
 			ammo = Maxammo;
 			
 			c->reroading = FALSE;
@@ -127,6 +127,6 @@ void Gun::Reroad()
 	Effects* e = FindGameObject<Effects>();
 
 	c->reroading = TRUE;
-	e->playSE("reroading", 150);
+	e->playSE("reroading", 255);
 	startTime = GetNowCount();
 }

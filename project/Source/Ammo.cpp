@@ -34,5 +34,7 @@ void Ammo::Update()
 
 void Ammo::Draw()
 {
+	DrawCircle(x, y, 15, GetColor(0, 227, 255), 1);
+	DrawCircle(x, y, 12, GetColor(100, 155, 255), 1);
 	DrawCircle(x, y, 10, GetColor(255, 255, 255), 1);
 }

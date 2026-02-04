@@ -15,6 +15,7 @@ PlayScene::PlayScene()
 	Effects* e = FindGameObject<Effects>();
 	e->playSE("BGM", 200);
 
+	e->FadeIn(0.5);
 	new Field();
 	new Gunsetting();
 	new Player();

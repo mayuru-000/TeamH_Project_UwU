@@ -202,6 +202,7 @@ void Clear::select()
 	new Gunsetting();
 	new Player();
 
+	e->playSE("trans", 255);
 	e->FadeIn(0.5);
 
 	DestroyMe();

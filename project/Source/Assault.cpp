@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "Player.h"
 #include "Effects.h"
+#include "Ammo.h"
 
 Assault::Assault()
 {
@@ -57,6 +58,7 @@ void Assault::Update()
 				if (GetNowCount() - spanCount >= shotSpan || ammo == Maxammo)
 				{
 					ammo -= 1;
+					new Ammo(x, y, 10);
 					e->playSE("assault", 255);
 					
 					auto target = FindGameObjects<Target>();
@@ -92,7 +94,7 @@ void Assault::Update()
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
 		if (GetNowCount() - startTime >= reroadTime) {
-			e->playSE("reroaded",150);
+			e->playSE("reroaded",255);
 			ammo = Maxammo;
 			c->reroading = FALSE;
 		}
@@ -110,7 +112,6 @@ void Assault::Draw()
 	else
 	{
 		DrawRotaGraph(x, y, Expansion, Deg2Rad(deg), weponImage2, TRUE, FALSE);
-		DrawLine(250, 500, x, y, GetColor(255, 255, 255), 5);
 	}
 }
 
@@ -118,7 +119,7 @@ void Assault::Reroad()
 {
 	Common* c = FindGameObject<Common>();
 	Effects* e = FindGameObject<Effects>();
-	e->playSE("reroading",150);
+	e->playSE("reroading", 255);
 	c->reroading = TRUE;
 	startTime = GetNowCount();
 }

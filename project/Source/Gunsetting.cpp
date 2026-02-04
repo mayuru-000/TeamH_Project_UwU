@@ -28,13 +28,13 @@ Gunsetting::Gunsetting()
 			maxammoBuf += 20.0f;
 			break;
 		case 3:
-			bomAtkBuf += 20.0f;
+			bomAtkBuf += 100.0f;
 			break;
 		case 4:
-			bomRangeBuf += 10.0f;
+			bomRangeBuf += 20.0f;
 			break;
 		case 5:
-			bomAmmoBuf += 10.0f;
+			bomAmmoBuf += 20.0f;
 			break;
 		}
 	}

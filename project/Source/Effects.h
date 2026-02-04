@@ -25,7 +25,7 @@ public:
 	bool Finished() { return now >= time; }
 
 private:
-	int selectSE, defineSE;
+	int selectSE, defineSE, transSE;
 	int gunSE, assaultSE, explosionSE, launcherSE;
 	int reroadingSE, reroadedSE;
 	int hitSE[3], breakSE[3], parrySE;

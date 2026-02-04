@@ -24,7 +24,7 @@ public:
 	int rkHiScore;
 
 	//int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
-	int mod[9] = { 1,1,1,1,1,1,-1,-1,-1 };
+	int mod[9] = { 5,5,5,5,5,1,-1,-1,-1 };
 	//int gnRanking[3] = { 0,0,0 };
 	//int asRanking[3] = { 0,0,0 };
 	//int rkRanking[3] = { 0,0,0 };
@@ -34,8 +34,8 @@ public:
 
 
 	const int speedX = 12;
-	const int speedrange[10] = { 3,3,3,3,3,3,3,3,3 };
-	const int objPattern_A[10] = { 6,14,7,0,7,14,6,0 };
+	const int speedrange[10] = { 3,3,3,4,4,4,5,5,6 };
+	const int objPattern_A[10] = { 6,14,7,0,0,7,14,6,0 };
 	const int objPattern_B[10] = { 0,0,5,0,0,5,0,0,0 };
 
 	bool reroading = FALSE;

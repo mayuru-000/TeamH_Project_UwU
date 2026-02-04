@@ -23,7 +23,13 @@ Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 		range[num] *= ((rangebuf + 100.0f) / 100.0f);
 		ammoDamage[num] *= ((atkbuf + 100.0f) / 100.0f);
 	}
-	chargeSpeed = 75000 * ((100.0f - ammobuf) / 100.0f);
+
+	if (((100.0f - ammobuf) / 100.0f) > 0.0) {
+		chargeSpeed = 50000 * ((100.0f - ammobuf) / 100.0f);
+	}
+	else{
+		chargeSpeed = 50000 * 0.01;
+	} 
 	MaxGAmmo = 3;
 
 	if (c->nowStage == 1) { gAmmo = 1; }

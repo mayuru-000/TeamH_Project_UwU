@@ -97,7 +97,7 @@ void Launcher::Update()
 	{
 		DrawString(0, 80, "REROADING...", GetColor(255, 255, 255));
 		if (GetNowCount() - startTime >= reroadTime) {
-			e->playSE("reroaded", 150);
+			e->playSE("reroaded", 255);
 			ammo = Maxammo;
 
 			c->reroading = FALSE;
@@ -135,6 +135,6 @@ void Launcher::Reroad()
 	Effects* e = FindGameObject<Effects>();
 
 	c->reroading = TRUE;
-	e->playSE("reroading", 150);
+	e->playSE("reroading", 255);
 	startTime = GetNowCount();
 }
