@@ -17,7 +17,7 @@ Assault::Assault(float atk, float rate, float maxammo)
 
 	for (int i = 0; i < num; i++)
 	{
-		ammoDamage[num] *= ((atk + 100.0f) / 100.0f);
+		ammoDamage[i] *= ((atk + 100.0f) / 100.0f);
 	}
 	shotSpan = 130 * ((100.0f - rate) / 100.0f);
 	Maxammo = 30 * ((maxammo + 100.0f) / 100.0f);

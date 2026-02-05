@@ -35,7 +35,8 @@ private:
 	int rank3Digit;
 	int ranking[3];
 
-	int rank = 0;
+	char rate;
+	int rank;
 	int totalscore;
 
 	bool moveY = FALSE;

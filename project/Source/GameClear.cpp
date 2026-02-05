@@ -34,6 +34,8 @@ GameClear::GameClear()
 	x = 0;
 	y = 0;
 	Width = 0;
+	rank = 0;
+	rate = 'C';
 	scoreDigit =  checkDigit(c->score);
 	breakDigit =  checkDigit(c->breakcount);
 	tScoreDigit = checkDigit(totalscore);
@@ -57,12 +59,17 @@ GameClear::GameClear()
 				i = 100;								//更新したらブレイク
 			}
 		}
+
 		rank1Digit = checkDigit(c->gnRanking[0]);
 		rank2Digit = checkDigit(c->gnRanking[1]);
 		rank3Digit = checkDigit(c->gnRanking[2]);
-		for (int i = 0;i < 3;i++) {
-			ranking[i] = c->gnRanking[i];
-		}
+		for (int i = 0;i < 3;i++) { ranking[i] = c->gnRanking[i]; }
+
+		if		(totalscore >= 90000)	{ rate = 'S'; }
+		else if (totalscore >= 90000)	{ rate = 'A'; }
+		else if (totalscore >= 90000)	{ rate = 'B'; }
+		else							{ rate = 'C'; }
+
 		break;
 
 	case 2:
@@ -85,9 +92,13 @@ GameClear::GameClear()
 		rank1Digit = checkDigit(c->asRanking[0]);
 		rank2Digit = checkDigit(c->asRanking[1]);
 		rank3Digit = checkDigit(c->asRanking[2]);
-		for (int i = 0;i < 3;i++) {
-			ranking[i] = c->asRanking[i];
-		}
+		for (int i = 0;i < 3;i++) { ranking[i] = c->asRanking[i]; }
+
+		if		(totalscore >= 1000000)	{ rate = 'S'; }
+		else if (totalscore >= 900000)	{ rate = 'A'; }
+		else if (totalscore >= 850000)	{ rate = 'B'; }
+		else							{ rate = 'C'; }
+
 		break;
 	case 3:
 		if (totalscore > c->rkHiScore) {
@@ -108,9 +119,13 @@ GameClear::GameClear()
 		rank1Digit = checkDigit(c->rkRanking[0]);
 		rank2Digit = checkDigit(c->rkRanking[1]);
 		rank3Digit = checkDigit(c->rkRanking[2]);
-		for (int i = 0;i < 3;i++) {
-			ranking[i] = c->rkRanking[i];
-		}
+		for (int i = 0;i < 3;i++) { ranking[i] = c->rkRanking[i]; }
+
+		if		(totalscore >= 90000) { rate = 'S'; }
+		else if (totalscore >= 90000) { rate = 'A'; }
+		else if (totalscore >= 90000) { rate = 'B'; }
+		else						  { rate = 'C'; }
+
 		break;
 	default:
 		break;
@@ -220,7 +235,23 @@ void GameClear::Draw()
 	DrawFormatStringToHandle(200 - x + Width * (8 - breakDigit), 320, GetColor(255, 255, 255), c->textFont[1], "%d", c->breakcount);
 
 	//ランク用
-	DrawGraph(700 - x, 130 + y, abcImage[0], TRUE);
+	switch (rate)
+	{
+	case 'S':
+		DrawGraph(700 - x, 130 + y, abcImage[0], TRUE);
+		break;
+	case 'A':
+		DrawGraph(700 - x, 130 + y, abcImage[1], TRUE);
+		break;
+	case 'B':
+		DrawGraph(700 - x, 130 + y, abcImage[2], TRUE);
+		break;
+	case 'C':
+		DrawGraph(700 - x, 130 + y, abcImage[3], TRUE);
+		break;
+	default:
+		break;
+	}
 
 	/*----------------------------------------------------------------------------------------------------------------------------------*/
 	

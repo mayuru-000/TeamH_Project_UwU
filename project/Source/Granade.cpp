@@ -20,8 +20,8 @@ Granade::Granade(float atkbuf, float rangebuf, float ammobuf)
 
 	for (int i = 0; i < num; i++)
 	{
-		range[num] *= ((rangebuf + 100.0f) / 100.0f);
-		ammoDamage[num] *= ((atkbuf + 100.0f) / 100.0f);
+		range[i] *= ((rangebuf + 100.0f) / 100.0f);
+		ammoDamage[i] *= ((atkbuf + 100.0f) / 100.0f);
 	}
 
 	if (((100.0f - ammobuf) / 100.0f) > 0.0) {
