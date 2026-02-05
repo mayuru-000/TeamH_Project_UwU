@@ -105,23 +105,48 @@ void Field::Update()
 		return;
 	}
 
-	if (!sponed_A)
-	{
-		if ((Screen::WIDTH >= objSpan_A + objSponePoint_A) && (c->objPattern_A[c->nowStage - 1] != 0)) {
-			if (GetRand(99) < 5) {
-				sponed_A = TRUE;
-				objSponePoint_A = Screen::WIDTH;
-				new Objects("A");
+	if (c->nowStage == 9) {
+		if (!sponed_A)
+		{
+			if ((Screen::WIDTH >= objSpan_A + objSponePoint_A) && (c->objPattern_A[c->nowStage - 1] != 0)) {
+				if (GetRand(99) < 5) {
+					sponed_A = TRUE;
+					objSponePoint_A = Screen::WIDTH;
+					new Objects("A");
+				}
+			}
+		}
+		if (!sponed_B)
+		{
+			if ((Screen::WIDTH >= objSpan_B + objSponePoint_B) && (c->objPattern_B[c->nowStage - 1] != 0)) {
+				if (GetRand(999) < 5) {
+					sponed_B = TRUE;
+					objSponePoint_B = Screen::WIDTH;
+					new Objects("B");
+				}
 			}
 		}
 	}
-	if (!sponed_B) 
+	else
 	{
-		if ((Screen::WIDTH >= objSpan_B + objSponePoint_B) && (c->objPattern_B[c->nowStage - 1] != 0)) {
-			if (GetRand(99) < 5) {
-				sponed_B = TRUE;
-				objSponePoint_B = Screen::WIDTH;
-				new Objects("B");
+		if (!sponed_A)
+		{
+			if ((Screen::WIDTH >= objSpan_A + objSponePoint_A) && (c->objPattern_A[c->nowStage - 1] != 0)) {
+				if (GetRand(99) < 5) {
+					sponed_A = TRUE;
+					objSponePoint_A = Screen::WIDTH;
+					new Objects("A");
+				}
+			}
+		}
+		if (!sponed_B)
+		{
+			if ((Screen::WIDTH >= objSpan_B + objSponePoint_B) && (c->objPattern_B[c->nowStage - 1] != 0)) {
+				if (GetRand(99) < 2) {
+					sponed_B = TRUE;
+					objSponePoint_B = Screen::WIDTH;
+					new Objects("B");
+				}
 			}
 		}
 	}

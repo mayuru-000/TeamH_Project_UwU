@@ -20,7 +20,8 @@ Launcher::Launcher(float atk, float rate, float maxammo)
 		ammoDamage[i] *= ((atk + 100.0f) / 100.0f);
 	}
 	shotSpan = 1600 * ((100.0f - rate) / 100.0f);
-	Maxammo = 3 * ((maxammo + 100.0f) / 100.0f);
+	//Maxammo = 3 * ((maxammo + 100.0f) / 100.0f);
+	Maxammo = 3 + (maxammo / 20.0);
 	ammo = Maxammo;
 
 	x = 0;

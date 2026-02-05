@@ -39,7 +39,12 @@ Objects::Objects(const char* mode)
 		{ 
 			SetDrawOrder(-10);
 			scrollX = c->Speed("front") + 10; 
-		};
+		}
+		if (c->nowStage == 9)
+		{
+			SetDrawOrder(-10);
+			scrollX = c->Speed("front") + 10;
+		}
 		
 	} 
 	else if(mode == "B")

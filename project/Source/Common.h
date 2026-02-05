@@ -37,8 +37,8 @@ public:
 
 	const int speedX = 12;
 	const int speedrange[10] = { 3,3,3,4,4,4,5,5,6 };
-	const int objPattern_A[10] = { 6,14,7,0,0,7,14,6,0 };
-	const int objPattern_B[10] = { 0,0,5,0,0,5,0,0,0 };
+	const int objPattern_A[10] = { 6,14,7,5,5,7,14,6,9 };
+	const int objPattern_B[10] = { 0,0,5,3,3,5,0,1,1 };
 
 	bool reroading = FALSE;
 	bool cleared = FALSE;
