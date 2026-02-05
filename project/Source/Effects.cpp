@@ -77,7 +77,7 @@ void Effects::Update()
 			ChangeVolumeSoundMem(nowVolume * rate, nowBGM);
 			if (rate <= 0) {
 				nowVolume = 0;
-				StopSoundMem(nowBGM, 0);
+				StopSoundMem(nowBGM);
 			}
 		}
 	}

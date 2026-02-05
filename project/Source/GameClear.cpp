@@ -49,8 +49,12 @@ GameClear::GameClear()
 			if (totalscore > c->gnRanking[i]) {
 				rankIn = TRUE;
 				rank = i + 1;
+				for (int j = 2;j > i;j--) {
+					c->gnRanking[j] = c->gnRanking[j - 1];
+				}
 				c->gnRanking[i] = totalscore;
-				i = 100;
+				
+				i = 100;								//更新したらブレイク
 			}
 		}
 		rank1Digit = checkDigit(c->gnRanking[0]);
@@ -60,6 +64,7 @@ GameClear::GameClear()
 			ranking[i] = c->gnRanking[i];
 		}
 		break;
+
 	case 2:
 		if (totalscore > c->asHiScore) {
 			newrecord = TRUE;
@@ -69,8 +74,12 @@ GameClear::GameClear()
 			if (totalscore > c->asRanking[i]) {
 				rankIn = TRUE;
 				rank = i + 1;
+				for (int j = 2;j > i;j--) {
+					c->asRanking[j] = c->asRanking[j - 1];
+				}
 				c->asRanking[i] = totalscore;
-				i = 100;
+				
+				i = 100;								//更新したらブレイク
 			}
 		}
 		rank1Digit = checkDigit(c->asRanking[0]);
@@ -89,8 +98,11 @@ GameClear::GameClear()
 			if (totalscore > c->rkRanking[i]) {
 				rankIn = TRUE;
 				rank = i + 1;
+				for (int j = 2;j > i;j--) {
+					c->rkRanking[j] = c->rkRanking[j - 1];
+				}
 				c->rkRanking[i] = totalscore;
-				i = 100;
+				i = 100;								//更新したらブレイク
 			}
 		}
 		rank1Digit = checkDigit(c->rkRanking[0]);
@@ -104,7 +116,7 @@ GameClear::GameClear()
 		break;
 	}
 	
-
+	c->ScoreSave();
 	mode = MODE::RESULTS;
 }
 

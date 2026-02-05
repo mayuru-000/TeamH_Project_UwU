@@ -9,6 +9,8 @@ class Common :public GameObject
 public:
 	Common();
 	int Speed(string mode);
+	void ScoreLoad();
+	void ScoreSave();
 	void Init();
 	int remAmmo;
 	int remGAmmo;
@@ -23,14 +25,14 @@ public:
 	int asHiScore;
 	int rkHiScore;
 
-	//int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
-	int mod[9] = { 5,5,5,5,5,1,-1,-1,-1 };
-	//int gnRanking[3] = { 0,0,0 };
-	//int asRanking[3] = { 0,0,0 };
-	//int rkRanking[3] = { 0,0,0 };
-	int gnRanking[3] = { 1111,111,11 };
-	int asRanking[3] = { 2222,222,22 };
-	int rkRanking[3] = { 3333,333,33 };
+	int mod[9] = { -1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	//int mod[9] = { 5,5,5,5,5,1,-1,-1,-1 };
+	int gnRanking[3] = { 0,0,0 };
+	int asRanking[3] = { 0,0,0 };
+	int rkRanking[3] = { 0,0,0 };
+	//int gnRanking[3] = { 1111,111,11 };
+	//int asRanking[3] = { 2222,222,22 };
+	//int rkRanking[3] = { 3333,333,33 };
 
 
 	const int speedX = 12;
@@ -44,4 +46,5 @@ public:
 
 	bool dontClear = FALSE;
 	bool debugmode = FALSE;
+
 };
