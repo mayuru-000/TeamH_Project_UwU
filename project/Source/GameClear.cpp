@@ -65,8 +65,8 @@ GameClear::GameClear()
 		rank3Digit = checkDigit(c->gnRanking[2]);
 		for (int i = 0;i < 3;i++) { ranking[i] = c->gnRanking[i]; }
 
-		if		(totalscore >= 810000)	{ rate = 'S'; }
-		else if (totalscore >= 760000)	{ rate = 'A'; }
+		if		(totalscore >= 800000)	{ rate = 'S'; }
+		else if (totalscore >= 770000)	{ rate = 'A'; }
 		else if (totalscore >= 650000)	{ rate = 'B'; }
 		else							{ rate = 'C'; }
 
@@ -94,9 +94,9 @@ GameClear::GameClear()
 		rank3Digit = checkDigit(c->asRanking[2]);
 		for (int i = 0;i < 3;i++) { ranking[i] = c->asRanking[i]; }
 
-		if		(totalscore >= 920000)	{ rate = 'S'; }
-		else if (totalscore >= 880000)	{ rate = 'A'; }
-		else if (totalscore >= 840000)	{ rate = 'B'; }
+		if		(totalscore >= 900000)	{ rate = 'S'; }
+		else if (totalscore >= 870000)	{ rate = 'A'; }
+		else if (totalscore >= 800000)	{ rate = 'B'; }
 		else							{ rate = 'C'; }
 
 		break;
@@ -121,9 +121,9 @@ GameClear::GameClear()
 		rank3Digit = checkDigit(c->rkRanking[2]);
 		for (int i = 0;i < 3;i++) { ranking[i] = c->rkRanking[i]; }
 
-		if		(totalscore >= 820000) { rate = 'S'; }
-		else if (totalscore >= 750000) { rate = 'A'; }
-		else if (totalscore >= 700000) { rate = 'B'; }
+		if		(totalscore >= 800000) { rate = 'S'; }
+		else if (totalscore >= 770000) { rate = 'A'; }
+		else if (totalscore >= 650000) { rate = 'B'; }
 		else						   { rate = 'C'; }
 
 		break;

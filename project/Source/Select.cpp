@@ -11,6 +11,7 @@ Select::Select()
 	wImage2 = LoadGraph("data/image/wepon/Assault.png");
 	wImage3 = LoadGraph("data/image/wepon/Rocket.png");
 	tutorial = LoadGraph("data/image/tutorial.png");
+	bufImage = LoadGraph("data/image/icon/bufIcon.png");
 
 	wTitleFont = CreateFontToHandle("Agency FB", 100, -1, -1);
 	wExplanaFont = CreateFontToHandle("Agency FB", 60, -1, -1);
@@ -33,6 +34,7 @@ Select::~Select()
 	DeleteGraph(wImage2);
 	DeleteGraph(wImage3);
 	DeleteGraph(tutorial);
+	DeleteGraph(bufImage);
 
 	DeleteFontToHandle(wTitleFont);
 	DeleteFontToHandle(wExplanaFont);
@@ -102,7 +104,6 @@ void Select::Draw()
 {
 	if (!selected) {
 		DrawGraph(0, 0, bgImage, TRUE);
-		DrawFormatString(0, 0, GetColor(0, 0, 0), "%d", nowSelect);
 
 		switch (nowSelect)
 		{
@@ -111,7 +112,10 @@ void Select::Draw()
 			DrawStringToHandle(5, 130, "Hand Gun", GetColor(0, 0, 0), wExplanaFont);
 			DrawStringToHandle(5, 250, "火力の高い単発式のハンドガン。", GetColor(0, 0, 0), wExplanaFont2);
 			DrawStringToHandle(5, 290, "リロードが素早く、取り回しが良い。", GetColor(0, 0, 0), wExplanaFont2);
-			DrawStringToHandle(5, 370, "難易度 ★", GetColor(0, 0, 0), wExplanaFont2);
+			DrawStringToHandle(5, 370, "おすすめバフ：", GetColor(0, 0, 0), wExplanaFont2);
+			DrawRectExtendGraph(220, 355, 220 + 64, 355 + 64, 64 * 0, 64 * 0, 64, 64, bufImage, 1);
+			DrawRectExtendGraph(220 + (64 * 1), 355, 220 + (64 * 2), 355 + 64, 64 * 1, 64 * 1, 64, 64, bufImage, 1);
+			DrawRectExtendGraph(220 + (64 * 2), 355, 220 + (64 * 3), 355 + 64, 64 * 1, 64 * 2, 64, 64, bufImage, 1);
 			DrawRotaGraph(930, 330, 1, 0.3, wImage1, TRUE);
 			c1 = 1.2;
 			c2 = 1.0;
@@ -123,7 +127,10 @@ void Select::Draw()
 			DrawStringToHandle(5, 130, "Assault Rifle", GetColor(0, 0, 0), wExplanaFont);
 			DrawStringToHandle(5, 250, "弾数の多い連射式のライフル。", GetColor(0, 0, 0), wExplanaFont2);
 			DrawStringToHandle(5, 290, "弾幕でゴリ押せ。", GetColor(0, 0, 0), wExplanaFont2);
-			DrawStringToHandle(5, 370, "難易度 ★★", GetColor(0, 0, 0), wExplanaFont2);
+			DrawStringToHandle(5, 370, "おすすめバフ：", GetColor(0, 0, 0), wExplanaFont2);
+			DrawRectExtendGraph(220, 355, 220 + 64, 355 + 64, 64 * 0, 64 * 1, 64, 64, bufImage, 1);
+			DrawRectExtendGraph(220 + (64 * 1), 355, 220 + (64 * 2), 355 + 64, 64 * 0, 64 * 2, 64, 64, bufImage, 1);
+			//DrawRectExtendGraph(220 + (64 * 2), 355, 220 + (64 * 3), 355 + 64, 64 * 0, 64 * 0, 64, 64, bufImage, 1);
 			DrawRotaGraph(920, 320, 1, 0.3, wImage2, TRUE);
 			c1 = 1.0;
 			c2 = 1.2;
@@ -131,10 +138,13 @@ void Select::Draw()
 			break;
 
 		case 3:
-			DrawStringToHandle(0, 40, "ROCKTRUNCHERRRRRRRRRRRRRRRRRRRR", GetColor(0, 0, 0), wTitleFont);
+			DrawStringToHandle(0, 40, "ROCKTRUNCHER", GetColor(0, 0, 0), wTitleFont);
 			DrawStringToHandle(5, 130, "BOOOOM", GetColor(0, 0, 0), wExplanaFont);
 			DrawStringToHandle(5, 290, "火力ゥ！", GetColor(0, 0, 0), wExplanaFont2);
-			DrawStringToHandle(5, 370, "難易度 ★★★", GetColor(0, 0, 0), wExplanaFont2);
+			DrawStringToHandle(5, 370, "おすすめバフ：", GetColor(0, 0, 0), wExplanaFont2);
+			DrawRectExtendGraph(220, 355, 220 + 64, 355 + 64, 64 * 0, 64 * 0, 64, 64, bufImage, 1);
+			DrawRectExtendGraph(220 + (64 * 1), 355, 220 + (64 * 2), 355 + 64, 64 * 0, 64 * 1, 64, 64, bufImage, 1);
+			//DrawRectExtendGraph(220 + (64 * 2), 355, 220 + (64 * 3), 355 + 64, 64 * 1, 64 * 2, 64, 64, bufImage, 1);
 			DrawRotaGraph(920, 320, 0.8, 0.3, wImage3, TRUE);
 
 			c1 = 1.0;

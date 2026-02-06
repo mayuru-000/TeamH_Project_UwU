@@ -126,7 +126,7 @@ void Launcher::Draw()
 
 	if (exploding) {
 		DrawRectExtendGraph(x - range[num - 1] - 100, y - range[num - 1] - 100, x + range[num - 1] + 100, y + range[num - 1] + 100, 64 * (explTimer / 3), 0, 64, 64, exploImage, TRUE);
-		DrawCircle(x, y, range[num - 1], GetColor(255, 0, 0), FALSE);
+		//DrawCircle(x, y, range[num - 1], GetColor(255, 0, 0), FALSE);
 	}
 }
 

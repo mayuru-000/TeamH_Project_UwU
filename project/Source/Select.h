@@ -18,6 +18,7 @@ private:
 	int wImage2;
 	int wImage3;
 	int tutorial;
+	int bufImage;
 	int wTitleFont;
 	int wExplanaFont;
 	int wExplanaFont2;

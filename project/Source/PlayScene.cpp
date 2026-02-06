@@ -77,8 +77,5 @@ void PlayScene::Update()
 
 void PlayScene::Draw()
 {
-	Common* c = FindGameObject<Common>();
 	SetMainWindowText(stage);
-
-	//DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
 }

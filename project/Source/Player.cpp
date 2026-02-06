@@ -41,6 +41,8 @@ Player::~Player()
 	DeleteGraph(carImage);
 	DeleteGraph(uiImage);
 	DeleteGraph(roadImage);
+	DeleteGraph(granadeUI);
+	DeleteGraph(granadeChargeUI);
 }
 
 void Player::Update()

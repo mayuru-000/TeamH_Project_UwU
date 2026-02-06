@@ -25,5 +25,5 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
-
+	SetMainWindowText("MACHIKOWA!!!");
 }
